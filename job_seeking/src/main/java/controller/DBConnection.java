@@ -8,7 +8,7 @@ public class DBConnection {
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "anhdao1911";
     private static final String HOST = "localhost";
-    private static final String DATABASE = "jobseeking";
+    private static final String DATABASE = "job_seeking";
     private static final String PORT = "3306";
     private static Connection connection;
 

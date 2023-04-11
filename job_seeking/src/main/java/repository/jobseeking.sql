@@ -1,6 +1,6 @@
 drop database if exists job_seeking;
 create database job_seeking;
-use jobSeeking;
+use job_Seeking;
 
 create table category(
                          id_category int primary key not null,
@@ -12,26 +12,27 @@ values(1,'IT'),
       (2,'Serve'),
       (3,'The main kitchen'),
       (4,'Protect'),
-      (5,'Manage');
+      (5,'Manage'),
+      (6, 'Admin');
 select * from category;
 
 create table post(
                      id int primary key auto_increment,
-                     post_title varchar(255) not null,
-                     `describe` varchar(255) not null,
-                     date_submitted varchar(255) not null,
-                     img varchar(255) not null,
+                     post_title varchar(255) ,
+                     `describe` varchar(255),
+                     date_submitted varchar(255),
+                     img varchar(255),
                      id_category int not null,
                      foreign key (id_category) references category(id_category)
 );
 
 insert into post
-values('Tuyển nhân viên IT', 'Lương tháng nghìn đô','2001/03/29','img-1',1),
-      ('Tuyển quản lý nhà hàng','Lương tháng vài trăm đô','2001/08/18','img-2',5),
-      ('Tuyển bếp chính cho nhà hàng','Lương tháng triệu đô','2019/07/26','img-3',3),
-      ('Tuyển phục vụ cho khách sạn','Boa ăn ở, lương cao','2022/10/01','img-4',2),
-      ('Tuyển bảo vệ cho khách sạn','Bổng lộc cao','2001/11/19','img-5',4);
-
+values(1,'Tuyển nhân viên IT', 'Lương tháng nghìn đô','2001/03/29','img-1',1),
+      (2,'Tuyển quản lý nhà hàng','Lương tháng vài trăm đô','2001/08/18','img-2',5),
+      (3,'Tuyển bếp chính cho nhà hàng','Lương tháng triệu đô','2019/07/26','img-3',3),
+      (4,'Tuyển phục vụ cho khách sạn','Boa ăn ở, lương cao','2022/10/01','img-4',2),
+      (5,'Tuyển bảo vệ cho khách sạn','Bổng lộc cao','2001/11/19','img-5',4),
+      (6,'admin',null,null,null,6);
 select * from post;
 
 create table `use`(
@@ -49,6 +50,7 @@ values(1,'Anh Đào','phantaanhdao@gmail.com','12345678','0931997293',4),
       (2,'Hữu Huy','phantaanhdao@gmail.com','12345678','0931997293',2),
       (3,'Hưng','phantaanhdao@gmail.com','12345678','0931997293',1),
       (4,'Danh','phantaanhdao@gmail.com','12345678','0931997293',5),
-      (5,'HaiTT','phantaanhdao@gmail.com','12345678','0931997293',3);
+      (5,'HaiTT','phantaanhdao@gmail.com','12345678','0931997293',3),
+      (6,'Admin','admin@gmail.com','123123123',0931997293,6);
 
 select * from `use`;

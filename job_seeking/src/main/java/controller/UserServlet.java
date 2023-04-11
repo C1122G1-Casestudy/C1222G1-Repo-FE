@@ -42,9 +42,6 @@ public class UserServlet extends HttpServlet {
      * Function: display detail information of user
      * Create: DaoPTA
      * Date create: 07/04/2023
-     *
-     * @param request
-     * @param response
      */
     private void showViewUser(HttpServletRequest request, HttpServletResponse response) {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
@@ -61,9 +58,6 @@ public class UserServlet extends HttpServlet {
      * Function: display list user
      * Create: DaoPTA
      * Date create: 07/04/2023
-     *
-     * @param request
-     * @param response
      */
     private void showListUser(HttpServletRequest request, HttpServletResponse response) {
         HttpSession httpSession = request.getSession();
@@ -91,9 +85,6 @@ public class UserServlet extends HttpServlet {
      * Function: log out
      * Create: DaoPTA
      * Date create: 07/04/2023
-     *
-     * @param request
-     * @param response
      */
     private void logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -120,7 +111,6 @@ public class UserServlet extends HttpServlet {
      * Function: show register form
      * Create: DaoPTA
      * Date create: 07/04/2023
-     *
      * @param request
      * @param response
      */
@@ -134,6 +124,76 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        if (action == null) {
+            action = "";
+        }
+        switch (action){
+            case "login":
+                login(request, response);
+                break;
+            case "register":
+                register(request, response);
+                break;
+            default:
+                break;
+        }
+    }
 
+    private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phoneNum = request.getParameter("phoneNum");
+        String password = request.getParameter("password");
+        User user = new User(name,email,phoneNum,password);
+        List<User> userList = iUserService.findAllUser();
+        boolean flag = true;
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getEmail().equals(email)) {
+                flag = false;
+                request.setAttribute("registerFail", "Email đã tồn tại");
+                request.getRequestDispatcher("/list_user/register.jsp").forward(request, response);
+                break;
+            }
+        }
+        if (flag) {
+            iUserService.register(user);
+            response.sendRedirect("/post");
+        }
+    }
+
+    private void login(HttpServletRequest request, HttpServletResponse response) {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        User user = iUserService.login(email,password);
+        if (user == null) {
+            try {
+                request.setAttribute("loginFail", "Đăng nhập thất bại");
+                request.getRequestDispatcher("/user/login.jsp").forward(request, response);
+            } catch (IOException | ServletException e) {
+                e.printStackTrace();
+            }
+        }else {
+            try{
+                HttpSession httpSession = request.getSession();
+                httpSession.setAttribute("emailAccount", email);
+                httpSession.setAttribute("passwordAccount",password);
+                Cookie cookie1 = new Cookie("email", user.getEmail());
+                cookie1.setMaxAge(3600);
+                response.addCookie(cookie1);
+                Cookie cookie2 = new Cookie("password", user.getPassWord());
+                cookie2.setMaxAge(3600);
+                response.addCookie(cookie2);
+                if (user.getEmail().equals("admin@gmail.com")) {
+                    response.sendRedirect("/user");
+                } else {
+                    response.sendRedirect("/post");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
