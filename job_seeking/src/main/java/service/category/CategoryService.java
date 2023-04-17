@@ -1,4 +1,4 @@
-package service;
+package service.category;
 
 public class CategoryService {
 }

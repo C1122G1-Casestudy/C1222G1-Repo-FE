@@ -1,4 +1,4 @@
-package repository;
+package repository.post;
 
 public interface IPostRepository {
 }

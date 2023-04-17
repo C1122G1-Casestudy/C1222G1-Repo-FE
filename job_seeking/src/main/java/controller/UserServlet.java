@@ -1,8 +1,8 @@
 package controller;
 
 import model.User;
-import service.IUserService;
-import service.UserService;
+import service.user.IUserService;
+import service.user.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
