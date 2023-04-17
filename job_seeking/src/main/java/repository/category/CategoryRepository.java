@@ -1,4 +1,12 @@
 package repository.category;
 
-public class CategoryRepository {
+import model.Category;
+
+import java.util.List;
+
+public class CategoryRepository implements ICategoryRepository {
+    @Override
+    public List<Category> listCategory() {
+        return null;
+    }
 }
