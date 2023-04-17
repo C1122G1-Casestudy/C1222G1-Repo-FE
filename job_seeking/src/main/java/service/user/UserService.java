@@ -1,12 +1,13 @@
-package service;
+package service.user;
 
 import model.User;
-import repository.IUserRepository;
-import repository.UserRepository;
+import repository.user.IUserRepository;
+import repository.user.UserRepository;
+import service.user.IUserService;
 
 import java.util.List;
 
-public class UserService implements IUserService{
+public class UserService implements IUserService {
     private IUserRepository iUserRepository = new UserRepository();
     @Override
     public User login(String email, String passWord) {

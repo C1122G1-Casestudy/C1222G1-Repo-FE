@@ -6,19 +6,8 @@ public class User {
     private String email;
     private String phoneNumber;
     private String passWord;
-    private int idPost;
-    private Post post;
 
     public User() {
-    }
-
-    public User(int id, String userName, String email, String phoneNumber, String passWord,int idPost) {
-        this.id = id;
-        this.userName = userName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.passWord = passWord;
-        this.idPost = idPost;
     }
 
     public User(int id, String userName, String email, String phoneNumber, String passWord) {
@@ -76,19 +65,4 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getIdPost() {
-        return idPost;
-    }
-
-    public void setIdPost(int idPost) {
-        this.idPost = idPost;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
 }
