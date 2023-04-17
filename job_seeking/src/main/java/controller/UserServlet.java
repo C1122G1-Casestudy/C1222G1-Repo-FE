@@ -1,8 +1,8 @@
 package controller;
 
 import model.User;
-import service.IUserService;
-import service.UserService;
+import service.user.IUserService;
+import service.user.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends HttpServlet {
-    IUserService iUserService = new UserService();
+    private IUserService iUserService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -142,6 +142,13 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Function: register form
+     * Create: DaoPTA
+     * Date create: 17/04/2023
+     * @param request
+     * @param response
+     */
     private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String name = request.getParameter("name");
         String email = request.getParameter("email");
