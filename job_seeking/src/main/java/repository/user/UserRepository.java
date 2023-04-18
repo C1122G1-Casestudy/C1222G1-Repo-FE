@@ -4,12 +4,15 @@ import controller.DBConnection;
 import model.User;
 import repository.user.IUserRepository;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserRepository implements IUserRepository {
-
+private static final String SELECT_ALL_USERS = "";
     @Override
     public User login(String email, String passWord) {
         PreparedStatement preparedStatement = null;
