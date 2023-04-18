@@ -2,7 +2,9 @@ drop database if exists job_seeking;
 create database job_seeking;
 use job_seeking;
 
+
 use job_Seeking;
+
 create table category(
     id_category int primary key not null,
     post_category varchar(255) not null
@@ -36,11 +38,13 @@ values(1,'Tuyển nhân viên IT', 'Lương tháng nghìn đô','2001/03/29','im
 select * from post;
 create table `use`(
 
+
     id_use int primary key auto_increment,
     use_name varchar(255) not null,
     email varchar(255) not null,
     `password` varchar(255) not null,
     phone_number varchar(255) not null
+
 );
 insert into `use`
 values(1,'Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
@@ -51,5 +55,4 @@ values(1,'Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
       (6,'Admin','admin@gmail.com','123123123',0931997293);
 select * from `use`;
 
-select * from `use`;
 
