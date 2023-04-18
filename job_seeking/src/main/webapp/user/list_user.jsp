@@ -5,10 +5,7 @@
   Time: 11:35 PM
   To change this template use File | Settings | File Templates.
 --%>
-<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-=======
->>>>>>> d0246933e07a5f7e3e8ea4812dce4d84901ecaaf
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -39,15 +36,10 @@
         <td>${user.getEmail()}</td>
         <td>${user.getPhoneNumber()}</td>
 
-<<<<<<< HEAD
     </tr>
     </c:forEach>
     </tbody>
 </table>
-
-
-=======
->>>>>>> d0246933e07a5f7e3e8ea4812dce4d84901ecaaf
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
