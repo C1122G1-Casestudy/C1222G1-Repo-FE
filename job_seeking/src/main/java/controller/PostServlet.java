@@ -131,8 +131,6 @@ public class PostServlet extends HttpServlet {
         String dateSubmitted = request.getParameter("dateSubmitted");
         String img = request.getParameter("img");
         int idCategory = Integer.parseInt(request.getParameter("idCategory"));
-//        Category category = request.getParameter("category");
-//        int idUse = Integer.parseInt(request.getParameter("idUse"));
         Post post = new Post(idPost, postTitle, describe, dateSubmitted, img, idCategory);
         iPostService.create(post);
         request.setAttribute("message", "Create success");
