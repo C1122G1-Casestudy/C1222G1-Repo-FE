@@ -2,8 +2,8 @@ drop database if exists job_seeking;
 create database job_seeking;
 use job_Seeking;
 create table category(
-                         id_category int primary key not null,
-                         post_category varchar(255) not null
+    id_category int primary key not null,
+    post_category varchar(255) not null
 );
 insert into category
 values(1,'IT'),
@@ -44,4 +44,6 @@ values(1,'Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
       (4,'Danh','phantaanhdao@gmail.com','12345678','0931997293'),
       (5,'HaiTT','phantaanhdao@gmail.com','12345678','0931997293'),
       (6,'Admin','admin@gmail.com','123123123',0931997293);
+select * from `use`;
+
 select * from `use`;

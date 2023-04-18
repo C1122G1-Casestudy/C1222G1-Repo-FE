@@ -18,19 +18,20 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<form action="/CategoryServlet?actionCategory=create" method="post">
-    <div>
-        <label>Id
-            <input type="text" name="id">
-        </label>
+<form action="/categoryServlet?actionCategory=create" method="post">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Id</span>
+        <input type="number" class="form-control" placeholder="Id Category" aria-label="IdCategory" aria-describedby="basic-addon1"
+               name="id" required>
     </div>
-    <div style="">
-        <label>Post Category
-            <input type="text" name="post">
-        </label>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon2">Post</span>
+        <input type="text" class="form-control" placeholder="CategoryName" aria-label="NameCategory" aria-describedby="basic-addon2"
+               name="post" required>
     </div>
+
     <div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-secondary">Save</button>
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

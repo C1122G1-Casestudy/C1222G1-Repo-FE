@@ -22,22 +22,75 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<button class="btn btn-primary" onclick="window.location.href = '/CategoryServlet?actionCategory=create'">Create</button>
+<button class="btn btn-primary" onclick="window.location.href = '/categoryServlet?actionCategory=create'">Create</button>
+<form action="/categoryServlet">
+<div class="input-group mb-3">
+    <input type="search" name="search" class="form-control" placeholder="Enter Name" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <input type="hidden" name="actionCategory" value="search">
+    <button  class="btn btn-outline-secondary" type="submit" >Search</button>
+</div>
+</form>
 <table class="table">
     <thead>
     <tr>
         <th>No</th>
+        <th>ID</th>
         <th>Post Category</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach var="category" items="${listCategory}" varStatus="no">
         <tr>
-            <td scope="row" >${no.count}</td>
+            <td scope="row">${no.count}</td>
+            <td>${category.idCategory}</td>
             <td>${category.postCategory}</td>
+            <td>
+                <button onclick="window.location.href = '/categoryServlet?actionCategory=update&id=${category.idCategory}'"
+                        class="btn btn-primary">Update
+                </button>
+            </td>
+            <td>
+                <button onclick="changIdDelete(${category.getIdCategory()} , '${category.getPostCategory()}')"
+                        type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
+                    Delete
+                </button>
+            </td>
+
         </tr>
+
     </c:forEach>
     </tbody>
 </table>
+
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId"></h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa thể loại <span id="post" style="color: red"></span>?
+            </div>
+            <div class="modal-footer">
+                <form action="/categoryServlet">
+                    <input type="hidden" value="delete" name="actionCategory">
+                    <input type="hidden" id="idDelete" name="idDelete">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    function changIdDelete(id, post) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("post").innerText = post;
+    }
+
+</script>
 </html>

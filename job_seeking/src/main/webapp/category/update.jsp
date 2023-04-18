@@ -11,6 +11,14 @@
     <title>Title</title>
 </head>
 <body>
+<form method="post">
+    <label>ID</label>
+    <input type="number" name="id" value="${category.getIdCategory()}">
 
+    <label>Post</label>
+    <input type="text" name="post" value="${category.getPostCategory()}">
+
+    <input type="submit" value="submit">
+</form>
 </body>
 </html>

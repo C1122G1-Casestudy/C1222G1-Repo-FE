@@ -2,6 +2,7 @@ package repository.user;
 
 import controller.DBConnection;
 import model.User;
+import repository.user.IUserRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
