@@ -6,7 +6,7 @@ public class Post {
     private String describe;
     private String dateSubmitted;
     private String img;
-    private int idCategory;
+    private int id;
     private Category category;
     private int id;
 
@@ -14,12 +14,15 @@ public class Post {
     }
 
     public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory, Category category, int id) {
+
+    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int id, Category category) {
+
         this.idPost = idPost;
         this.postTitle = postTitle;
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
-        this.idCategory = idCategory;
+        this.id = id;
         this.category = category;
         this.id = id;
     }
@@ -29,17 +32,17 @@ public class Post {
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
-        this.idCategory = idCategory;
+        this.id= idCategory;
         this.category = category;
     }
 
-    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory) {
+    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int id) {
         this.idPost = idPost;
         this.postTitle = postTitle;
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
-        this.idCategory = idCategory;
+        this.id = id;
     }
 
     public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img) {
@@ -97,12 +100,12 @@ public class Post {
         this.img = img;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public int getId() {
+        return id;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Category getCategory() {

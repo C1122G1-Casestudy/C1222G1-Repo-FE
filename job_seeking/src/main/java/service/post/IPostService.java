@@ -1,15 +1,15 @@
-package repository;
+package service.post;
 
 import model.Post;
 
 import java.util.List;
 
-public interface IPostRepository {
+public interface IPostService {
     List<Post> findAll();
-
-    void create(Post post);
+    void create (Post post);
 
     void deletePost(int idPost);
+    void update(Post post);
 
     Post findById(int idPost);
 

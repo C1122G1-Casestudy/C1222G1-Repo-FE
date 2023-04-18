@@ -1,4 +1,4 @@
-package service;
+package service.post;
 
 import model.Post;
 import repository.IPostRepository;

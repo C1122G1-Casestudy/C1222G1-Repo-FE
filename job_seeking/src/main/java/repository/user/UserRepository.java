@@ -1,13 +1,14 @@
-package repository;
+package repository.user;
 
 import controller.DBConnection;
 import model.User;
+import repository.user.IUserRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserRepository implements IUserRepository{
+public class UserRepository implements IUserRepository {
 
     @Override
     public User login(String email, String passWord) {
