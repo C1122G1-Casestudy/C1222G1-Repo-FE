@@ -78,7 +78,7 @@ public class PostServlet extends HttpServlet {
 
     private void showCreatePost(HttpServletRequest request, HttpServletResponse response) {
         try {
-            response.sendRedirect("/post/list_post.jsp");
+            response.sendRedirect("/post/create.jsp");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -93,6 +93,7 @@ public class PostServlet extends HttpServlet {
         switch (action) {
             case "create":
                 createPost(request, response);
+                break;
             case "search":
                 searchByName(request, response);
                 break;
@@ -128,14 +129,11 @@ public class PostServlet extends HttpServlet {
         int idPost = 1;
         String postTitle = request.getParameter("postTitle");
         String describe = request.getParameter("describe");
-        String dateSubmitted = request.getParameter("dateSubmitted");
+        String dateSubmitted = request.getParameter("date");
         String img = request.getParameter("img");
-        int idCategory = Integer.parseInt(request.getParameter("idCategory"));
-//        Category category = request.getParameter("category");
-//        int idUse = Integer.parseInt(request.getParameter("idUse"));
-        Post post = new Post(idPost, postTitle, describe, dateSubmitted, img, idCategory);
+        String category = request.getParameter("category");
+        Post post = new Post(idPost, postTitle, describe, dateSubmitted, img, category);
         iPostService.create(post);
-        request.setAttribute("message", "Create success");
         request.setAttribute("post", post);
         try {
             request.getRequestDispatcher("/post/create.jsp").forward(request, response);
@@ -144,6 +142,5 @@ public class PostServlet extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        request.setAttribute("post", post);
     }
 }

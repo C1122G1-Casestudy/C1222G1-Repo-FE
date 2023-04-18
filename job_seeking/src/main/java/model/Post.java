@@ -7,30 +7,29 @@ public class Post {
     private String dateSubmitted;
     private String img;
     private int id;
-    private Category category;
+    private String category;
 
 
     public Post() {
     }
 
-    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory, Category category, int id) {
+    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, String category, int id) {
 
         this.idPost = idPost;
         this.postTitle = postTitle;
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
-        this.id = id;
         this.category = category;
         this.id = id;
     }
 
-    public Post(String postTitle, String describe, String dateSubmitted, String img, int idCategory, Category category) {
+    public Post(int idPost,String postTitle, String describe, String dateSubmitted, String img, String category) {
+        this.idPost = idPost;
         this.postTitle = postTitle;
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
-        this.id= idCategory;
         this.category = category;
     }
 
@@ -106,11 +105,11 @@ public class Post {
         this.id = id;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
