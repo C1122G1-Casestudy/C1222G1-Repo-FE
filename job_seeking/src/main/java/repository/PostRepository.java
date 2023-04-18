@@ -69,13 +69,13 @@ public class PostRepository implements IPostRepository {
     }
 
     @Override
-    public void deletePost(int id) {
+    public void deletePost(int idPost) {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(DELETE_FORM_ID);
-                statement.setInt(1, id);
+                statement.setInt(1, idPost);
                 statement.executeUpdate();
             } catch (RuntimeException | SQLException e) {
                 e.printStackTrace();

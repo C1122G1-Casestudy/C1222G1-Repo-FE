@@ -8,7 +8,7 @@ public interface IPostService {
     List<Post> findAll();
     void create (Post post);
 
-    void deletePost(int id);
+    void deletePost(int idPost);
     void update(Post post);
 
     Post findById(int idPost);

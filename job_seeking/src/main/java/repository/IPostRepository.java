@@ -9,7 +9,7 @@ public interface IPostRepository {
 
     void create(Post post);
 
-    void deletePost(int id);
+    void deletePost(int idPost);
 
     Post findById(int idPost);
 
