@@ -20,8 +20,8 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void deletePost(int id) {
-        iPostRepository.deletePost(id);
+    public void deletePost(int idPost) {
+        iPostRepository.deletePost(idPost);
     }
 
     @Override

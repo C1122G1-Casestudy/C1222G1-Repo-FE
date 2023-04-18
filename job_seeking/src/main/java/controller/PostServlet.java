@@ -63,9 +63,9 @@ public class PostServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("idPost"));
         iPostService.deletePost(id);
         List<Post> computerList = iPostService.findAll();
-        request.setAttribute("computerList", computerList);
+        request.setAttribute("postList", computerList);
         try {
-            request.getRequestDispatcher("/computer/list_computer.jsp").forward(request, response);
+            request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
