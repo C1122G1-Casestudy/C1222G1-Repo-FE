@@ -20,7 +20,6 @@ public class Post {
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
-        this.id = id;
         this.category = category;
         this.id = id;
     }
