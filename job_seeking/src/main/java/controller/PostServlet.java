@@ -2,8 +2,8 @@ package controller;
 
 import model.Category;
 import model.Post;
-import service.IPostService;
-import service.PostService;
+import service.post.IPostService;
+import service.post.PostService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @WebServlet(name = "PostServlet", value = "/PostServlet")
 public class PostServlet extends HttpServlet {
-    IPostService iPostService = new PostService();
+    private IPostService iPostService = new PostService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

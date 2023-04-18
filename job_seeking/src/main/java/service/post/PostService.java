@@ -1,13 +1,13 @@
 package service.post;
 
 import model.Post;
-import repository.IPostRepository;
-import repository.PostRepository;
+import repository.post.IPostRepository;
+import repository.post.PostRepository;
 
 import java.util.List;
 
 public class PostService implements IPostService {
-    IPostRepository iPostRepository = new PostRepository();
+    private IPostRepository iPostRepository = new PostRepository();
 
     @Override
     public List<Post> findAll() {
