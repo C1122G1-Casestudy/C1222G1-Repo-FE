@@ -62,25 +62,21 @@ public class UserServlet extends HttpServlet {
      * Create: DaoPTA
      * Date create: 07/04/2023
      */
-    private void showListUser(HttpServletRequest request, HttpServletResponse response) {
+    private void showListUser(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession httpSession = request.getSession();
         if (httpSession.getAttribute("emailAccount") == null) {
             httpSession.setAttribute("emailAccount", "");
         }
 
-        if (httpSession.getAttribute("emailAccount").equals("admin@gmail.com")){
+        if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")) {
+                response.sendRedirect("/user");
+        }else {
             List<User> userList = iUserService.findAllUser();
             request.setAttribute("userList", userList);
-            try {
+            try{
                 request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
             }catch (ServletException | IOException exception){
                 exception.printStackTrace();
-            }
-        }else {
-            try {
-                response.sendRedirect("/post");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         }
     }
@@ -96,7 +92,7 @@ public class UserServlet extends HttpServlet {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("email") || cookie.getName().equals("passWord")) {
+                if (cookie.getName().equals("email") || cookie.getName().equals("password")) {
                     cookie.setValue("");
                     cookie.setPath("/");
                     cookie.setMaxAge(0);
@@ -167,7 +163,7 @@ public class UserServlet extends HttpServlet {
             if (userList.get(i).getEmail().equals(email)) {
                 flag = false;
                 request.setAttribute("registerFail", "Email đã tồn tại");
-                request.getRequestDispatcher("/list_user/register.jsp").forward(request, response);
+                request.getRequestDispatcher("/user/register.jsp").forward(request, response);
                 break;
             }
         }
