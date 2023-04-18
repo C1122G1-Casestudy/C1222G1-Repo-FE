@@ -9,4 +9,5 @@ public interface IUserRepository {
     void register(User user);
     List<User> findAllUser();
     List<User> getAll();
+
 }
