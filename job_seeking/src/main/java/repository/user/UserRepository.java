@@ -16,12 +16,12 @@ private static final String SELECT_ALL_USERS = "";
     @Override
     public User login(String email, String passWord) {
         PreparedStatement preparedStatement = null;
-        try{
+        try {
             preparedStatement = DBConnection.getConnection().prepareStatement("select * from user where email = ? and password = ?");
             preparedStatement.setString(1, email);
-            preparedStatement.setString(2,passWord);
+            preparedStatement.setString(2, passWord);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 return new User(resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
@@ -29,7 +29,7 @@ private static final String SELECT_ALL_USERS = "";
                         resultSet.getString(4)
                 );
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -39,13 +39,33 @@ private static final String SELECT_ALL_USERS = "";
     public void register(User user) {
         try {
             PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement("insert into user(name,email,password,phone_number) values (?,?,?,?)");
-            preparedStatement.setString(1,user.getUserName());
-            preparedStatement.setString(2,user.getEmail());
-            preparedStatement.setString(3,user.getPassWord());
-            preparedStatement.setString(4,user.getPhoneNumber());
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassWord());
+            preparedStatement.setString(4, user.getPhoneNumber());
             preparedStatement.executeUpdate();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<User> getAll() {
+        List<User> userList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("select use_name,email,phone_number from `use`");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserName(resultSet.getString("use_name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 }

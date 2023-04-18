@@ -16,6 +16,9 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        List<User> userList = iUserService.findAllUser();
+//        request.setAttribute("userList", userList);
+//        request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
         String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -64,19 +67,20 @@ public class UserServlet extends HttpServlet {
         if (httpSession.getAttribute("emailAccount") == null) {
             httpSession.setAttribute("emailAccount", "");
         }
-        if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")){
-            try {
-                response.sendRedirect("/post");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }else {
+
+        if (httpSession.getAttribute("emailAccount").equals("admin@gmail.com")){
             List<User> userList = iUserService.findAllUser();
             request.setAttribute("userList", userList);
             try {
                 request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
             }catch (ServletException | IOException exception){
                 exception.printStackTrace();
+            }
+        }else {
+            try {
+                response.sendRedirect("/post");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -111,6 +115,7 @@ public class UserServlet extends HttpServlet {
      * Function: show register form
      * Create: DaoPTA
      * Date create: 07/04/2023
+     *
      * @param request
      * @param response
      */
@@ -130,7 +135,7 @@ public class UserServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action){
+        switch (action) {
             case "login":
                 login(request, response);
                 break;
@@ -146,15 +151,16 @@ public class UserServlet extends HttpServlet {
      * Function: register form
      * Create: DaoPTA
      * Date create: 17/04/2023
+     *
      * @param request
      * @param response
      */
-    private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    private void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phoneNum = request.getParameter("phoneNum");
         String password = request.getParameter("password");
-        User user = new User(name,email,phoneNum,password);
+        User user = new User(name, email, phoneNum, password);
         List<User> userList = iUserService.findAllUser();
         boolean flag = true;
         for (int i = 0; i < userList.size(); i++) {
@@ -174,7 +180,7 @@ public class UserServlet extends HttpServlet {
     private void login(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User user = iUserService.login(email,password);
+        User user = iUserService.login(email, password);
         if (user == null) {
             try {
                 request.setAttribute("loginFail", "Đăng nhập thất bại");
@@ -182,11 +188,11 @@ public class UserServlet extends HttpServlet {
             } catch (IOException | ServletException e) {
                 e.printStackTrace();
             }
-        }else {
-            try{
+        } else {
+            try {
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("emailAccount", email);
-                httpSession.setAttribute("passwordAccount",password);
+                httpSession.setAttribute("passwordAccount", password);
                 Cookie cookie1 = new Cookie("email", user.getEmail());
                 cookie1.setMaxAge(3600);
                 response.addCookie(cookie1);
