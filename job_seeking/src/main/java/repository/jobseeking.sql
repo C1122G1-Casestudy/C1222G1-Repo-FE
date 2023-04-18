@@ -2,6 +2,9 @@ drop database if exists job_seeking;
 create database job_seeking;
 use job_seeking;
 
+
+use job_Seeking;
+
 create table category(
     id_category int primary key not null,
     post_category varchar(255) not null
@@ -25,7 +28,6 @@ create table post(
                      foreign key (id_category) references category(id_category),
                      foreign key (id_use) references `use`(id_use)
 
-
 );
 insert into post
 values(1,'Tuyển nhân viên IT', 'Lương tháng nghìn đô','2001/03/29','img-1',1,3),
@@ -36,12 +38,12 @@ values(1,'Tuyển nhân viên IT', 'Lương tháng nghìn đô','2001/03/29','im
 select * from post;
 create table `use`(
 
-                      id_use int primary key auto_increment,
-                      use_name varchar(255) not null,
-                      email varchar(255) not null,
-                      `password` varchar(255) not null,
-                      phone_number varchar(255) not null
 
+    id_use int primary key auto_increment,
+    use_name varchar(255) not null,
+    email varchar(255) not null,
+    `password` varchar(255) not null,
+    phone_number varchar(255) not null
 
 );
 insert into `use`
@@ -50,7 +52,7 @@ values(1,'Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
       (3,'Hưng','phantaanhdao@gmail.com','12345678','0931997293'),
       (4,'Danh','phantaanhdao@gmail.com','12345678','0931997293'),
       (5,'HaiTT','phantaanhdao@gmail.com','12345678','0931997293'),
-      (6,'Admin','admin@gmail.com','123123123','0931997293');
-
+      (6,'Admin','admin@gmail.com','123123123',0931997293);
 select * from `use`;
+
 
