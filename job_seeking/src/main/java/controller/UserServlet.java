@@ -117,7 +117,7 @@ public class UserServlet extends HttpServlet {
      */
     private void showCreate(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("/view/regis.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -162,7 +162,7 @@ public class UserServlet extends HttpServlet {
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getEmail().equals(email)) {
                 flag = false;
-                request.setAttribute("registerFail", "Email đã tồn tại");
+                request.setAttribute("registerFail", "Địa chỉ email này đã tồn tại. Vui lòng thử lại với địa chỉ email khác.");
                 request.getRequestDispatcher("/user/register.jsp").forward(request, response);
                 break;
             }
