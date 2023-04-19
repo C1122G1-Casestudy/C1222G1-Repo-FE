@@ -37,39 +37,49 @@
         <h3 class="text-center" style="color: coral">${message}</h3>
     </c:if>
 </h3>
-<%--<form class="container-md" action="/PostServlet?action=create" method="post" id="form">--%>
 <form action="/post?action=create"  method="post">
+    <tr>
+        <td>Nhập mã bài đăng:</td>
+        <td>
+            <input type="number" name="idPost" id="idPost" value=""/>
+            <%--            <span id="postTitle_error"></span>--%>
+        </td>
+    </tr>
     <tr>
         <td>Nhập tên tiêu đề:</td>
         <td>
-            <input type="text" id="postTitle" value=""/>
+            <input type="text" name="postTitle" id="postTitle" value=""/>
 <%--            <span id="postTitle_error"></span>--%>
         </td>
     </tr>
     <tr>
         <td>Nhập nội dung:</td>
         <td>
-            <textarea type="text" id="describe" value=""></textarea>
+            <textarea type="text" name="describe" id="describe" value=""></textarea>
 <%--            <span id="describe_error"></span>--%>
         </td>
     </tr>
     <tr>
         <td>Nhập ngày đăng:</td>
         <td>
-            <input type="date" id="date" value=""/>
+            <input type="date" id="dateSubmitted" name="dateSubmitted" value=""/>
         </td>
     </tr>
-<%--    <tr>--%>
-<%--        <td>Nhập thể loại:</td>--%>
-<%--        <td>--%>
-<%--            <input type="text" id="category">--%>
-<%--        </td>--%>
-<%--    </tr>--%>
     <tr>
         <td>
-            <lable for="file-upload">Chọn tệp:</lable>
-            <input type="file" id="img">
+<%--            <lable for="file-upload">Chọn tệp:</lable>--%>
+            <input type="text" id="img" name="img">
         </td>
+    </tr>
+    <tr>
+        <td>Chọn thể loại:</td>
+        <select name="idCategory" id="">
+            <c:forEach var="category" items="${postList}">
+                <option value="${category.idCategory}">
+                    ${category.postCategogy}
+                </option>
+            </c:forEach>
+        </select>
     </tr>
     <tr>
         <td>

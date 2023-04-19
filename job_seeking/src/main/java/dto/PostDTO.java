@@ -1,39 +1,23 @@
-package model;
+package dto;
 
-public class Post {
+public class PostDTO {
     private int idPost;
     private String postTitle;
     private String describe;
     private String dateSubmitted;
     private String img;
-    private int idCategory;
+    private String postCategory;
 
-    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory) {
+    public PostDTO() {
+    }
+
+    public PostDTO(int idPost, String postTitle, String describe, String dateSubmitted, String img, String postCategory) {
         this.idPost = idPost;
         this.postTitle = postTitle;
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
-        this.idCategory = idCategory;
-    }
-
-    public Post() {
-    }
-
-    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img) {
-
-        this.idPost = idPost;
-        this.postTitle = postTitle;
-        this.describe = describe;
-        this.dateSubmitted = dateSubmitted;
-        this.img = img;
-    }
-
-    public Post(String postTitle, String describe, String dateSubmitted, String img) {
-        this.postTitle = postTitle;
-        this.describe = describe;
-        this.dateSubmitted = dateSubmitted;
-        this.img = img;
+        this.postCategory = postCategory;
     }
 
     public int getIdPost() {
@@ -76,11 +60,11 @@ public class Post {
         this.img = img;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public String getPostCategory() {
+        return postCategory;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setPostCategory(String postCategory) {
+        this.postCategory = postCategory;
     }
 }

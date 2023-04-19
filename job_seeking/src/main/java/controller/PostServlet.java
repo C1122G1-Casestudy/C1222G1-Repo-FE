@@ -1,6 +1,10 @@
 package controller;
 
+import dto.PostDTO;
+import model.Category;
 import model.Post;
+import service.category.CategoryService;
+import service.category.ICategoryService;
 import service.post.IPostService;
 import service.post.PostService;
 
@@ -8,10 +12,12 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "PostServlet", value = "/post")
 public class PostServlet extends HttpServlet {
     private IPostService iPostService = new PostService();
+    private ICategoryService iCategoryService = new CategoryService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,6 +27,8 @@ public class PostServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
+                List<Category> categoryList = iCategoryService.findAll();
+                request.setAttribute("categoryList",categoryList);
                 request.getRequestDispatcher("/post/create.jsp").forward(request, response);
                 break;
             case "delete":
@@ -34,13 +42,13 @@ public class PostServlet extends HttpServlet {
                 request.getRequestDispatcher("/post/list_post.jsp").forward(request,response);
                 break;
             case "update":
-                int idUpdate = Integer.parseInt(request.getParameter("id"));
+                int idUpdate = Integer.parseInt(request.getParameter("idUpdate"));
                 Post post = iPostService.findById(idUpdate);
                 request.setAttribute("post", post);
                 request.getRequestDispatcher("/post/update.jsp").forward(request, response);
                 break;
             default:
-                request.setAttribute("postList", iPostService.findAll());
+                request.setAttribute("postList", iPostService.getAll());
                 request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
         }
     }
@@ -53,15 +61,16 @@ public class PostServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
+                int idPost = Integer.parseInt(request.getParameter("idPost"));
                 String postTitle = request.getParameter("postTitle");
                 String describe = request.getParameter("describe");
                 String dateSubmitted = request.getParameter("date");
                 String img = request.getParameter("img");
-
-                Post post = new Post(postTitle, describe, dateSubmitted, img);
+                int idCategory = Integer.parseInt(request.getParameter("idCategory"));
+                Post post = new Post(idPost,postTitle, describe, dateSubmitted, img, idCategory);
                 iPostService.create(post);
-                request.setAttribute("post", iPostService.findAll());
-                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
+                request.setAttribute("postList", iPostService.findAll());
+                request.getRequestDispatcher("/post").forward(request, response);
                 break;
             case "update":
                 int idUpdate = Integer.parseInt(request.getParameter("id"));
@@ -69,44 +78,11 @@ public class PostServlet extends HttpServlet {
                 String describeUpdate = request.getParameter("describe");
                 String dateSubmittedUpdate = request.getParameter("dateSubmitted");
                 String imgUpdate = request.getParameter("img");
-                Post post1 = new Post(idUpdate, postTitleUpdate, describeUpdate, dateSubmittedUpdate, imgUpdate);
+                int idCategoryUpdate = Integer.parseInt(request.getParameter("idCategory"));
+                Post post1 = new Post(idUpdate,postTitleUpdate, describeUpdate, dateSubmittedUpdate, imgUpdate, idCategoryUpdate);
                 iPostService.update(idUpdate, post1);
                 response.sendRedirect("/post");
                 break;
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            try {
-                request.setAttribute("postList", postList);
-                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    private void createPost(HttpServletRequest request, HttpServletResponse response) {
-        int idPost = 1;
-        String postTitle = request.getParameter("postTitle");
-        String describe = request.getParameter("describe");
-        String dateSubmitted = request.getParameter("dateSubmitted");
-        String img = request.getParameter("img");
-        int idCategory = Integer.parseInt(request.getParameter("idCategory"));
-        Post post = new Post(idPost, postTitle, describe, dateSubmitted, img, idCategory);
-        iPostService.create(post);
-        request.setAttribute("message", "Create success");
-        request.setAttribute("post", post);
-        try {
-            request.getRequestDispatcher("/post/create.jsp").forward(request, response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 }

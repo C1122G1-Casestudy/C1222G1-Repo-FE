@@ -23,7 +23,7 @@
 <body>
 
 <button type="button" class="btn btn-primary">
-  <a class="btn btn-primary" href="/PostServlet?action=create">Thêm mới</a>
+  <a class="btn btn-primary" href="/post?action=create">Thêm mới</a>
 </button>
 
 <form action="/post">
@@ -38,11 +38,12 @@
 <table class="table">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>POST TITLE</th>
-    <th>DESCRIBE</th>
-    <th>DATE SUBMITTED</th>
-    <th>IMG</th>
+    <th>MÃ</th>
+    <th>TIÊU ĐỀ BÀI ĐĂNG</th>
+    <th>MÔ TẢ</th>
+    <th>NGÀY ĐĂNG</th>
+    <th>HÌNH ẢNH</th>
+    <th>THỂ LOẠI</th>
   </tr>
   </thead>
   <tbody>
@@ -52,8 +53,8 @@
       <td>${post.getPostTitle()}</td>
       <td>${post.getDescribe()}</td>
       <td>${post.getDateSubmitted()}</td>
-<%--      <td>${post.getImg()}</td>--%>
-      <td><img src="../imgpost/${post.getImg()}" width="50px" height="80px" alt=""/></td>
+      <td><img src="${post.getImg()}" width="120px" height="150px" alt="unavailable"></td>
+      <td>${post.getPostCategory()}</td>
       <td>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal${post.idPost}">
           Xóa
