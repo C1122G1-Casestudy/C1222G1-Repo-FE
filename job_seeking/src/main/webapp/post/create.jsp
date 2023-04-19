@@ -37,7 +37,8 @@
         <h3 class="text-center" style="color: coral">${message}</h3>
     </c:if>
 </h3>
-<form class="container-md" action="/PostServlet?action=create" method="post" id="form">
+<%--<form class="container-md" action="/PostServlet?action=create" method="post" id="form">--%>
+<form action="/post?action=create"  method="post">
     <tr>
         <td>Nhập tên tiêu đề:</td>
         <td>
@@ -58,12 +59,12 @@
             <input type="date" id="date" value=""/>
         </td>
     </tr>
-    <tr>
-        <td>Nhập thể loại:</td>
-        <td>
-            <input type="text" id="category">
-        </td>
-    </tr>
+<%--    <tr>--%>
+<%--        <td>Nhập thể loại:</td>--%>
+<%--        <td>--%>
+<%--            <input type="text" id="category">--%>
+<%--        </td>--%>
+<%--    </tr>--%>
     <tr>
         <td>
             <lable for="file-upload">Chọn tệp:</lable>
@@ -72,7 +73,7 @@
     </tr>
     <tr>
         <td>
-            <button type="button" onclick="validate()" class="btn btn-primary" value="create">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </td>
     </tr>
 </form>
