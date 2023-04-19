@@ -27,4 +27,27 @@ public class UserService implements IUserService {
     public List<User> findAllUser() {
         return iUserRepository.getAll();
     }
+
+    @Override
+    public User findIdToUpdate(int idToUpdate) {
+        return iUserRepository.getIdToUpdate(idToUpdate);
+    }
+
+    @Override
+    public void updateUserOfAdmin(User user) {
+        iUserRepository.updateUserOfAdmin(user);
+    }
+
+    @Override
+    public List<User> searchByName(String nameToSearch) {
+        if (nameToSearch == null){
+            nameToSearch="";
+        }
+        return iUserRepository.getUserByName(nameToSearch);
+    }
+
+    @Override
+    public void deleteById(int idToDelete) {
+        iUserRepository.deleteById(idToDelete);
+    }
 }

@@ -25,6 +25,12 @@ public class User {
         this.passWord = passWord;
     }
 
+    public User(int idToUpdate, String nameToUpdate, String phoneNumberToUpdate) {
+        this.id = idToUpdate;
+        this.userName = nameToUpdate;
+        this.phoneNumber = phoneNumberToUpdate;
+    }
+
     public int getId() {
         return id;
     }
