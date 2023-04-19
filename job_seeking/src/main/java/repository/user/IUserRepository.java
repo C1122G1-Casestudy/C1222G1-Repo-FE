@@ -9,4 +9,11 @@ public interface IUserRepository {
     void register(User user);
     List<User> getAll();
 
+    User getIdToUpdate(int idToUpdate);
+
+    void updateUserOfAdmin(User user);
+
+    List<User> getUserByName(String nameToSearch);
+
+    void deleteById(int idToDelete);
 }

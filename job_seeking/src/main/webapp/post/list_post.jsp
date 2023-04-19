@@ -52,7 +52,7 @@
       <td>${post.getPostTitle()}</td>
       <td>${post.getDescribe()}</td>
       <td>${post.getDateSubmitted()}</td>
-<%--      <td>${post.getImg()}</td>--%>
+      <td>${post.getImg()}</td>
       <td><img src="../imgpost/${post.getImg()}" width="50px" height="80px" alt=""/></td>
       <td>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal${post.idPost}">
@@ -93,5 +93,6 @@
   </c:forEach>
   </tbody>
 </table>
+
 </body>
 </html>

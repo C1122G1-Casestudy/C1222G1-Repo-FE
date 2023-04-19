@@ -46,7 +46,7 @@ public class PostServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -73,40 +73,6 @@ public class PostServlet extends HttpServlet {
                 iPostService.update(idUpdate, post1);
                 response.sendRedirect("/post");
                 break;
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
-            try {
-                request.setAttribute("postList", postList);
-                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    private void createPost(HttpServletRequest request, HttpServletResponse response) {
-        int idPost = 1;
-        String postTitle = request.getParameter("postTitle");
-        String describe = request.getParameter("describe");
-        String dateSubmitted = request.getParameter("dateSubmitted");
-        String img = request.getParameter("img");
-        int idCategory = Integer.parseInt(request.getParameter("idCategory"));
-        Post post = new Post(idPost, postTitle, describe, dateSubmitted, img, idCategory);
-        iPostService.create(post);
-        request.setAttribute("message", "Create success");
-        request.setAttribute("post", post);
-        try {
-            request.getRequestDispatcher("/post/create.jsp").forward(request, response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 }
