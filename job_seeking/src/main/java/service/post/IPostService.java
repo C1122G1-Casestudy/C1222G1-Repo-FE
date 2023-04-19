@@ -9,7 +9,7 @@ public interface IPostService {
     void create (Post post);
 
     void deletePost(int idPost);
-    void update(Post post);
+    void update(int idPost, Post post);
 
     Post findById(int idPost);
 

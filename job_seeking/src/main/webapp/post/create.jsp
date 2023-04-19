@@ -37,74 +37,77 @@
         <h3 class="text-center" style="color: coral">${message}</h3>
     </c:if>
 </h3>
-<form class="container-md" action="/post?action=create" method="post">
+<%--<form class="container-md" action="/PostServlet?action=create" method="post" id="form">--%>
+<form action="/post?action=create"  method="post">
     <tr>
         <td>Nhập tên tiêu đề:</td>
         <td>
-            <input type="text" id="name" value=""/>
-            <span id="name_error"></span>
+            <input type="text" id="postTitle" value=""/>
+<%--            <span id="postTitle_error"></span>--%>
         </td>
     </tr>
     <tr>
         <td>Nhập nội dung:</td>
         <td>
-            <input type="text" id="describe" value=""/>
-            <span id="describe_error"></span>
+            <textarea type="text" id="describe" value=""></textarea>
+<%--            <span id="describe_error"></span>--%>
         </td>
     </tr>
     <tr>
         <td>Nhập ngày đăng:</td>
         <td>
             <input type="date" id="date" value=""/>
-            <span id="date_error"></span>
         </td>
     </tr>
+<%--    <tr>--%>
+<%--        <td>Nhập thể loại:</td>--%>
+<%--        <td>--%>
+<%--            <input type="text" id="category">--%>
+<%--        </td>--%>
+<%--    </tr>--%>
     <tr>
         <td>
             <lable for="file-upload">Chọn tệp:</lable>
-            <input type="file" id="file_upload">
+            <input type="file" id="img">
         </td>
     </tr>
     <tr>
         <td>
-            <%-- <input type="submit" onclick="return validate();" id="btn" name="btn" value="Nộp">--%>
-            <button type="button" onclick="validate()" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </td>
     </tr>
 </form>
 </body>
-<script>
-    // lấy giá trị của 1 input
-    function getValue(id) {
-        return document.getElementById(id).value.trim();
-    }
+<%--<script>--%>
+<%--    // lấy giá trị của 1 input--%>
+<%--    function getValue(id) {--%>
+<%--        return document.getElementById(id).value.trim();--%>
+<%--    }--%>
 
-    //hiển thị lỗi
-    function showError(key, mess) {
-        document.getElementById(key + '_error').innerHTML = mess;
-    }
+<%--    //hiển thị lỗi--%>
+<%--    function showError(key, mess) {--%>
+<%--        document.getElementById(key + '_error').innerHTML = mess;--%>
+<%--    }--%>
 
-    function validate() {
-        var flag = true;
+<%--    function validate() {--%>
+<%--        var flag = true;--%>
 
-        // tên tiêu đề
-        var name = getValue('name');
-        if (name == "" || !/^[a-zA-Z0-9]+$/.test(name)) {
-            flag = false;
-            showError('name', 'Vui lòng kiểm tra lại tên tiêu đề vừa nhập!');
-        }
-        //nội dung
-        var describe = getValue('describe');
-        if (describe == "" || !/^[a-zA-Z0-9]{1,600}$/.test(describe)) {
-            flag = false;
-            showError('describe', 'Vui lòng kiểm tra lại phần nội dung!');
-        }
-        //ngày đăng
-        var date = getValue('date');
-        if (date == "" || !/^$/.test(date)) {
-            flag = false;
-            showError('date', 'Vui lòng kiểm tra lại ngày đăng!');
-        }
-    }
-</script>
+<%--        // tên tiêu đề--%>
+<%--        var name = getValue('postTitle');--%>
+<%--        if (name == "" || !/^[a-zA-Z0-9 ]+$/.test(name)) {--%>
+<%--            flag = false;--%>
+<%--            showError('postTitle', 'Vui lòng kiểm tra lại tên tiêu đề vừa nhập!');--%>
+<%--        }--%>
+<%--        //nội dung--%>
+<%--        var describe = getValue('describe');--%>
+<%--        if (describe == "" || !/^[a-zA-Z0-9 ]{1,600}$/.test(describe)) {--%>
+<%--            flag = false;--%>
+<%--            showError('describe', 'Vui lòng kiểm tra lại phần nội dung!');--%>
+<%--        }--%>
+<%--        console.log(flag)--%>
+<%--        if (flag) {--%>
+<%--            document.getElementById("form").submit();--%>
+<%--        }--%>
+<%--    }--%>
+<%--</script>--%>
 </html>

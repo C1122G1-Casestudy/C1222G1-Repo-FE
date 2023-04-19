@@ -1,5 +1,6 @@
 drop database if exists job_seeking;
 create database job_seeking;
+
 use job_seeking;
 
 create table category(
@@ -16,7 +17,6 @@ values(1,'IT'),
 select * from category;
 
 create table post(
-
                      id int primary key auto_increment,
                      post_title varchar(255) ,
                      `describe` varchar(255),
@@ -36,13 +36,12 @@ values(1,'Tuyển nhân viên IT', 'Lương tháng nghìn đô','2001/03/29','im
       (5,'Tuyển bảo vệ cho khách sạn','Bổng lộc cao','2001/11/19','img-5',4,1);
       
 select * from post;
-
 create table `use`(
-    id_use int primary key auto_increment,
-    use_name varchar(255) not null,
-    email varchar(255) not null,
-    `password` varchar(255) not null,
-    phone_number varchar(255) not null
+                      id_use int primary key auto_increment,
+                      use_name varchar(255) not null,
+                      email varchar(255) not null,
+                      `password` varchar(255) not null,
+                      phone_number varchar(255) not null
 
 );
 
@@ -53,3 +52,7 @@ values(1,'Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
       (4,'Danh','danhnguyen.15112003@gmail.com','12345678','0931997293'),
       (5,'HaiTT','haitan28102408@gmail.com','12345678','0931997293'),
       (6,'Admin','admin@gmail.com','123123123','0931997293');
+
+select * from `use`;
+
+
