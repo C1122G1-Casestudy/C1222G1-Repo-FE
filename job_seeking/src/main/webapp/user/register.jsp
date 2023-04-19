@@ -42,7 +42,7 @@
                 <h1 class="text-center text-uppercase h3 py-3">SIGN UP</h1>
                 <div class="form-group my-2">
                 <label for="fullname" >Full Name</label>
-                    <input type="text" class="form-control" name="fullname" id="fullname" autocomplete="off" minlength="3" maxlength="50" required>
+                    <input type="text" class="form-control" name="name" id="fullname" autocomplete="off" minlength="3" maxlength="50" required>
                 </div>
                 <div class="form-group my-2">
                 <label for="email" >Email</label>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group my-2">
                 <label for="phonenumber" >Phone Number</label>
-                    <input type="text" class="form-control" name="phonenumber" id="phonenumber" autocomplete="off" minlength="10" maxlength="12" required>
+                    <input type="text" class="form-control" name="phoneNum" id="phonenumber" autocomplete="off" minlength="10" maxlength="12" required>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary my-3">Submit</button>
