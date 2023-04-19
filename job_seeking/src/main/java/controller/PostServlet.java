@@ -29,9 +29,9 @@ public class PostServlet extends HttpServlet {
                 response.sendRedirect("/post");
                 break;
             case "search":
-                String postTitle=request.getParameter("postTitle");
-                request.setAttribute("postList",iPostService.findByName(postTitle));
-                request.getRequestDispatcher("/post/list_post.jsp").forward(request,response);
+                String postTitle = request.getParameter("postTitle");
+                request.setAttribute("postList", iPostService.findByName(postTitle));
+                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
                 break;
             case "update":
                 int idUpdate = Integer.parseInt(request.getParameter("id"));
