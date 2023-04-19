@@ -19,75 +19,65 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <style>
+        body {
+            background-image: url('https://treobangron.com.vn/wp-content/uploads/2022/09/background-phong-lam-viec-16.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
 
+        .bgr {
+            background-color: rgba(299, 199, 202, 20%);
+        }
+    </style>
 
 </head>
 <body>
 
-<%--<div id="wrapper">--%>
-<%--    <div class="container">--%>
-<%--        <div class="row justify-content-center">--%>
-<%--            <form action="/user?action=register" class="col-md-6 bg-light p-3 my-3" method="post">--%>
-<%--                <h1 class="text-center text-uppercase h3 py-3">Đăng ký tài khoản</h1>--%>
-<%--                <div class="form-group my-2">--%>
-<%--                <label for="fullname" >Họ Và Tên</label>--%>
-<%--                    <input type="text" class="form-control" name="fullname" id="fullname" autocomplete="off" minlength="3" maxlength="50" required>--%>
-<%--                </div>--%>
-<%--                <div class="form-group my-2">--%>
-<%--                <label for="email" >Địa Chỉ Email</label>--%>
-<%--                    <input type="text" class="form-control" name="email" id="email" autocomplete="off" max="50" required>--%>
-<%--                </div>--%>
-<%--                <div class="form-group my-2">--%>
-<%--                <label for="password" >Mật Khẩu</label>--%>
-<%--                    <input type="text" class="form-control" name="password" id="password" autocomplete="off" minlength="6" maxlength="50" required>--%>
-<%--                </div>--%>
-<%--                <div class="form-group my-2">--%>
-<%--                <label for="phonenumber" >Số Điện Thoại</label>--%>
-<%--                    <input type="text" class="form-control" name="phonenumber" id="phonenumber" autocomplete="off" minlength="10" maxlength="12" required>--%>
-<%--                </div>--%>
-<%--                <div>--%>
-<%--                    <button type="submit" class="btn btn-primary my-3">Đăng Ký</button>--%>
+<div id="wrapper">
+    <div class="container">
+        <div class="row justify-content-center">
+            <form action="/user?action=register" class="col-md-6 bgr p-3 my-3" method="post">
+                <h1 class="text-center text-uppercase h3 py-3">SIGN UP</h1>
+                <div class="form-group my-2">
+                <label for="fullname" >Full Name</label>
+                    <input type="text" class="form-control" name="name" id="fullname" autocomplete="off" minlength="3" maxlength="50" required>
+                </div>
+                <div class="form-group my-2">
+                <label for="email" >Email</label>
+                    <input type="text" class="form-control" name="email" id="email" autocomplete="off" max="50" required>
+                </div>
+                <div class="form-group my-2">
+                <label for="password" >Password</label>
+                    <input type="text" class="form-control" name="password" id="password" autocomplete="off" minlength="6" maxlength="50" required>
+                </div>
+                <div class="form-group my-2">
+                <label for="phonenumber" >Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNum" id="phonenumber" autocomplete="off" minlength="10" maxlength="12" required>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary my-3">Submit</button>
 <%--                    <p class="text-center text-danger display-4 ">${registerFail} </p>--%>
-<%--                </div>--%>
-<%--            </form>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+                    <div class="alert alert-warning" role="alert" id="myAlert">
+                       <p>${registerFail}</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<%--</div>--%>
+<script>
+    // Lấy đối tượng thông báo
+    var alert = document.getElementById("myAlert");
 
-<h4 class="text-primary text-center display-2">Register</h4>
-<form method="post" class="container-md" action="/user?action=register">
-    <div class="mb-3">
-        <label for="exampleInputName" class="form-label"></label>
-        <input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Your Full Name"
-               autocomplete="off" minlength="3" maxlength="50" required>
-        <i class="input-icon uil uil-at"></i>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputName1" class="form-label"></label>
-        <input type="email" class="form-control" id="exampleInputName1" name="email" placeholder="Your Email"
-               autocomplete="off" max="50" required>
-        <i class="input-icon uil uil-at"></i>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputName3" class="form-label"></label>
-        <input type="text" class="form-control" id="exampleInputName3" type="password" name="password"
-               placeholder="Your Password" autocomplete="off" minlength="6" maxlength="50" required>
-        <i class="input-icon uil uil-at"></i>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputName4" class="form-label"></label>
-        <input class="form-control" id="exampleInputName4" type="phoneNum" name="phoneNum"
-               placeholder="Your phone number" autocomplete="off" minlength="10" maxlength="12" required>
-        <i class="input-icon uil uil-at"></i>
-    </div>
+    // Ẩn thông báo sau 2 giây
+    setTimeout(function() {
+        alert.style.display = "none";
+    }, 2000);
+</script>
 
-    <div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <p class="text-center text-danger display-4">${registerFail} </p>
-    </div>
-
-</form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

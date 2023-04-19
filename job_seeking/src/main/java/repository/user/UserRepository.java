@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository implements IUserRepository {
-private static final String SELECT_ALL_USERS = "";
+
     @Override
-    public User login(String email, String passWord) {
+    public User login(String email, String password) {
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = DBConnection.getConnection().prepareStatement("select * from user where email = ? and password = ?");
+            preparedStatement = DBConnection.getConnection().prepareStatement("select * from `use` where email = ? and `password` = ?");
             preparedStatement.setString(1, email);
-            preparedStatement.setString(2, passWord);
+            preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 return new User(resultSet.getInt(1),
@@ -38,7 +38,7 @@ private static final String SELECT_ALL_USERS = "";
     @Override
     public void register(User user) {
         try {
-            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement("insert into user(name,email,password,phone_number) values (?,?,?,?)");
+            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement("insert into `use`(use_name,email,`password`,phone_number) values (?,?,?,?)");
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassWord());

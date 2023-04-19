@@ -62,25 +62,21 @@ public class UserServlet extends HttpServlet {
      * Create: DaoPTA
      * Date create: 07/04/2023
      */
-    private void showListUser(HttpServletRequest request, HttpServletResponse response) {
+    private void showListUser(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession httpSession = request.getSession();
         if (httpSession.getAttribute("emailAccount") == null) {
             httpSession.setAttribute("emailAccount", "");
         }
 
-        if (httpSession.getAttribute("emailAccount").equals("admin@gmail.com")){
+        if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")) {
+                response.sendRedirect("/user");
+        }else {
             List<User> userList = iUserService.findAllUser();
             request.setAttribute("userList", userList);
-            try {
+            try{
                 request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
             }catch (ServletException | IOException exception){
                 exception.printStackTrace();
-            }
-        }else {
-            try {
-                response.sendRedirect("/post");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         }
     }
@@ -96,7 +92,7 @@ public class UserServlet extends HttpServlet {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("email") || cookie.getName().equals("passWord")) {
+                if (cookie.getName().equals("email") || cookie.getName().equals("password")) {
                     cookie.setValue("");
                     cookie.setPath("/");
                     cookie.setMaxAge(0);
@@ -121,7 +117,7 @@ public class UserServlet extends HttpServlet {
      */
     private void showCreate(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("/view/regis.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/register.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -166,14 +162,14 @@ public class UserServlet extends HttpServlet {
         for (int i = 0; i < userList.size(); i++) {
             if (userList.get(i).getEmail().equals(email)) {
                 flag = false;
-                request.setAttribute("registerFail", "Email đã tồn tại");
-                request.getRequestDispatcher("/list_user/register.jsp").forward(request, response);
+                request.setAttribute("registerFail", "Địa chỉ email này đã tồn tại. Vui lòng thử lại với địa chỉ email khác.");
+                request.getRequestDispatcher("/user/register.jsp").forward(request, response);
                 break;
             }
         }
         if (flag) {
             iUserService.register(user);
-            response.sendRedirect("/post");
+            response.sendRedirect("/user/login.jsp");
         }
     }
 
@@ -200,9 +196,9 @@ public class UserServlet extends HttpServlet {
                 cookie2.setMaxAge(3600);
                 response.addCookie(cookie2);
                 if (user.getEmail().equals("admin@gmail.com")) {
-                    response.sendRedirect("/user");
+                    response.sendRedirect("/user/list_user.jsp");
                 } else {
-                    response.sendRedirect("/post");
+                    response.sendRedirect("/post/list_post.jsp");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
