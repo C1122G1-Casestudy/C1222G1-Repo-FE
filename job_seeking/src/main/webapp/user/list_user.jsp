@@ -19,6 +19,9 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
+
+<button class="btn btn-outline-danger"><a style="text-decoration: none" href="/post">Home page</a></button>
+
 <table class="table">
     <thead>
     <tr>

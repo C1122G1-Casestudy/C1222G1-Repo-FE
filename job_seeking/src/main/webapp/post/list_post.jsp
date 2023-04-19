@@ -25,15 +25,48 @@
 <button type="button" class="btn btn-primary">
   <a class="btn btn-primary" href="/PostServlet?action=create">Thêm mới</a>
 </button>
-
 <form action="/post">
   <div class="btn btn-primary">
     <label for="name">Post Title</label>
     <input type="hidden" name="action" value="search">
     <input type="text" class="form-control" name="postTitle" id="name">
+
   </div>
   <button type="submit" class="btn btn-primary">Tìm kiếm</button>
 </form>
+<div>
+  <c:if test="${sessionScope.nameAccount != null}">
+    <div class="nav-item mx-2">
+      <a style=" text-align:center; color: black; text-decoration:none; position: absolute; right: 420px;top: 15px; font-weight: bolder; font-size:20px"
+         href="#">${sessionScope.nameAccount.name}</a>
+    </div>
+    <div class="nav-item mx-2">
+      <button style="padding: 0px" class="btn btn-light" type="button"><a href="/user?action=logout" class="nav-link active login text-secondary text-nav " aria-current="page">
+        <i style="position: absolute; right: 190px; width: 30px; padding-top: 5px; color: white"
+           class="ti-shift-right"></i>
+        Logout</a></button>
+    </div>
+  </c:if>
+  <c:if test="${sessionScope.nameAccount == null}">
+    <div class="nav-item mx-2">
+      <i class="ti-user"></i>
+      <button style="padding: 0px" class="btn btn-light" type="button"><a href="/user/login.jsp"
+                                                                          class="nav-link active login text-secondary text-nav"
+                                                                          aria-current="page">Logout</a>
+      </button>
+    </div>
+  </c:if>
+
+  <c:if test="${sessionScope.emailAccount == 'admin@gmail.com'}">
+    <div class="nav-item mx-2">
+      <button style="margin-right: 20px; width: 50px" class="btn btn-danger"><a href="/user"
+                                                                                style="text-decoration: snow">User List</a>
+      </button>
+    </div>
+  </c:if>
+</div>
+</div>
+</div>
 
 <table class="table">
   <thead>
@@ -52,7 +85,7 @@
       <td>${post.getPostTitle()}</td>
       <td>${post.getDescribe()}</td>
       <td>${post.getDateSubmitted()}</td>
-<%--      <td>${post.getImg()}</td>--%>
+      <td>${post.getImg()}</td>
       <td><img src="../imgpost/${post.getImg()}" width="50px" height="80px" alt=""/></td>
       <td>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal${post.idPost}">
