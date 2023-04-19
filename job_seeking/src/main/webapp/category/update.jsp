@@ -11,10 +11,11 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post">
-    <label>ID</label>
-    <input type="number" name="id" value="${category.getIdCategory()}">
+<div>
+</div>
 
+<form method="post">
+    <input type="hidden" name="id" value="${category.getIdCategory()}">
     <label>Post</label>
     <input type="text" name="post" value="${category.getPostCategory()}">
 

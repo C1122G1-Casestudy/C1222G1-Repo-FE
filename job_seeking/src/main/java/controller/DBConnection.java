@@ -9,8 +9,6 @@ public class DBConnection {
 
     private static final String PASSWORD = "Taladanh123#1511";
 
-
-
     private static final String HOST = "localhost";
     private static final String DATABASE = "job_seeking";
     private static final String PORT = "3306";
