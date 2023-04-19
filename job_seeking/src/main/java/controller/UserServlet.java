@@ -196,9 +196,9 @@ public class UserServlet extends HttpServlet {
                 cookie2.setMaxAge(3600);
                 response.addCookie(cookie2);
                 if (user.getEmail().equals("admin@gmail.com")) {
-                    response.sendRedirect("/user/list_user.jsp");
+                    response.sendRedirect("/user");
                 } else {
-                    response.sendRedirect("/post/list_post.jsp");
+                    response.sendRedirect("/post");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
