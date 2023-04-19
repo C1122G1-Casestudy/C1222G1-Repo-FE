@@ -16,9 +16,6 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        List<User> userList = iUserService.findAllUser();
-//        request.setAttribute("userList", userList);
-//        request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
         String action = request.getParameter("action");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
@@ -196,9 +193,9 @@ public class UserServlet extends HttpServlet {
                 cookie2.setMaxAge(3600);
                 response.addCookie(cookie2);
                 if (user.getEmail().equals("admin@gmail.com")) {
-                    response.sendRedirect("/user/list_user.jsp");
+                    response.sendRedirect("/user");
                 } else {
-                    response.sendRedirect("/post/list_post.jsp");
+                    response.sendRedirect("/post");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

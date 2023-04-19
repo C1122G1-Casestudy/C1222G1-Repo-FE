@@ -35,7 +35,6 @@
         <td>${user.getUserName()}</td>
         <td>${user.getEmail()}</td>
         <td>${user.getPhoneNumber()}</td>
-
     </tr>
     </c:forEach>
     </tbody>
