@@ -3,7 +3,6 @@ package service.user;
 import model.User;
 import repository.user.IUserRepository;
 import repository.user.UserRepository;
-import service.user.IUserService;
 
 import java.util.List;
 
@@ -26,6 +25,6 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> findAllUser() {
-        return null;
+        return iUserRepository.getAll();
     }
 }

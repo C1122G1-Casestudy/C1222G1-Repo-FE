@@ -114,10 +114,10 @@
 <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
     <div class="card p-4">
         <div class=" image d-flex flex-column justify-content-center align-items-center">
-            <button class="btn btn-secondary"><img src="Screenshot_20221121_025113.png" height="100" width="100"/>
+            <button class="btn btn-secondary" href="/user"><img src="Screenshot_20221121_025113.png" height="100" width="100"/>
             </button>
-            <span class="name mt-3">${user.userName}</span>
-            <span class="idd">@${user.id}</span>
+            <span class="name mt-3">${user.getUserName()}</span>
+            <span class="idd">@${user.getId()}</span>
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                 <span class="idd1">Oxc4c16a645_b21a</span>
                 <span><i class="fa fa-copy"></i></span>
