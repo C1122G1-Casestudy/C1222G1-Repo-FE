@@ -23,19 +23,65 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "register":
-                showCreate(request, response);
+//            case "register":
+//                showCreate(request, response);
+//                break;
+//            case "logout":
+//                logout(request, response);
+//                break;
+//            case "view":
+//                showViewUser(request, response);
+//                break;
+            case "update":
+                updateUser(request, response);
                 break;
-            case "logout":
-                logout(request, response);
+            case "searchByName":
+                searchByName(request, response);
                 break;
-            case "view":
-                showViewUser(request, response);
+            case "delete":
+                int idToDelete = Integer.parseInt(request.getParameter("idToDelete"));
+                iUserService.deleteById(idToDelete);
+                response.sendRedirect("/user");
                 break;
             default:
-                showListUser(request, response);
+//                showListUser(request, response);
+                List<User> userList = iUserService.findAllUser();
+                request.setAttribute("userList", userList);
+                request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
                 break;
         }
+    }
+
+    private void searchByName(HttpServletRequest request, HttpServletResponse response)  {
+        String nameToSearch = request.getParameter("nameToSearch");
+        List<User> userListByName = iUserService.searchByName(nameToSearch);
+        request.setAttribute("userList",userListByName);
+        try {
+            request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Function: update User of admin
+     * Create: HungNT
+     * Date create: 19/04/2023
+     */
+    private void updateUser(HttpServletRequest request, HttpServletResponse response)  {
+        int idToUpdate = Integer.parseInt(request.getParameter("idToUpdate"));
+        User userToUpdate = iUserService.findIdToUpdate(idToUpdate);
+        request.setAttribute("userToUpdate",userToUpdate);
+        try {
+            request.getRequestDispatcher("/user/updateUser.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -135,8 +181,31 @@ public class UserServlet extends HttpServlet {
             case "register":
                 register(request, response);
                 break;
+            case "update":
+                updateUserOfAdmin(request, response);
+                break;
             default:
                 break;
+        }
+    }
+    /**
+     * Function: Update use of Adim
+     * Create: HungNT
+     * Date create: 19/04/2023
+     *
+     * @param request
+     * @param response
+     */
+    private void updateUserOfAdmin(HttpServletRequest request, HttpServletResponse response) {
+        int idToUpdate = Integer.parseInt(request.getParameter("idToUpdate"));
+        String nameToUpdate = request.getParameter("nameToUpdate");
+        String phoneNumberToUpdate = request.getParameter("phoneNumberToUpdate");
+        User user = new User(idToUpdate,nameToUpdate,phoneNumberToUpdate);
+        iUserService.updateUserOfAdmin(user);
+        try {
+            response.sendRedirect("/user");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

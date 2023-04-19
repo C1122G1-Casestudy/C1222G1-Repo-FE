@@ -54,10 +54,11 @@ public class UserRepository implements IUserRepository {
         List<User> userList = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = DBConnection.getConnection()
-                    .prepareStatement("select use_name,email,phone_number from `use`");
+                    .prepareStatement("select id_use, use_name,email,phone_number from `use` where id_delete = 0");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
+                user.setId(resultSet.getInt("id_use"));
                 user.setUserName(resultSet.getString("use_name"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPhoneNumber(resultSet.getString("phone_number"));
@@ -67,5 +68,72 @@ public class UserRepository implements IUserRepository {
             e.printStackTrace();
         }
         return userList;
+    }
+
+    @Override
+    public User getIdToUpdate(int idToUpdate) {
+        User user = new User();
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("select id_use, use_name, phone_number from `use` where id_use = ?");
+            preparedStatement.setInt(1, idToUpdate);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user.setId(resultSet.getInt("id_use"));
+                user.setUserName(resultSet.getString("use_name"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public void updateUserOfAdmin(User user) {
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("update `use` set use_name = ?, phone_number = ? where id_use = ?");
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPhoneNumber());
+            preparedStatement.setInt(3, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<User> getUserByName(String nameToSearch) {
+        List<User> userList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("select id_use, use_name,email,phone_number from `use` where use_name like concat ('%',?,'%')");
+            preparedStatement.setString(1, nameToSearch);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setId(resultSet.getInt("id_use"));
+                user.setUserName(resultSet.getString("use_name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhoneNumber(resultSet.getString("phone_number"));
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    @Override
+    public void deleteById(int idToDelete) {
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("update `use` set id_delete = 1 where id_use=?");
+            preparedStatement.setInt(1,idToDelete);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
