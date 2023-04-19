@@ -14,4 +14,6 @@ public interface IPostRepository {
     Post findById(int idPost);
 
     List<Post> findByName(String post);
+
+    void update(int idPost,Post post);
 }

@@ -25,8 +25,8 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void update(Post post) {
-
+    public void update(int idPost,Post post) {
+        iPostRepository.update(idPost, post);
     }
 
     @Override
