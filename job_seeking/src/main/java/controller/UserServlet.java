@@ -169,7 +169,7 @@ public class UserServlet extends HttpServlet {
         }
         if (flag) {
             iUserService.register(user);
-            response.sendRedirect("/post");
+            response.sendRedirect("/user/login.jsp");
         }
     }
 
@@ -196,9 +196,9 @@ public class UserServlet extends HttpServlet {
                 cookie2.setMaxAge(3600);
                 response.addCookie(cookie2);
                 if (user.getEmail().equals("admin@gmail.com")) {
-                    response.sendRedirect("/user");
+                    response.sendRedirect("/user/list_user.jsp");
                 } else {
-                    response.sendRedirect("/post");
+                    response.sendRedirect("/post/list_post.jsp");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

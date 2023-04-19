@@ -17,7 +17,7 @@ public class UserRepository implements IUserRepository {
     public User login(String email, String password) {
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = DBConnection.getConnection().prepareStatement("select * from `use` where email = ? and password = ?");
+            preparedStatement = DBConnection.getConnection().prepareStatement("select * from `use` where email = ? and `password` = ?");
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -38,7 +38,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public void register(User user) {
         try {
-            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement("insert into `use`(name,email,password,phone_number) values (?,?,?,?)");
+            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement("insert into `use`(use_name,email,`password`,phone_number) values (?,?,?,?)");
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassWord());
