@@ -17,4 +17,6 @@ public interface IUserService {
     List<User> searchByName(String nameToSearch);
 
     void deleteById(int idToDelete);
+
+    User disPlayUser();
 }
