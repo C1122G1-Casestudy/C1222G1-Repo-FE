@@ -29,6 +29,14 @@ public class Post {
         this.img = img;
     }
 
+    public Post(String postTitle, String describe, String dateSubmitted, String img, int idCategory) {
+        this.postTitle = postTitle;
+        this.describe = describe;
+        this.dateSubmitted = dateSubmitted;
+        this.img = img;
+        this.idCategory = idCategory;
+    }
+
     public Post(String postTitle, String describe, String dateSubmitted, String img) {
         this.postTitle = postTitle;
         this.describe = describe;

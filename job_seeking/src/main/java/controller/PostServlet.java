@@ -1,18 +1,18 @@
 package controller;
 
-import dto.PostDTO;
+
 import model.Category;
 import model.Post;
 import service.category.CategoryService;
 import service.category.ICategoryService;
 import service.post.IPostService;
 import service.post.PostService;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
+
 
 @WebServlet(name = "PostServlet", value = "/post")
 public class PostServlet extends HttpServlet {
@@ -37,12 +37,12 @@ public class PostServlet extends HttpServlet {
                 response.sendRedirect("/post");
                 break;
             case "search":
-                String postTitle=request.getParameter("postTitle");
-                request.setAttribute("postList",iPostService.findByName(postTitle));
-                request.getRequestDispatcher("/post/list_post.jsp").forward(request,response);
+                String postTitle = request.getParameter("postTitle");
+                request.setAttribute("postList", iPostService.findByName(postTitle));
+                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
                 break;
             case "update":
-                int idUpdate = Integer.parseInt(request.getParameter("idUpdate"));
+                int idUpdate = Integer.parseInt(request.getParameter("id"));
                 Post post = iPostService.findById(idUpdate);
                 request.setAttribute("post", post);
                 request.getRequestDispatcher("/post/update.jsp").forward(request, response);
@@ -54,7 +54,7 @@ public class PostServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -67,11 +67,12 @@ public class PostServlet extends HttpServlet {
                 String dateSubmitted = request.getParameter("date");
                 String img = request.getParameter("img");
                 int idCategory = Integer.parseInt(request.getParameter("idCategory"));
-                Post post = new Post(idPost,postTitle, describe, dateSubmitted, img, idCategory);
+                Post post = new Post(idPost, postTitle, describe, dateSubmitted, img, idCategory);
                 iPostService.create(post);
                 request.setAttribute("postList", iPostService.findAll());
-                request.getRequestDispatcher("/post").forward(request, response);
+                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
                 break;
+
             case "update":
                 int idUpdate = Integer.parseInt(request.getParameter("id"));
                 String postTitleUpdate = request.getParameter("postTitle");

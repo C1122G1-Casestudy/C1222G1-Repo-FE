@@ -4,8 +4,8 @@ import dto.PostDTO;
 import model.Post;
 import repository.post.IPostRepository;
 import repository.post.PostRepository;
-
 import java.util.List;
+
 
 public class PostService implements IPostService {
     private IPostRepository iPostRepository = new PostRepository();

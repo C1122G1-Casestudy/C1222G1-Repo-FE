@@ -12,7 +12,7 @@
 </head>
 <body>
 <form action="" method="post">
-    Mã bài đăng :<input type="number" name="idUpdate" id="idUpdate" value="${post.getIdPost()}">
+    Mã bài đăng :<input type="number" name="id" id="id" value="${post.getIdPost()}">
     Tiêu đề :<input type="text" name="postTitle" id="postTitle" value="${post.getPostTitle()}">
     Nội dung :<input type="text" name="describe" id="describe" value="${post.getDescribe()}">
     Ngày đăng :<input type="text" name="dateSubmitted" id="dateSubmitted" value="${post.getDateSubmitted()}">

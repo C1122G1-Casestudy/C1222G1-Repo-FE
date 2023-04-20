@@ -101,7 +101,7 @@ public class PostRepository implements IPostRepository {
             preparedStatement.setString(3,post.getDateSubmitted());
             preparedStatement.setString(4,post.getImg());
             preparedStatement.setInt(5,post.getIdCategory());
-            preparedStatement.setInt(6,post.getIdPost());
+            preparedStatement.setInt(6,idPost);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

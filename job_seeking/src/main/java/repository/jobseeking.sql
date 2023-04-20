@@ -45,16 +45,17 @@ create table `use`(
 
 );
 
-insert into `use`
-values(1,'Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
-      (2,'Hữu Huy','nguyenhuuhuy1998@gmail.com,','12345678','0931997293'),
-      (3,'Hưng','ngotienhung2000@gmail.com','12345678','0931997293'),
-      (4,'Danh','danhnguyen.15112003@gmail.com','12345678','0931997293'),
-      (5,'HaiTT','haitan28102408@gmail.com','12345678','0931997293'),
-      (6,'Admin','admin@gmail.com','123123123','0931997293');
+insert into `use` (use_name, email, password, phone_number)
+values('Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
+      ('Hữu Huy','nguyenhuuhuy1998@gmail.com,','12345678','0931997293'),
+      ('Hưng','ngotienhung2000@gmail.com','12345678','0931997293'),
+      ('Danh','danhnguyen.15112003@gmail.com','12345678','0931997293'),
+      ('HaiTT','haitan28102408@gmail.com','12345678','0931997293'),
+      ('Admin','admin@gmail.com','123123123','0931997293');
 
 select * from `use`;
 
-
-
-
+alter table category
+add is_delete tinyint(1) default '0';
+update category set is_delete =1 where id_category = 5;
+select * from category where is_delete = 0;

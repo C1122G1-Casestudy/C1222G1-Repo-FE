@@ -4,6 +4,7 @@ import dto.PostDTO;
 import model.Post;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IPostService {
     List<PostDTO> getAll();
