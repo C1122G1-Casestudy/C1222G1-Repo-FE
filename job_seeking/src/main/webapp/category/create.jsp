@@ -25,13 +25,13 @@
                name="id" required>
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon2">Thể loại : </span>
+        <span class="input-group-text" id="basic-addon2">Post</span>
         <input type="text" class="form-control" placeholder="CategoryName" aria-label="NameCategory" aria-describedby="basic-addon2"
                name="post" required>
     </div>
 
     <div>
-        <button type="submit" class="btn btn-secondary">Lưu</button>
+        <button type="submit" class="btn btn-secondary">Save</button>
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
