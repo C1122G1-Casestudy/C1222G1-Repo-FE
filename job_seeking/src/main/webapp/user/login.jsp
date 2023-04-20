@@ -32,7 +32,6 @@
              display: flex;
              justify-content: center;
              align-items: center;
-             /*height: 100%;*/
             width: 100%;
          }
         i.fab{
@@ -47,12 +46,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <form action="/user?action=login" class="col-md-6 p-3 bgr my-3" method="post">
-                <%--                <div>--%>
-                <%--                    <a href="#"><img src="facebook.svg" alt="Facebook"></a>--%>
-                <%--                    <a href="#"><img src="google.svg" alt="Google"></a>--%>
-                <%--                    <a href="#"><img src="twitter.svg" alt="Twitter"></a>--%>
-                <%--                </div>--%>
-                <%--                <p class="auth-sgt">or sign in with:</p>--%>
 <div>
                         <div class="icon-container">
                             <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>

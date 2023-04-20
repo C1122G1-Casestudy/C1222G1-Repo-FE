@@ -59,7 +59,7 @@
                 <input type="text" name="nameToSearch">
                 <button type="submit">Tìm kiếm</button>
             </form>
-            <a class="btn btn-info" href="/user/list_user.jsp"
+            <a class="btn btn-info" href="/user"
                role="button">Trở lại</a>
         </div>
     </div>
