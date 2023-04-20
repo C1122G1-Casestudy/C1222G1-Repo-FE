@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/user")
-public class UserServlet extends HttpServlet {
+public class AdminServlet extends HttpServlet {
     private IUserService iUserService = new UserService();
 
     @Override
@@ -23,36 +23,51 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-//            case "register":
-//                showCreate(request, response);
-//                break;
-//            case "logout":
-//                logout(request, response);
-//                break;
-//            case "view":
-//                showViewUser(request, response);
-//                break;
+            case "register":
+                showCreate(request, response);
+                break;
+            case "logout":
+                logout(request, response);
+                break;
+            case "view":
+                showViewUser(request, response);
+                break;
             case "update":
-                updateUser(request, response);
+                updateUserListOfAdmin(request, response);
                 break;
             case "searchByName":
-                searchByName(request, response);
+                searchUserByNameOfAdmin(request, response);
                 break;
             case "delete":
-                int idToDelete = Integer.parseInt(request.getParameter("idToDelete"));
-                iUserService.deleteById(idToDelete);
-                response.sendRedirect("/user");
+                deleteUserOfAdmin(request, response);
                 break;
             default:
-//                showListUser(request, response);
-                List<User> userList = iUserService.findAllUser();
-                request.setAttribute("userList", userList);
-                request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
+                showListUser(request, response);
+//                List<User> userList = iUserService.findAllUser();
+//                request.setAttribute("userList", userList);
+//                request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
                 break;
         }
     }
 
-    private void searchByName(HttpServletRequest request, HttpServletResponse response)  {
+
+    /**
+     * Function: delete User of admin
+     * Create: HungNT
+     * Date create: 19/04/2023
+     */
+
+    private void deleteUserOfAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int idToDelete = Integer.parseInt(request.getParameter("idToDelete"));
+        iUserService.deleteById(idToDelete);
+        response.sendRedirect("/user");
+    }
+    /**
+     * Function: search User of admin
+     * Create: HungNT
+     * Date create: 19/04/2023
+     */
+    private void searchUserByNameOfAdmin(HttpServletRequest request, HttpServletResponse response)  {
         String nameToSearch = request.getParameter("nameToSearch");
         List<User> userListByName = iUserService.searchByName(nameToSearch);
         request.setAttribute("userList",userListByName);
@@ -70,7 +85,7 @@ public class UserServlet extends HttpServlet {
      * Create: HungNT
      * Date create: 19/04/2023
      */
-    private void updateUser(HttpServletRequest request, HttpServletResponse response)  {
+    private void updateUserListOfAdmin(HttpServletRequest request, HttpServletResponse response)  {
         int idToUpdate = Integer.parseInt(request.getParameter("idToUpdate"));
         User userToUpdate = iUserService.findIdToUpdate(idToUpdate);
         request.setAttribute("userToUpdate",userToUpdate);
@@ -81,7 +96,6 @@ public class UserServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -114,9 +128,9 @@ public class UserServlet extends HttpServlet {
         if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")) {
                 response.sendRedirect("/user");
         }else {
-            List<User> userList = iUserService.findAllUser();
-            request.setAttribute("userList", userList);
             try{
+                List<User> userList = iUserService.findAllUser();
+                request.setAttribute("userList", userList);
                 request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
             }catch (ServletException | IOException exception){
                 exception.printStackTrace();
@@ -189,7 +203,7 @@ public class UserServlet extends HttpServlet {
         }
     }
     /**
-     * Function: Update use of Adim
+     * Function: Update use of Admin
      * Create: HungNT
      * Date create: 19/04/2023
      *
@@ -262,9 +276,9 @@ public class UserServlet extends HttpServlet {
                 cookie2.setMaxAge(3600);
                 response.addCookie(cookie2);
                 if (user.getEmail().equals("admin@gmail.com")) {
-                    response.sendRedirect("/user");
+                    response.sendRedirect("/user/list_user.jsp");
                 } else {
-                    response.sendRedirect("/post");
+                    response.sendRedirect("/post/list_post.jsp");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -56,3 +56,9 @@ values('Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
 select * from `use`;
 
 
+
+
+
+alter table `use` add id_delete tinyint (1) default '0';
+
+
