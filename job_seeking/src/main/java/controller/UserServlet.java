@@ -23,15 +23,15 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-//            case "register":
-//                showCreate(request, response);
-//                break;
-//            case "logout":
-//                logout(request, response);
-//                break;
-//            case "view":
-//                showViewUser(request, response);
-//                break;
+            case "register":
+                showCreate(request, response);
+                break;
+            case "logout":
+                logout(request, response);
+                break;
+            case "view":
+                showViewUser(request, response);
+                break;
             case "update":
                 updateUser(request, response);
                 break;
@@ -44,10 +44,10 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect("/user");
                 break;
             default:
-//                showListUser(request, response);
-                List<User> userList = iUserService.findAllUser();
-                request.setAttribute("userList", userList);
-                request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
+                showListUser(request, response);
+//                List<User> userList = iUserService.findAllUser();
+//                request.setAttribute("userList", userList);
+//                request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
                 break;
         }
     }
@@ -112,7 +112,7 @@ public class UserServlet extends HttpServlet {
         }
 
         if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")) {
-                response.sendRedirect("/user");
+                response.sendRedirect("/post");
         }else {
             List<User> userList = iUserService.findAllUser();
             request.setAttribute("userList", userList);
