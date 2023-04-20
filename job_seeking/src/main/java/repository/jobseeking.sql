@@ -55,4 +55,5 @@ values('Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
 
 select * from `use`;
 
-
+alter table category
+    add is_delete tinyint(1) default '0';
