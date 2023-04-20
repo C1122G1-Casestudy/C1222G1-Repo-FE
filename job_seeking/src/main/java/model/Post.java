@@ -6,48 +6,35 @@ public class Post {
     private String describe;
     private String dateSubmitted;
     private String img;
-    private int id;
-    private String category;
+    private int idCategory;
 
+    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory) {
+        this.idPost = idPost;
+        this.postTitle = postTitle;
+        this.describe = describe;
+        this.dateSubmitted = dateSubmitted;
+        this.img = img;
+        this.idCategory = idCategory;
+    }
 
     public Post() {
     }
 
-    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, String category, int id) {
-
-        this.idPost = idPost;
-        this.postTitle = postTitle;
-        this.describe = describe;
-        this.dateSubmitted = dateSubmitted;
-        this.img = img;
-        this.category = category;
-        this.id = id;
-    }
-
-    public Post(int idPost,String postTitle, String describe, String dateSubmitted, String img, String category) {
-        this.idPost = idPost;
-        this.postTitle = postTitle;
-        this.describe = describe;
-        this.dateSubmitted = dateSubmitted;
-        this.img = img;
-        this.category = category;
-    }
-
-    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int id) {
-        this.idPost = idPost;
-        this.postTitle = postTitle;
-        this.describe = describe;
-        this.dateSubmitted = dateSubmitted;
-        this.img = img;
-        this.id = id;
-    }
-
     public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img) {
+
         this.idPost = idPost;
         this.postTitle = postTitle;
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
+    }
+
+    public Post(String postTitle, String describe, String dateSubmitted, String img, int idCategory) {
+        this.postTitle = postTitle;
+        this.describe = describe;
+        this.dateSubmitted = dateSubmitted;
+        this.img = img;
+        this.idCategory = idCategory;
     }
 
     public Post(String postTitle, String describe, String dateSubmitted, String img) {
@@ -97,20 +84,11 @@ public class Post {
         this.img = img;
     }
 
-    public int getId() {
-        return id;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
 }

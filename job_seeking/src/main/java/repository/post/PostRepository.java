@@ -1,11 +1,9 @@
 package repository.post;
 
 import controller.DBConnection;
-import model.Category;
+import dto.PostDTO;
 import model.Post;
-import model.User;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +12,11 @@ import java.util.List;
 
 public class PostRepository implements IPostRepository {
     private static final String SELECT_ALL_POST = "select * from post";
-    private static final String CREATE = "insert into post(post_title, `describe`,date_submitted, img)values(?, ? ,?, ?);";
+    private static final String SELECT_ALL_POSTDTO = "select post.id, post.post_title, post.describe, " +
+            "post.date_submitted, post.img, category.post_category from post join category on post.id_category = category.id_category";
+    private static final String CREATE = "insert into post(post_title, `describe`,date_submitted, img, id_category)values(?, ? ,?, ?, ?);";
     private static final String DELETE_FORM_ID = "delete from post where id = ?;";
-    private static final String UPDATE_POST = "update post set post_title = ?,`describe`= ?, date_submitted =?, img =? where id = ?;";
+    private static final String UPDATE_POST = "update post set post_title = ?,`describe`= ?, date_submitted =?, img =?, id_category =?  where id = ?;";
     private static final String SELECT_POST_BY_ID = "select * from post where id = ?";
     private static final String SELECT_POST_BY_NAME = "select * from post where post_title like concat('%',?,'%');";
 
@@ -25,6 +25,27 @@ public class PostRepository implements IPostRepository {
      * Create: HuyNH
      * Date create: 17/04/2023
      */
+    @Override
+    public List<PostDTO> getAll() {
+        List<PostDTO> postList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(SELECT_ALL_POSTDTO);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String postTitle = resultSet.getString("post_title");
+                String describe = resultSet.getString("describe");
+                String dateSubmitted = resultSet.getString("date_submitted");
+                String img = resultSet.getString("img");
+                String post_category = resultSet.getString("post_category");
+                postList.add(new PostDTO(id,postTitle,describe,dateSubmitted,img,post_category));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return postList;
+    }
+
     @Override
     public List<Post> findAll() {
         List<Post> postList = new ArrayList<>();
@@ -37,8 +58,6 @@ public class PostRepository implements IPostRepository {
                 String describe = resultSet.getString("describe");
                 String dateSubmitted = resultSet.getString("date_submitted");
                 String img = resultSet.getString("img");
-//                String category = resultSet.getString("category");
-//                String userName = resultSet.getString("user_name");
                 postList.add(new Post(id,postTitle,describe,dateSubmitted,img));
             }
         } catch (SQLException e) {
@@ -55,6 +74,7 @@ public class PostRepository implements IPostRepository {
             preparedStatement.setString(2,post.getDescribe());
             preparedStatement.setString(3,post.getDateSubmitted());
             preparedStatement.setString(4,post.getImg());
+            preparedStatement.setInt(5,post.getIdCategory());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,7 +100,8 @@ public class PostRepository implements IPostRepository {
             preparedStatement.setString(2,post.getDescribe());
             preparedStatement.setString(3,post.getDateSubmitted());
             preparedStatement.setString(4,post.getImg());
-            preparedStatement.setInt(5,post.getIdPost());
+            preparedStatement.setInt(5,post.getIdCategory());
+            preparedStatement.setInt(6,idPost);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -118,11 +139,11 @@ public class PostRepository implements IPostRepository {
     }
 
     @Override
-    public List<Post> findByName(String post) {
-        List<Post> postList = findAll();
+    public List<PostDTO> findByName(String post) {
+        List<PostDTO> postList = getAll();
         System.out.println(postList.size());
-        List<Post> list = new ArrayList<>();
-        for (Post post1 : postList) {
+        List<PostDTO> list = new ArrayList<>();
+        for (PostDTO post1 : postList) {
             if (post1.getPostTitle().equals(post)) {
                 list.add(post1);
             }
