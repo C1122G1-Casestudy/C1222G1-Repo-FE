@@ -126,7 +126,7 @@ public class AdminServlet extends HttpServlet {
         }
 
         if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")) {
-                response.sendRedirect("/user");
+                response.sendRedirect("/post");
         }else {
             try{
                 List<User> userList = iUserService.findAllUser();
