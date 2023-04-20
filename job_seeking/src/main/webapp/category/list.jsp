@@ -15,7 +15,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Title</title>
-    <script src="https://kit.fontawesome.com/yourcode.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -23,21 +22,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<button class="btn btn-primary" onclick="window.location.href = '/categoryServlet?actionCategory=create'">Tạo thể loại mới</button>
+<button class="btn btn-primary" onclick="window.location.href = '/categoryServlet?actionCategory=create'">Create</button>
 <form action="/categoryServlet">
-<div class="input-group mb-3" >
-    <input  type="search" name="search" class="form-control" placeholder="Enter Name" aria-label="Recipient's username" aria-describedby="button-addon2">
+<div class="input-group mb-3">
+    <input type="search" name="search" class="form-control" placeholder="Enter Name" aria-label="Recipient's username" aria-describedby="button-addon2">
     <input type="hidden" name="actionCategory" value="search">
-    <button  class="btn btn-outline-secondary" type="submit" >
-        <i class="fa-duotone fa-magnifying-glass fa-2xs"></i>Tìm kiếm</button>
+    <button  class="btn btn-outline-secondary" type="submit" >Search</button>
 </div>
 </form>
-<table class="table" border="1px">
+<table class="table">
     <thead>
     <tr>
-        <th>STT</th>
-        <th>Mã thể loại</th>
-        <th>Thể Loại bài đăng</th>
+        <th>No</th>
+        <th>ID</th>
+        <th>Post Category</th>
     </tr>
     </thead>
     <tbody>
@@ -48,13 +46,13 @@
             <td>${category.postCategory}</td>
             <td>
                 <button onclick="window.location.href = '/categoryServlet?actionCategory=update&id=${category.idCategory}'"
-                        class="btn btn-primary">Chỉnh sửa
+                        class="btn btn-primary">Update
                 </button>
             </td>
             <td>
                 <button onclick="changIdDelete(${category.getIdCategory()} , '${category.getPostCategory()}')"
                         type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
-                    Xóa
+                    Delete
                 </button>
             </td>
 

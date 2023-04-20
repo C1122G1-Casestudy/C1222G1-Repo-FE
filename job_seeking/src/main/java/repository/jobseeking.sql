@@ -54,10 +54,15 @@ values('Anh Đào','phantaanhdao@gmail.com','12345678','0931997293'),
       ('Admin','admin@gmail.com','123123123','0931997293');
 
 select * from `use`;
-
 alter table category
 add is_delete tinyint(1) default '0';
 update category set is_delete =1 where id_category = 5;
 select * from category where is_delete = 0;
 
 drop table post;
+
+
+alter table `use` add id_delete tinyint (1) default '0';
+
+alter table category
+    add is_delete tinyint(1) default '0';

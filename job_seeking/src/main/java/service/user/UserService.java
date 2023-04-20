@@ -50,4 +50,9 @@ public class UserService implements IUserService {
     public void deleteById(int idToDelete) {
         iUserRepository.deleteById(idToDelete);
     }
+
+    @Override
+    public User disPlayUser() {
+        return null;
+    }
 }
