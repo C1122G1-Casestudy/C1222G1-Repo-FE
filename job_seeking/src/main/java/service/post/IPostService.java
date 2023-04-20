@@ -1,10 +1,13 @@
 package service.post;
 
+import dto.PostDTO;
 import model.Post;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IPostService {
+    List<PostDTO> getAll();
     List<Post> findAll();
     void create (Post post);
 
@@ -13,5 +16,5 @@ public interface IPostService {
 
     Post findById(int idPost);
 
-    List<Post> findByName(String post);
+    List<PostDTO> findByName(String post);
 }

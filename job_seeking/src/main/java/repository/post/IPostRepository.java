@@ -1,11 +1,13 @@
 package repository.post;
 
+import dto.PostDTO;
 import model.Post;
 
 import java.util.List;
 
 public interface IPostRepository {
     List<Post> findAll();
+    List<PostDTO> getAll();
 
     void create(Post post);
 
@@ -13,7 +15,7 @@ public interface IPostRepository {
 
     Post findById(int idPost);
 
-    List<Post> findByName(String post);
+    List<PostDTO> findByName(String post);
 
-    void update(int idPost,Post post);
+    void update(int idPost, Post post);
 }

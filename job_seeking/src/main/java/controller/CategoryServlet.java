@@ -57,14 +57,22 @@ public class CategoryServlet extends HttpServlet {
                 break;
         }
     }
-
+/**
+ * Function: show update form
+ * Create: DanhNCT
+ * Date create: 18/04/2023
+ * **/
     private void showFormUpdate(HttpServletRequest request , HttpServletResponse response ) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("category" , iCategoryService.getCategoryById(id));
         request.getRequestDispatcher("category/update.jsp").forward(request , response);
 
     }
-
+    /**
+     * Function: show list category
+     * Create: DanhNCT
+     * Date create: 18/04/2023
+     * **/
     private void showListCategory(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("listCategory", iCategoryService.findAll());
         try {
@@ -75,7 +83,11 @@ public class CategoryServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Function:  create form
+     * Create: DanhNCT
+     * Date create: 18/04/2023
+     * **/
     private void showFormCreate(HttpServletRequest request, HttpServletResponse response) {
         try {
             response.sendRedirect("category/create.jsp");
@@ -83,7 +95,11 @@ public class CategoryServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Function: create category
+     * Create: DanhNCT
+     * Date create: 18/04/2023
+     * **/
     private void createCategory(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String post = request.getParameter("post");
@@ -95,7 +111,11 @@ public class CategoryServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Function: delete category
+     * Create: DanhNCT
+     * Date create: 18/04/2023
+     * **/
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("idDelete"));
         iCategoryService.delete(id);
@@ -105,6 +125,11 @@ public class CategoryServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * Function:  update category
+     * Create: DanhNCT
+     * Date create: 18/04/2023
+     * **/
     private void updateCategory(HttpServletRequest request , HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String postCategory = request.getParameter("post");
@@ -112,6 +137,11 @@ public class CategoryServlet extends HttpServlet {
         iCategoryService.update(category);
         response.sendRedirect("/categoryServlet");
     }
+    /**
+     * Function: search category
+     * Create: DanhNCT
+     * Date create: 18/04/2023
+     * **/
     public void searchCategory(HttpServletRequest request , HttpServletResponse response) throws IOException, ServletException {
         String search = request.getParameter("search");
         request.setAttribute("listCategory" , iCategoryService.findByName(search));
