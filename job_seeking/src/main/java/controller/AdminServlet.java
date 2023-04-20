@@ -72,7 +72,7 @@ public class AdminServlet extends HttpServlet {
         List<User> userListByName = iUserService.searchByName(nameToSearch);
         request.setAttribute("userList",userListByName);
         try {
-            request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
+            request.getRequestDispatcher("user/list_user.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -126,7 +126,7 @@ public class AdminServlet extends HttpServlet {
         }
 
         if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")) {
-                response.sendRedirect("/user");
+                response.sendRedirect("/post");
         }else {
             try{
                 List<User> userList = iUserService.findAllUser();
@@ -276,9 +276,9 @@ public class AdminServlet extends HttpServlet {
                 cookie2.setMaxAge(3600);
                 response.addCookie(cookie2);
                 if (user.getEmail().equals("admin@gmail.com")) {
-                    response.sendRedirect("/user/list_user.jsp");
+                    response.sendRedirect("/user");
                 } else {
-                    response.sendRedirect("/post/list_post.jsp");
+                    response.sendRedirect("/post");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
