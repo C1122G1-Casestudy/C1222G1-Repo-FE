@@ -64,4 +64,5 @@ select * from category where is_delete = 0;
 
 alter table `use` add id_delete tinyint (1) default '0';
 
-
+alter table category
+    add is_delete tinyint(1) default '0';
