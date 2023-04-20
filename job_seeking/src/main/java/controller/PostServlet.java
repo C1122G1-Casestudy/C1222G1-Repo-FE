@@ -30,6 +30,7 @@ public class PostServlet extends HttpServlet {
                 List<Category> categoryList = iCategoryService.findAll();
                 request.setAttribute("categoryList",categoryList);
                 request.getRequestDispatcher("/post/create.jsp").forward(request, response);
+//                response.sendRedirect("/post/create.jsp");
                 break;
             case "delete":
                 int idDelete = Integer.parseInt(request.getParameter("id"));
@@ -71,6 +72,7 @@ public class PostServlet extends HttpServlet {
                 iPostService.create(post);
                 request.setAttribute("postList", iPostService.findAll());
                 request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
+//                response.sendRedirect("/post");
                 break;
 
             case "update":

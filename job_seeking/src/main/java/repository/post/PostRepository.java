@@ -14,7 +14,7 @@ public class PostRepository implements IPostRepository {
     private static final String SELECT_ALL_POST = "select * from post";
     private static final String SELECT_ALL_POSTDTO = "select post.id, post.post_title, post.describe, " +
             "post.date_submitted, post.img, category.post_category from post join category on post.id_category = category.id_category";
-    private static final String CREATE = "insert into post(post_title, `describe`,date_submitted, img, id_category)values(?, ? ,?, ?, ?);";
+    private static final String CREATE = "insert into post(id ,post_title, `describe`,date_submitted, img, id_category)values(?, ?, ? ,?, ?, ?);";
     private static final String DELETE_FORM_ID = "delete from post where id = ?;";
     private static final String UPDATE_POST = "update post set post_title = ?,`describe`= ?, date_submitted =?, img =?, id_category =?  where id = ?;";
     private static final String SELECT_POST_BY_ID = "select * from post where id = ?";
@@ -70,11 +70,12 @@ public class PostRepository implements IPostRepository {
     public void create(Post post) {
         try {
             PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(CREATE);
-            preparedStatement.setString(1,post.getPostTitle());
-            preparedStatement.setString(2,post.getDescribe());
-            preparedStatement.setString(3,post.getDateSubmitted());
-            preparedStatement.setString(4,post.getImg());
-            preparedStatement.setInt(5,post.getIdCategory());
+            preparedStatement.setInt(1,post.getIdPost());
+            preparedStatement.setString(2,post.getPostTitle());
+            preparedStatement.setString(3,post.getDescribe());
+            preparedStatement.setString(4,post.getDateSubmitted());
+            preparedStatement.setString(5,post.getImg());
+            preparedStatement.setInt(6,post.getIdCategory());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

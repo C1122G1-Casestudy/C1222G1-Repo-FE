@@ -27,7 +27,7 @@
 </button>
 <form action="/post">
   <div class="btn btn-primary">
-    <label for="name">Post Title</label>
+    <label for="name">Tiêu đề bài đăng</label>
     <input type="hidden" name="action" value="search">
     <input type="text" class="form-control" name="postTitle" id="name">
 
