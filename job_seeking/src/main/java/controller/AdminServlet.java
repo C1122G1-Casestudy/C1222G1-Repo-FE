@@ -12,7 +12,7 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/user")
 public class AdminServlet extends HttpServlet {
-    private IUserService iUserService = new UserService();
+    private final IUserService iUserService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,15 +62,16 @@ public class AdminServlet extends HttpServlet {
         iUserService.deleteById(idToDelete);
         response.sendRedirect("/user");
     }
+
     /**
      * Function: search User of admin
      * Create: HungNT
      * Date create: 19/04/2023
      */
-    private void searchUserByNameOfAdmin(HttpServletRequest request, HttpServletResponse response)  {
+    private void searchUserByNameOfAdmin(HttpServletRequest request, HttpServletResponse response) {
         String nameToSearch = request.getParameter("nameToSearch");
         List<User> userListByName = iUserService.searchByName(nameToSearch);
-        request.setAttribute("userList",userListByName);
+        request.setAttribute("userList", userListByName);
         try {
             request.getRequestDispatcher("user/list_user.jsp").forward(request, response);
         } catch (ServletException e) {
@@ -85,10 +86,10 @@ public class AdminServlet extends HttpServlet {
      * Create: HungNT
      * Date create: 19/04/2023
      */
-    private void updateUserListOfAdmin(HttpServletRequest request, HttpServletResponse response)  {
+    private void updateUserListOfAdmin(HttpServletRequest request, HttpServletResponse response) {
         int idToUpdate = Integer.parseInt(request.getParameter("idToUpdate"));
         User userToUpdate = iUserService.findIdToUpdate(idToUpdate);
-        request.setAttribute("userToUpdate",userToUpdate);
+        request.setAttribute("userToUpdate", userToUpdate);
         try {
             request.getRequestDispatcher("/user/updateUser.jsp").forward(request, response);
         } catch (ServletException e) {
@@ -119,20 +120,20 @@ public class AdminServlet extends HttpServlet {
      * Create: DaoPTA
      * Date create: 07/04/2023
      */
-    private void showListUser(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    private void showListUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession httpSession = request.getSession();
         if (httpSession.getAttribute("emailAccount") == null) {
             httpSession.setAttribute("emailAccount", "");
         }
 
         if (!httpSession.getAttribute("emailAccount").equals("admin@gmail.com")) {
-                response.sendRedirect("/post");
-        }else {
-            try{
-                List<User> userList = iUserService.findAllUser();
-                request.setAttribute("userList", userList);
+            response.sendRedirect("/post");
+        } else {
+            List<User> userList = iUserService.findAllUser();
+            request.setAttribute("userList", userList);
+            try {
                 request.getRequestDispatcher("/user/list_user.jsp").forward(request, response);
-            }catch (ServletException | IOException exception){
+            } catch (ServletException | IOException exception) {
                 exception.printStackTrace();
             }
         }
@@ -202,6 +203,7 @@ public class AdminServlet extends HttpServlet {
                 break;
         }
     }
+
     /**
      * Function: Update use of Admin
      * Create: HungNT
@@ -214,7 +216,7 @@ public class AdminServlet extends HttpServlet {
         int idToUpdate = Integer.parseInt(request.getParameter("idToUpdate"));
         String nameToUpdate = request.getParameter("nameToUpdate");
         String phoneNumberToUpdate = request.getParameter("phoneNumberToUpdate");
-        User user = new User(idToUpdate,nameToUpdate,phoneNumberToUpdate);
+        User user = new User(idToUpdate, nameToUpdate, phoneNumberToUpdate);
         iUserService.updateUserOfAdmin(user);
         try {
             response.sendRedirect("/user");
@@ -268,6 +270,7 @@ public class AdminServlet extends HttpServlet {
             try {
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("emailAccount", email);
+                httpSession.setAttribute("nameAccount",user);
                 httpSession.setAttribute("passwordAccount", password);
                 Cookie cookie1 = new Cookie("email", user.getEmail());
                 cookie1.setMaxAge(3600);
