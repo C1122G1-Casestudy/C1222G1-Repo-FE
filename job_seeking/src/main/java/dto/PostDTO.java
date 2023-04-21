@@ -7,17 +7,18 @@ public class PostDTO {
     private String dateSubmitted;
     private String img;
     private String postCategory;
-
+    private String userName;
     public PostDTO() {
     }
 
-    public PostDTO(int idPost, String postTitle, String describe, String dateSubmitted, String img, String postCategory) {
+    public PostDTO(int idPost, String postTitle, String describe, String dateSubmitted, String img, String postCategory, String userName) {
         this.idPost = idPost;
         this.postTitle = postTitle;
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
         this.postCategory = postCategory;
+        this.userName = userName;
     }
 
     public int getIdPost() {
@@ -66,5 +67,13 @@ public class PostDTO {
 
     public void setPostCategory(String postCategory) {
         this.postCategory = postCategory;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setNameUser(String userName) {
+        this.userName = userName;
     }
 }

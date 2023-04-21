@@ -25,22 +25,24 @@
 <table class="table">
     <thead>
     <tr>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Tên</th>
+        <th>Số điện thoại</th>
+        <th>Bài đăng</th>
+        <th>Mô tả</th>
+        <th>Ngày đăng</th>
+        <th>Hình ảnh</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
+        <td>${user.getUserName()}</td>
+        <td>${user.getPhoneNumber()}</td>
+        <td>${user.getPostTitle()}</td>
+        <td>${user.getDescribe()}</td>
+        <td>${user.getDateSubmitted()}</td>
+        <td><img src="${user.getImg()}"></td>
     </tr>
-    <tr>
-        <td scope="row"></td>
-        <td></td>
-        <td></td>
-    </tr>
+
     </tbody>
 </table>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

@@ -7,6 +7,9 @@ import service.category.CategoryService;
 import service.category.ICategoryService;
 import service.post.IPostService;
 import service.post.PostService;
+import service.user.IUserService;
+import service.user.UserService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -29,7 +32,9 @@ public class PostServlet extends HttpServlet {
             case "create":
                 List<Category> categoryList = iCategoryService.findAll();
                 request.setAttribute("categoryList",categoryList);
+//                request.setAttribute("userList",userList);
                 request.getRequestDispatcher("/post/create.jsp").forward(request, response);
+//                response.sendRedirect("/post/create.jsp");
                 break;
             case "delete":
                 int idDelete = Integer.parseInt(request.getParameter("id"));
@@ -61,16 +66,18 @@ public class PostServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                int idPost = Integer.parseInt(request.getParameter("idPost"));
+//                int idPost = Integer.parseInt(request.getParameter("idPost"));
                 String postTitle = request.getParameter("postTitle");
                 String describe = request.getParameter("describe");
-                String dateSubmitted = request.getParameter("date");
+                String dateSubmitted = request.getParameter("dateSubmitted");
                 String img = request.getParameter("img");
                 int idCategory = Integer.parseInt(request.getParameter("idCategory"));
-                Post post = new Post(idPost, postTitle, describe, dateSubmitted, img, idCategory);
+//                int idUser = Integer.parseInt(request.getParameter("idUser"));
+                Post post = new Post( postTitle, describe, dateSubmitted, img, idCategory);
                 iPostService.create(post);
-                request.setAttribute("postList", iPostService.findAll());
-                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
+//                request.setAttribute("postList", iPostService.findAll());
+//                request.getRequestDispatcher("/post/list_post.jsp").forward(request, response);
+                response.sendRedirect("/post");
                 break;
 
             case "update":

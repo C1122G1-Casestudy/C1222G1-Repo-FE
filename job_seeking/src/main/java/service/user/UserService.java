@@ -1,5 +1,6 @@
 package service.user;
 
+import dto.UserDTO;
 import model.User;
 import repository.user.IUserRepository;
 import repository.user.UserRepository;
@@ -52,7 +53,9 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User disPlayUser() {
-        return null;
+    public UserDTO disPlayUserOTD(String email) {
+        return iUserRepository.getAllUserDTO(email);
     }
+
+
 }
