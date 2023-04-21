@@ -97,12 +97,12 @@
 <body>
 <div class="row">
     <div class="col-12 position-relative bgr">
-        <p class="position-absolute  fs-1"><b class="">Information Category</b></p>
+<%--        <p class="position-absolute  fs-1"><b class="information">Thông tin thể loại</b></p>--%>
         <p class="position-absolute po">
         <form method="post" class="position-absolute text-form">
             <input type="hidden" name="id" value="${category.getIdCategory()}">
             <label style="color: #adb5bd">
-                <b>Post : </b><input name="post" value="${category.getPostCategory()}" class="form-control form-control-lg" type="text" aria-label=".form-control-lg example">
+                <b>Thông tin thể loại : </b><input name="post" value="${category.getPostCategory()}" class="form-control form-control-lg" type="text" aria-label=".form-control-lg example">
                 <input type="submit" value="Lưu" class="btn btn-secondary"></label>
             <%--            <input type="text" >--%>
 
