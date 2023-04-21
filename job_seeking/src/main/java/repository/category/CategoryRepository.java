@@ -9,9 +9,9 @@ import java.util.List;
 
 public class CategoryRepository implements ICategoryRepository {
 
-    private static final String LIST_CATEGORY = "select * from category where is_delete = 0;";
+//    private static final String LIST_CATEGORY = "select * from category where is_delete = 0;";
 
-    private static final String LIST_CATEGORY = "select id_category , post_category from category where is_delete = 0;";
+    private static final String LIST_CATEGORY = "select id_category , post_category from category where is_delete = 0";
 
     private static final String ADD_CATEGORY = "insert into category(id_category , post_category) value(?,?)";
 

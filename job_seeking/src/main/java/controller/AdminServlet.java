@@ -159,7 +159,7 @@ public class AdminServlet extends HttpServlet {
             }
         }
         try {
-            response.sendRedirect("/post/list_post.jps");
+            response.sendRedirect("/user/login.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
