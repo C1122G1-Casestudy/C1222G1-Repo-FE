@@ -128,7 +128,6 @@
                      title="Nhân viên tuyển dụng " alt="Nhan vien tuyen dung " class="img-responsive">
             </div>
         </div>
-
     </div>
 </div>
 
@@ -261,6 +260,5 @@
         </div>
     </div>
 </footer>
-
 </body>
 </html>
