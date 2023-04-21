@@ -189,7 +189,7 @@ select * from category where is_delete = 0;
 
 
 # alter table `use` add id_delete tinyint (1) default '0';
-
-# alter table category
-#     add is_delete tinyint(1) default '0';
+#
+alter table category
+    add is_delete tinyint(1) default '0';
 # insert into post(post_title, `describe`,date_submitted, img, id_category, id_use)values( 'nắng', 'mưa' ,'là', 'chuyện', 1, 2);

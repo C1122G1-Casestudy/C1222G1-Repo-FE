@@ -17,7 +17,7 @@ public class PostRepository implements IPostRepository {
     private static final String DELETE_FORM_ID = "delete from post where id = ?;";
     private static final String UPDATE_POST = "update post set post_title = ?,`describe`= ?, date_submitted =?, img =?, id_category =?  where id = ?;";
     private static final String SELECT_POST_BY_ID = "select * from post where id = ?";
-    private static final String SELECT_POST_BY_NAME = "select * from post where post_title like concat('%',?,'%');";
+
 
     /**
      * Function: show List<Post> form
@@ -141,40 +141,40 @@ public class PostRepository implements IPostRepository {
 //        }
 //        return null;
     }
-
+    private static final String SELECT_POST_BY_NAME = "select * from post where post_title like concat('%',?,'%');";
+    private static final String SELECT_ALL_POST_DTO_BY_NAME = "select post.id, post.post_title, post.describe, post.date_submitted, post.img, category.post_category, use.use_name from post join category on post.id_category = category.id_category join `use` on `use`.id_use = post.id_use  ";
     @Override
     public List<PostDTO> findByName(String post) {
 
-        List<PostDTO> postList = getAll();
-        System.out.println(postList.size());
-        List<PostDTO> list = new ArrayList<>();
-        for (PostDTO post1 : postList) {
-            if (post1.getPostTitle().equals(post)) {
-                list.add(post1);
-            }
-        }
-        return list;
-
-//        List<PostDTO> postList = new ArrayList<>();
-//        try {
-//            PreparedStatement preparedStatement = DBConnection.getConnection().
-//                    prepareStatement(SELECT_POST_BY_NAME);
-//           preparedStatement.setString(1,post);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            PostDTO post1;
-//            while (resultSet.next()) {
-//                post1 = new PostDTO();
-//               post1.setIdPost(resultSet.getInt("id"));
-//                post1.setPostTitle(resultSet.getString("postTitle"));
-//                post1.setDescribe(resultSet.getString("describe"));
-//                post1.setDateSubmitted(resultSet.getString("dateSubmitted"));
-//                post1.setImg(resultSet.getString("img"));
-//                postList.add(post1);
+//        List<PostDTO> postList = getAll();
+//        System.out.println(postList.size());
+//        List<PostDTO> list = new ArrayList<>();
+//        for (PostDTO post1 : postList) {
+//            if (post1.getPostTitle().equals(post)) {
+//                list.add(post1);
 //            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
 //        }
-//
-//        return postList;
+//        return list;
+
+        List<PostDTO> postList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection().
+                    prepareStatement("select post.id, post.post_title, post.describe, post.date_submitted, post.img, category.post_category, `use`.use_name from post join category on post.id_category = category.id_category join `use` on `use`.id_use = post.id_use where post_title like concat('%',?,'%')" );
+           preparedStatement.setString(1,post);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String postTitle = resultSet.getString("post_title");
+                String describe = resultSet.getString("describe");
+                String dateSubmitted = resultSet.getString("date_submitted");
+                String img = resultSet.getString("img");
+                String post_category = resultSet.getString("post_category");
+                String useName = resultSet.getString("use_name");
+                postList.add(new PostDTO(id,postTitle,describe,dateSubmitted,img,post_category,useName));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return postList;
     }
 }

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
 
 </head>
-<body>
+<body class="container-fluid">
 <header class="sticky-top bg-success p-2 text-white">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ">
@@ -43,9 +43,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/post">Trang chủ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/categoryServlet">Thể Loại</a>
-                    </li>
+
                 </ul>
                 <li>
                     <c:if test="${sessionScope.nameAccount != null}">
@@ -69,6 +67,14 @@
                             </button>
                         </div>
                     </c:if>
+
+                    <c:if test="${sessionScope.emailAccount == 'admin@gmail.com'}">
+                        <div class="nav-item mx-2">
+                            <button style="margin-right: 20px; width: 50px" class="btn btn-danger"><a href="/user"
+                                                                                                      style="text-decoration: snow">User List</a>
+                            </button>
+                        </div>
+                    </c:if>
                 </li>
             </div>
         </div>
@@ -78,7 +84,7 @@
 <div class="row">
     <div class="container">
         <div class="row">
-            <div class="col-md-7 col-sm-12 ">
+            <div class="col-md-8 col-sm-12 ">
                 <h3>Tìm bài đăng</h3>
                 <div class="form-search">
                     <form action="/post">
@@ -137,24 +143,26 @@
 
 <c:forEach var="post" items="${postList}">
     <div class="container row">
-        <div class="col-7">
+        <div class="col-10 ">
             <tr>
                 <h5>${post.getIdPost()}|
                         ${post.getPostTitle()}|
-                        ${post.getDateSubmitted()}</h5>
+                        ${post.getDateSubmitted()}
+                    <td>
+                        <button type="button" class="" data-toggle="modal" data-target="#exampleModal${post.idPost}">
+                            <img src="https://thumbs.dreamstime.com/b/computer-generated-illustration-recycle-bin-icon-isolated-white-background-suitable-logo-delete-icon-button-175612353.jpg"
+                                 height="30px" width="30px" alt="">
+                        </button>
+                        <button>
+                            <a href="/post?action=update&id=${post.getIdPost()}"><img
+                                    src="https://icon2.cleanpng.com/20180904/bjj/kisspng-customer-service-computer-icons-car-automobile-rep-served-svg-png-icon-free-download-27465-onli-5b8e1bbe7fda14.3508031215360398705237.jpg"
+                                    height="30px" width="30px" alt=""></a>
+                        </button>
+                    </td>
+                </h5>
                 <td>Ngành: ${post.getPostCategory()}</td>
-                <td>Người đăng: ${post.getUserName()}</td>
-                <td>
-                    <button type="button" class="" data-toggle="modal" data-target="#exampleModal${post.idPost}">
-                        <img src="https://thumbs.dreamstime.com/b/computer-generated-illustration-recycle-bin-icon-isolated-white-background-suitable-logo-delete-icon-button-175612353.jpg"
-                             height="30px" width="30px" alt="">
-                    </button>
-                    <button>
-                        <a href="/post?action=update&id=${post.getIdPost()}"><img
-                                src="https://icon2.cleanpng.com/20180904/bjj/kisspng-customer-service-computer-icons-car-automobile-rep-served-svg-png-icon-free-download-27465-onli-5b8e1bbe7fda14.3508031215360398705237.jpg"
-                                height="30px" width="30px" alt=""></a>
-                    </button>
-                </td>
+                <td>| Người đăng: ${post.getUserName()}</td>
+
                 <!-- Modal -->
                 <form action="/post" method="get">
                     <div class="modal fade" id="exampleModal${post.idPost}" tabindex="-1" role="dialog"
@@ -186,7 +194,7 @@
                 <td>${post.getDescribe()}</td>
             </tr>
         </div>
-        <div class="col-5">
+        <div class="col-2 ">
             <td><img src="${post.getImg()}" width="220px" height="300px" alt="unavailable"></td>
         </div>
     </div>
