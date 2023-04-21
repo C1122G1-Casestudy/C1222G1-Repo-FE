@@ -8,6 +8,7 @@ public class Post {
     private String img;
     private int idCategory;
 
+
     public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory) {
         this.idPost = idPost;
         this.postTitle = postTitle;
@@ -91,4 +92,5 @@ public class Post {
     public void setIdCategory(int idCategory) {
         this.idCategory = idCategory;
     }
+
 }

@@ -29,50 +29,50 @@
 </head>
 <body>
 <h1 class="text-center">Create new post</h1>
-<h4 class="text-center"><a href="/PostServlet">Back</a></h4>
+<h4 class="text-center"><a href="/post">Back</a></h4>
 <h3 class="text-center">
     <c:if test="${message != null}">
         <h3 class="text-center" style="color: coral">${message}</h3>
     </c:if>
 </h3>
-<form action="/post?action=create"  method="post">
-    <tr>
-        <td>Nhập mã bài đăng:</td>
-        <td>
-            <input type="number" name="idPost" id="idPost" value=""/>
-        </td>
-    </tr>
+<form method="post">
+<%--    <tr>--%>
+<%--        <td>Nhập mã bài đăng:</td>--%>
+<%--        <td>--%>
+<%--            <input type="number" name="idPost" value="action"/>--%>
+<%--        </td>--%>
+<%--    </tr>--%>
     <tr>
         <td>Nhập tên tiêu đề:</td>
         <td>
-            <input type="text" name="postTitle" id="postTitle" value=""/>
+            <input type="text" name="postTitle" />
         </td>
     </tr>
     <tr>
         <td>Nhập nội dung:</td>
         <td>
-            <textarea type="text" name="describe" id="describe" value=""></textarea>
+            <textarea type="text" name="describe" ></textarea>
         </td>
     </tr>
     <tr>
         <td>Nhập ngày đăng:</td>
         <td>
-            <input type="date" id="dateSubmitted" name="dateSubmitted" value=""/>
+            <input type="text" id="dateSubmitted" name="dateSubmitted" />
         </td>
     </tr>
     <tr>
         <td>Hình ảnh:</td>
         <td>
-<%--            <lable for="file-upload">Chọn tệp:</lable>--%>
+            <%--            <lable for="file-upload">Chọn tệp:</lable>--%>
             <input type="text" id="img" name="img">
         </td>
     </tr>
     <tr>
         <td>Chọn thể loại:</td>
-        <select name="idCategory" >
-            <c:forEach  items="${categoryList}" var="category">
+        <select name="idCategory">
+            <c:forEach items="${categoryList}" var="category">
                 <option value="${category.idCategory}">
-                    ${category.postCategory}
+                        ${category.postCategory}
                 </option>
             </c:forEach>
         </select>
