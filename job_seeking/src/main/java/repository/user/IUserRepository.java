@@ -1,5 +1,6 @@
 package repository.user;
 
+import dto.UserDTO;
 import model.User;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface IUserRepository {
     List<User> getUserByName(String nameToSearch);
 
     void deleteById(int idToDelete);
+
+    UserDTO getAllUserDTO(String email);
 }

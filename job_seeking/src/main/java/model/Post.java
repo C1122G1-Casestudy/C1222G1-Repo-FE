@@ -7,7 +7,17 @@ public class Post {
     private String dateSubmitted;
     private String img;
     private int idCategory;
+    private int idUser;
 
+    public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory, int idUser) {
+        this.idPost = idPost;
+        this.postTitle = postTitle;
+        this.describe = describe;
+        this.dateSubmitted = dateSubmitted;
+        this.img = img;
+        this.idCategory = idCategory;
+        this.idUser = idUser;
+    }
 
     public Post(int idPost, String postTitle, String describe, String dateSubmitted, String img, int idCategory) {
         this.idPost = idPost;
@@ -93,4 +103,11 @@ public class Post {
         this.idCategory = idCategory;
     }
 
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 }
