@@ -269,9 +269,10 @@ public class AdminServlet extends HttpServlet {
         } else {
             try {
                 HttpSession httpSession = request.getSession();
-                httpSession.setAttribute("emailAccount", user);
+                httpSession.setAttribute("emailAccount", email);
+                httpSession.setAttribute("emailAccount1", user);
                 httpSession.setAttribute("nameAccount",user);
-                httpSession.setAttribute("passwordAccount", user);
+                httpSession.setAttribute("passwordAccount", password);
                 Cookie cookie1 = new Cookie("email", user.getEmail());
                 cookie1.setMaxAge(3600);
                 response.addCookie(cookie1);

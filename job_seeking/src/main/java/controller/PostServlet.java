@@ -1,6 +1,7 @@
 package controller;
 
 
+import dto.PostDTO;
 import model.Category;
 import model.Post;
 import service.category.CategoryService;
@@ -42,9 +43,26 @@ public class PostServlet extends HttpServlet {
                 response.sendRedirect("/post");
                 break;
             case "search":
-                String postTitle=request.getParameter("postTitle");
-                request.setAttribute("postList",iPostService.findByName(postTitle));
-                request.getRequestDispatcher("/post/list_post.jsp").forward(request,response);
+//                String postTitle=request.getParameter("postTitle");
+//                request.setAttribute("postList",iPostService.findByName(postTitle));
+//                request.getRequestDispatcher("/post/list_post.jsp").forward(request,response);
+                String postTitle = request.getParameter("postTitle");
+                List<PostDTO> postList = iPostService.findByName(postTitle);
+                if (postList.isEmpty()){
+                    request.setAttribute("postList",iPostService.findByName(postTitle));
+                    try{
+                       request.getRequestDispatcher("/post/list_post.jsp").forward(request,response);
+                    }catch (ServletException | IOException exception){
+                        exception.printStackTrace();
+                    }
+                }else {
+                    try {
+                        request.setAttribute("postList",postList);
+                        request.getRequestDispatcher("/post/list_post.jsp").forward(request,response);
+                    }catch (ServletException | IOException exception){
+                        exception.printStackTrace();
+                    }
+                }
                 break;
             case "update":
                 int idUpdate = Integer.parseInt(request.getParameter("id"));
