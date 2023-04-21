@@ -195,7 +195,7 @@
             </tr>
         </div>
         <div class="col-2 ">
-            <td><img src="${post.getImg()}" width="220px" height="300px" alt="unavailable"></td>
+            <td><img src="${post.getImg()}" width="280px" height="360px" alt="unavailable"></td>
         </div>
     </div>
 
