@@ -60,7 +60,7 @@ public class AdminServlet extends HttpServlet {
     private void deleteUserOfAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int idToDelete = Integer.parseInt(request.getParameter("idToDelete"));
         iUserService.deleteById(idToDelete);
-        response.sendRedirect("/user");
+        response.sendRedirect("/user?message=delete");
     }
     /**
      * Function: search User of admin
@@ -217,7 +217,7 @@ public class AdminServlet extends HttpServlet {
         User user = new User(idToUpdate,nameToUpdate,phoneNumberToUpdate);
         iUserService.updateUserOfAdmin(user);
         try {
-            response.sendRedirect("/user");
+            response.sendRedirect("/user?message=update");
         } catch (IOException e) {
             e.printStackTrace();
         }
