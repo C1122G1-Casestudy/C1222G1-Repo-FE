@@ -1,6 +1,6 @@
 package controller;
 
-import model.User;
+import dto.UserDTO;
 import service.user.IUserService;
 import service.user.UserService;
 
@@ -14,13 +14,18 @@ public class UsersServlet extends HttpServlet {
     IUserService userService = new UserService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          User user = userService.disPlayUser();
-          request.setAttribute("user",user);
-          request.getRequestDispatcher("/user/view_user.jsp");
+        String email = request.getParameter("email");
+          UserDTO userDTO = userService.disPlayUserOTD(email);
+          request.setAttribute("user",userDTO);
+          request.getRequestDispatcher("/user/view_user.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String email = request.getParameter("email");
+        UserDTO userDTO = userService.disPlayUserOTD(email);
+        request.setAttribute("user",userDTO);
+        request.getRequestDispatcher("/user/view_user.jsp").forward(request,response);
     }
-}
+    }
+

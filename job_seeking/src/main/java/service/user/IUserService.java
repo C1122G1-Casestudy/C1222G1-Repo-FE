@@ -1,5 +1,6 @@
 package service.user;
 
+import dto.UserDTO;
 import model.User;
 
 import java.util.List;
@@ -18,5 +19,6 @@ public interface IUserService {
 
     void deleteById(int idToDelete);
 
-    User disPlayUser();
+
+    UserDTO disPlayUserOTD(String email);
 }

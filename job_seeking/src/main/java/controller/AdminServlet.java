@@ -60,7 +60,7 @@ public class AdminServlet extends HttpServlet {
     private void deleteUserOfAdmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int idToDelete = Integer.parseInt(request.getParameter("idToDelete"));
         iUserService.deleteById(idToDelete);
-        response.sendRedirect("/user");
+        response.sendRedirect("/user?message=delete");
     }
 
     /**
@@ -219,7 +219,7 @@ public class AdminServlet extends HttpServlet {
         User user = new User(idToUpdate, nameToUpdate, phoneNumberToUpdate);
         iUserService.updateUserOfAdmin(user);
         try {
-            response.sendRedirect("/user");
+            response.sendRedirect("/user?message=update");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -270,6 +270,7 @@ public class AdminServlet extends HttpServlet {
             try {
                 HttpSession httpSession = request.getSession();
                 httpSession.setAttribute("emailAccount", email);
+                httpSession.setAttribute("emailAccount1", user);
                 httpSession.setAttribute("nameAccount",user);
                 httpSession.setAttribute("passwordAccount", password);
                 Cookie cookie1 = new Cookie("email", user.getEmail());

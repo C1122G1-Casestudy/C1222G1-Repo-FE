@@ -23,8 +23,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="../../css/bootstrap.css">
-
+    <style>
+        .privateUser{
+            position: fixed;
+        }
+    </style>
 </head>
+
+
+
+
 <body class="container-fluid">
 <header class="sticky-top bg-success p-2 text-white">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -43,8 +51,12 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/post">Trang chủ</a>
                     </li>
-
                 </ul>
+                <form method="post" action="/UsersServlet">
+                    <input type="hidden" name="email" value="${sessionScope.emailAccount1.email}">
+                    <%--        <input type="hidden" name="password" value="${sessionScope.passwordAccount.passWord}">--%>
+                    <button  type="submit"><img src="https://www.shutterstock.com/image-vector/men-vector-icon-10-eps-260nw-1432335572.jpg" height="50px" width="50px" ></button>
+                </form>
                 <li>
                     <c:if test="${sessionScope.nameAccount != null}">
                         <div class="nav-item mx-2">

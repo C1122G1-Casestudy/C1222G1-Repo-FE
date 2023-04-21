@@ -1,6 +1,7 @@
 package repository.user;
 
 import controller.DBConnection;
+import dto.UserDTO;
 import model.User;
 import repository.user.IUserRepository;
 
@@ -135,5 +136,28 @@ public class UserRepository implements IUserRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public UserDTO getAllUserDTO(String email) {
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("select `use`.use_name,`use`.phone_number, post.post_title, post.describe,post.date_submitted,post.img from `use` left join post on post.id_use = `use`.id_use where `use`.email like ?");
+            preparedStatement.setString(1,email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                 UserDTO userDTO = new UserDTO();
+                 userDTO.setUserName(resultSet.getString("use_name"));
+                 userDTO.setPhoneNumber(resultSet.getString("phone_number"));
+                 userDTO.setPostTitle(resultSet.getString("post_title"));
+                 userDTO.setDescribe(resultSet.getString("describe"));
+                 userDTO.setDateSubmitted(resultSet.getString("date_submitted"));
+                 userDTO.setImg(resultSet.getString("img"));
+                 return userDTO;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }
