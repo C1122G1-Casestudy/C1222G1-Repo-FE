@@ -142,7 +142,7 @@ public class UserRepository implements IUserRepository {
     public UserDTO getAllUserDTO(String email) {
         try {
             PreparedStatement preparedStatement = DBConnection.getConnection()
-                    .prepareStatement("select `use`.use_name,`use`.phone_number, post.post_title, post.describe,post.date_submitted,post.img from `use` left join post on post.id_use = `use`.id_use where `use`.email like ?");
+                    .prepareStatement("select `use`.use_name,`use`.phone_number, post.post_title, post.describe,post.date_submitted,post.img,`use`.email from `use` left join post on post.id_use = `use`.id_use where `use`.email like ?");
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -153,6 +153,8 @@ public class UserRepository implements IUserRepository {
                 userDTO.setDescribe(resultSet.getString("describe"));
                 userDTO.setDateSubmitted(resultSet.getString("date_submitted"));
                 userDTO.setImg(resultSet.getString("img"));
+                userDTO.setEmail(resultSet.getString("email"));
+
                 return userDTO;
             }
         } catch (SQLException e) {
@@ -183,5 +185,41 @@ public class UserRepository implements IUserRepository {
             throw new RuntimeException(e);
         }
         return userDTOList;
+    }
+
+    @Override
+    public User getInfByEmail(String emailUpdateInf) {
+            try {
+                PreparedStatement preparedStatement = DBConnection.getConnection()
+                        .prepareStatement("select use_name, email, password, phone_number from `use` where email =?");
+                preparedStatement.setString(1,emailUpdateInf);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                User user =new User();
+                while (resultSet.next()){
+                    user.setUserName(resultSet.getString("use_name"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setPassWord(resultSet.getString("password"));
+                    user.setPhoneNumber(resultSet.getString("phone_number"));
+                    return user;
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        return null;
+    }
+
+    @Override
+    public void updateUserInf(User user) {
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("update `use` set use_name = ?, password=?, phone_number = ? where email = ? ");
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassWord());
+            preparedStatement.setString(3, user.getPhoneNumber());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

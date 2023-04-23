@@ -22,6 +22,14 @@
 </head>
 <body>
 <a href="/post">Trang chủ</a>
+<c:choose>
+    <c:when test="${user.getEmail()==sessionScope.emailAccount1.email}">
+<a  class="btn btn-primary" href="/UsersServlet?action=updateInf&emailUpdateInf=${sessionScope.emailAccount1.email}" role="button">Chỉnh sửa thông tin trang cá nhân</a>
+    </c:when>
+    <c:otherwise>
+        <p>Bạn không có quyền</p>
+    </c:otherwise>
+</c:choose>
 <table class="table">
     <thead>
     <tr>

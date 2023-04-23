@@ -10,8 +10,12 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://static.licdn.com/aero-v1/sc/h/atbn2o0wa7dkf1r28i6huscbz">
 </head>
 <body>
+<a href="/post" class="nav__logo-link link-no-visited-state z-1 mr-auto babybear:z-0 babybear:mr-0 babybear:flex-1 hover:no-underline focus:no-underline active:no-underline" data-tracking-control-name="guest_homepage-jobseeker_nav-header-logo" data-tracking-will-navigate="">
+    <img style="width: 77px;height: 60px" src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg" alt="">
+</a>
 <c:choose>
     <c:when test="${sessionScope.emailAccount1.email != 'admin@gmail.com' }">
         <a class="btn btn-info" href="/post?action=create&emailUser=${sessionScope.emailAccount1.email}" role="button">Tạo
@@ -30,7 +34,7 @@
     </div>
     <button type="submit" class="btn-success">Tìm kiếm</button>
 </form>
-<a name="" id="" class="btn btn-primary" href="/post" role="button">Trang chủ</a>
+<%--<a name="" id="" class="btn btn-primary" href="/post" role="button">Trang chủ</a>--%>
 <table class="table">
     <thead>
     <tr>
@@ -126,7 +130,7 @@
             <i class="ti-user"></i>
             <button style="padding: 0px" class="btn btn-light" type="button"><a href="/user/login.jsp"
                                                                                 class="nav-link active login text-secondary text-nav"
-                                                                                aria-current="page">Đăng xuất</a>
+                                                                                aria-current="page">Đăng nhập</a>
             </button>
         </div>
     </c:if>

@@ -23,4 +23,8 @@ public interface IUserService {
     UserDTO disPlayUserOTD(String email);
 
     List<UserDTO> getPostByEmail(String email);
+
+    User displayInf(String emailUpdateInf);
+
+    void updateUser(User user);
 }

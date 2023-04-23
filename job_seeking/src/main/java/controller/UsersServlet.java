@@ -3,6 +3,7 @@ package controller;
 import dto.PostDTO;
 import dto.UserDTO;
 import model.Post;
+import model.User;
 import repository.post.IPostRepository;
 import service.category.CategoryService;
 import service.category.ICategoryService;
@@ -11,6 +12,7 @@ import service.post.PostService;
 import service.user.IUserService;
 import service.user.UserService;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -29,6 +31,12 @@ public class UsersServlet extends HttpServlet {
             action = "";
         }
         switch (action){
+            case "updateInf":
+                String emailUpdateInf = request.getParameter("emailUpdateInf");
+                User user = userService.displayInf(emailUpdateInf);
+                request.setAttribute("InfToUpdate",user);
+                request.getRequestDispatcher("/user/updateInfOfUser.jsp").forward(request,response);
+                break;
             case "update":
                 int idUpdate = Integer.parseInt(request.getParameter("idPost"));
                 String emailUpdate = request.getParameter("email");
@@ -69,6 +77,9 @@ public class UsersServlet extends HttpServlet {
             action = "";
         }
         switch (action){
+            case "updateInf":
+                updateInfOfUser(request,response);
+                break;
             case "update":
                 updatePost(request, response);
                 break;
@@ -81,6 +92,28 @@ public class UsersServlet extends HttpServlet {
                 request.getRequestDispatcher("/user/view_user.jsp").forward(request,response);
         }
     }
+
+    private void updateInfOfUser(HttpServletRequest request,HttpServletResponse response)  {
+        String emailToUpdateInf = request.getParameter("email");
+        String nameToupdate = request.getParameter("nameOfUser");
+        String passwordToUpdate = request.getParameter("password");
+        String phoneNumber = request.getParameter("phoneNumber");
+        User user = new User(nameToupdate,emailToUpdateInf,phoneNumber,passwordToUpdate);
+        userService.updateUser(user);
+        String email = request.getParameter("email");
+        List<UserDTO> userDTOList = userService.getPostByEmail(email);
+        UserDTO userDTO = userService.disPlayUserOTD(email);
+        request.setAttribute("userDTOList",userDTOList);
+        request.setAttribute("user",userDTO);
+        try {
+            request.getRequestDispatcher("/user/view_user.jsp").forward(request,response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void updatePost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int idPostToUpdate = Integer.parseInt(request.getParameter("idPost"));
         String postTitleToUpdate = request.getParameter("postTitle");

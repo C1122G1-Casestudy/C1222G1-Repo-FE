@@ -21,4 +21,8 @@ public interface IUserRepository {
     UserDTO getAllUserDTO(String email);
 
     List<UserDTO> getPostByEmail(String email);
+
+    User getInfByEmail(String emailUpdateInf);
+
+    void updateUserInf(User user);
 }

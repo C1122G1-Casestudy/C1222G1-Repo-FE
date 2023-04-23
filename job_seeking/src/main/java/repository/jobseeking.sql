@@ -203,4 +203,11 @@ alter table category
 alter table post
     add id_delete_post tinyint(1) default '0';
 
-
+# DELIMITER $$
+# CREATE DEFINER=`root`@`localhost` PROCEDURE `get_category_by_id`(IN category_id INT)
+# BEGIN
+#     SELECT c.post_category
+#     FROM category c
+#     where c.id_category = category_id;
+# END $$
+# DELIMITER ;
