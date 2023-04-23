@@ -26,23 +26,31 @@ public class PostService implements IPostService {
         iPostRepository.create(post);
     }
 
-    @Override
-    public void deletePost(int idPost) {
-        iPostRepository.deletePost(idPost);
-    }
 
-    @Override
-    public void update(int idPost,Post post) {
-        iPostRepository.update(idPost, post);
-    }
 
-    @Override
-    public Post findById(int idPost) {
-        return iPostRepository.findById(idPost);
-    }
+
+
+
 
     @Override
     public List<PostDTO> findByName(String post) {
         return iPostRepository.findByName(post);
     }
+
+    @Override
+    public PostDTO findToUpdatePostByIdPostAndEmail(int idUpdate, String emailUpdate) {
+        return iPostRepository.findToUpdatePostByIdPostAndEmail(idUpdate,emailUpdate);
+    }
+
+    @Override
+    public void updateByIdAndEmail(Post postToUpdate) {
+        iPostRepository.updatePostByIdAndEmail(postToUpdate);
+    }
+
+    @Override
+    public void deletePostById(int idDelete) {
+        iPostRepository.detePostById(idDelete);
+    }
+
+
 }

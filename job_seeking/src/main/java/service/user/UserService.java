@@ -57,5 +57,10 @@ public class UserService implements IUserService {
         return iUserRepository.getAllUserDTO(email);
     }
 
+    @Override
+    public List<UserDTO> getPostByEmail(String email) {
+        return iUserRepository.getPostByEmail(email);
+    }
+
 
 }

@@ -131,7 +131,7 @@ public class UserRepository implements IUserRepository {
         try {
             PreparedStatement preparedStatement = DBConnection.getConnection()
                     .prepareStatement("update `use` set id_delete = 1 where id_use=?");
-            preparedStatement.setInt(1,idToDelete);
+            preparedStatement.setInt(1, idToDelete);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -143,21 +143,45 @@ public class UserRepository implements IUserRepository {
         try {
             PreparedStatement preparedStatement = DBConnection.getConnection()
                     .prepareStatement("select `use`.use_name,`use`.phone_number, post.post_title, post.describe,post.date_submitted,post.img from `use` left join post on post.id_use = `use`.id_use where `use`.email like ?");
-            preparedStatement.setString(1,email);
+            preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                 UserDTO userDTO = new UserDTO();
-                 userDTO.setUserName(resultSet.getString("use_name"));
-                 userDTO.setPhoneNumber(resultSet.getString("phone_number"));
-                 userDTO.setPostTitle(resultSet.getString("post_title"));
-                 userDTO.setDescribe(resultSet.getString("describe"));
-                 userDTO.setDateSubmitted(resultSet.getString("date_submitted"));
-                 userDTO.setImg(resultSet.getString("img"));
-                 return userDTO;
+            while (resultSet.next()) {
+                UserDTO userDTO = new UserDTO();
+                userDTO.setUserName(resultSet.getString("use_name"));
+                userDTO.setPhoneNumber(resultSet.getString("phone_number"));
+                userDTO.setPostTitle(resultSet.getString("post_title"));
+                userDTO.setDescribe(resultSet.getString("describe"));
+                userDTO.setDateSubmitted(resultSet.getString("date_submitted"));
+                userDTO.setImg(resultSet.getString("img"));
+                return userDTO;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    @Override
+    public List<UserDTO> getPostByEmail(String email) {
+        List<UserDTO> userDTOList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = DBConnection.getConnection()
+                    .prepareStatement("select post.post_title, post.describe, post.date_submitted, post.img,post.id,`use`.email from post inner join `use` on post.id_use = `use`.id_use where `use`.email = ? and post.id_delete_post =0");
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                UserDTO userDTO =new UserDTO();
+            userDTO.setPostTitle(resultSet.getString("post_title"));
+            userDTO.setDescribe(resultSet.getString("describe"));
+            userDTO.setDateSubmitted(resultSet.getString("date_submitted"));
+            userDTO.setImg(resultSet.getString("img"));
+            userDTO.setIdPost(resultSet.getInt("id"));
+            userDTO.setEmail(resultSet.getString("email"));
+            userDTOList.add(userDTO);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return userDTOList;
     }
 }

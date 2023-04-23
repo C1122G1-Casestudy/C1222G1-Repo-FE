@@ -19,4 +19,6 @@ public interface IUserRepository {
     void deleteById(int idToDelete);
 
     UserDTO getAllUserDTO(String email);
+
+    List<UserDTO> getPostByEmail(String email);
 }

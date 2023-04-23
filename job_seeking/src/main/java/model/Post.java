@@ -55,6 +55,15 @@ public class Post {
         this.img = img;
     }
 
+    public Post(String postTitle, String describe, String dateSubmitted, String img, int idCategory, int idUser) {
+        this.postTitle = postTitle;
+        this.describe = describe;
+        this.dateSubmitted = dateSubmitted;
+        this.img = img;
+        this.idCategory = idCategory;
+        this.idUser = idUser;
+    }
+
     public int getIdPost() {
         return idPost;
     }

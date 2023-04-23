@@ -77,6 +77,17 @@
             </c:forEach>
         </select>
     </tr>
+<%--    <label>Id người dùng</label>--%>
+    <tr>
+    <c:forEach var="user" items="${userList}">
+        <c:choose>
+            <c:when test="${user.getEmail()==nameUser}">
+                <input type="hidden" name="idUser" value="${user.getId()}">
+<%--                <input type="text" name="idUser" value="${user.getUserName()}">--%>
+            </c:when>
+        </c:choose>
+    </c:forEach>
+    </tr>
     <tr>
         <td>
             <button type="submit" class="btn btn-primary">Submit</button>

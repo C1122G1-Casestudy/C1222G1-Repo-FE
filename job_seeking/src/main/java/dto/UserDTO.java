@@ -10,7 +10,7 @@ public class UserDTO {
     private String describe;
     private String dateSubmitted;
     private String img;
-
+    private int idPost;
     public UserDTO() {
     }
 
@@ -24,6 +24,19 @@ public class UserDTO {
         this.describe = describe;
         this.dateSubmitted = dateSubmitted;
         this.img = img;
+    }
+
+    public UserDTO(int id, String userName, String email, String phoneNumber, String passWord, String postTitle, String describe, String dateSubmitted, String img, int idPost) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.passWord = passWord;
+        this.postTitle = postTitle;
+        this.describe = describe;
+        this.dateSubmitted = dateSubmitted;
+        this.img = img;
+        this.idPost = idPost;
     }
 
     public int getId() {
@@ -96,5 +109,13 @@ public class UserDTO {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public int getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(int idPost) {
+        this.idPost = idPost;
     }
 }
