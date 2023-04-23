@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Title</title>
+    <title>Trang chủ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -24,9 +24,52 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <style>
-        .privateUser{
-            position: fixed;
+        body {
+            padding: 16px;
         }
+        body button {
+            border: none;
+        }
+        .homepage-title {
+            color: #fff;
+            font-size: 18px;
+        }
+        .group-action-header {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-search form {
+            display: flex;
+        }
+        .form-search-box button {
+            border-radius: 4px;
+        }
+        .box-search {
+            width: 500px;
+            margin-right: 16px;
+        }
+        .add-post-btn {
+            height: 38px;
+            border-radius: 4px;
+            background-color: #28A745;
+            border: none;
+        }
+        .add-post-btn img {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+        .user-info-btn {
+            border: none;
+            background: none;
+            width: 30px;
+            height: 30px;
+            margin-right: 16px;
+        }
+        .user-info-btn img {
+            border-radius: 15px;
+        }
+
     </style>
 </head>
 
@@ -48,16 +91,19 @@
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item homepage-title">
                         <a class="nav-link active" aria-current="page" href="/post">Trang chủ</a>
                     </li>
+
                 </ul>
-                <form method="post" action="/UsersServlet">
-                    <input type="hidden" name="email" value="${sessionScope.emailAccount1.email}">
-                    <%--        <input type="hidden" name="password" value="${sessionScope.passwordAccount.passWord}">--%>
-                    <button  type="submit"><img src="https://www.shutterstock.com/image-vector/men-vector-icon-10-eps-260nw-1432335572.jpg" height="50px" width="50px" ></button>
-                </form>
-                <li>
+
+                    <form method="post" action="/UsersServlet">
+                        <input type="hidden" name="email" value="${sessionScope.emailAccount1.email}">
+                        <%--        <input type="hidden" name="password" value="${sessionScope.passwordAccount.passWord}">--%>
+                        <button  type="submit" class="user-info-btn"><img src="https://www.shutterstock.com/image-vector/men-vector-icon-10-eps-260nw-1432335572.jpg" height="30px" width="30px" ></button>
+                    </form>
+
+
                     <c:if test="${sessionScope.nameAccount != null}">
                         <div class="nav-item mx-2">
                             <a style=" text-align:center; color: black; text-decoration:none; position: absolute; right: 420px;top: 15px; font-weight: bolder; font-size:20px"
@@ -73,7 +119,7 @@
                     <c:if test="${sessionScope.nameAccount == null}">
                         <div class="nav-item mx-2">
                             <i class="ti-user"></i>
-                            <button style="padding: 0px" class="btn btn-light" type="button"><a href="/user/login.jsp"
+                            <button style="padding: 0px" class="btn btn-light p-2 logout-btn" type="button"><a href="/user/login.jsp"
                                                                                                 class="nav-link active login text-secondary text-nav"
                                                                                                 aria-current="page">Đăng xuất</a>
                             </button>
@@ -87,7 +133,8 @@
                             </button>
                         </div>
                     </c:if>
-                </li>
+
+
             </div>
         </div>
     </nav>
@@ -96,22 +143,28 @@
 <div class="row">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-12 ">
+            <div class="col-sm-12 ">
                 <h3>Tìm bài đăng</h3>
-                <div class="form-search">
-                    <form action="/post">
-                        <div class="box-search">
-                            <input type="hidden" name="action" value="search">
-                            <input type="text" placeholder="Tên công việc, bài đăng bạn muốn tìm ..."
-                                   class="form-control input-search ui-autocomplete-input border-hover" name="postTitle"
-                                   id="name">
-                        </div>
-                        <button type="submit" class="btn-success">Tìm kiếm</button>
-                    </form>
+                <div class="group-action-header">
+                    <div class="form-search">
+                        <form action="/post" class="form-search-box">
+                            <div class="box-search">
+                                <input type="hidden" name="action" value="search">
+                                <input type="text" placeholder="Tên công việc, bài đăng bạn muốn tìm ..."
+                                       class="form-control input-search ui-autocomplete-input border-hover" name="postTitle"
+                                       id="name">
+                            </div>
+                            <button type="submit" class="btn-success">Tìm kiếm</button>
+                        </form>
+                    </div>
+                    <button type="button" class="text-white bg-opacity-75 add-post-btn">
+                        <a class="text-white bg-opacity-75 text-decoration-none" href="/post?action=create"><img src="https://th.bing.com/th/id/R.24a48b9be3aa23cce4a453ea36b97bbc?rik=GVUm1rXB1NMSrA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_113133.png&ehk=CgO%2bAzFgIbzwbZyDOG6k4xCiN8yiaW0wlQ8XrjKiUB0%3d&risl=&pid=ImgRaw&r=0" height="40px" width="40px" alt="">Thêm mới bài viết</a>
+                    </button>
                 </div>
+
             </div>
         </div>
-        <div class="row bg-success p-2 text-dark bg-opacity-10">
+        <div class="row p-2 text-dark bg-opacity-10">
             <h4>Các công ty tuyển dụng hàng đầu </h4>
             <div class="row col-5">
 
@@ -148,11 +201,6 @@
         </div>
     </div>
 </div>
-
-<button type="button" class="bg-success p-2 text-white bg-opacity-75">
-    <a class="fs-4 bg-success p-2 text-white bg-opacity-75" href="/post?action=create"><img src="https://png.pngtree.com/png-clipart/20191120/original/pngtree-add-icon-isolated-on-abstract-background-png-image_5082922.jpg" height="40px" width="40px" alt="">Thêm mới bài viết</a>
-</button>
-
 <c:forEach var="post" items="${postList}">
     <div class="container row">
         <div class="col-10 ">
@@ -170,10 +218,11 @@
                                     src="https://icon2.cleanpng.com/20180904/bjj/kisspng-customer-service-computer-icons-car-automobile-rep-served-svg-png-icon-free-download-27465-onli-5b8e1bbe7fda14.3508031215360398705237.jpg"
                                     height="30px" width="30px" alt=""></a>
                         </button>
+
                     </td>
                 </h5>
-                <td>Ngành: ${post.getPostCategory()}</td>
-                <td>| Người đăng: ${post.getUserName()}</td>
+                <h6>Ngành: ${post.getPostCategory()}</h6>
+                <h6>Người đăng: ${post.getUserName()}</h6>
 
                 <!-- Modal -->
                 <form action="/post" method="get">
@@ -207,7 +256,7 @@
             </tr>
         </div>
         <div class="col-2 ">
-            <td><img src="${post.getImg()}" width="220px" height="300px" alt="unavailable"></td>
+            <td><img src="${post.getImg()}" width="280px" height="360px" alt="unavailable"></td>
         </div>
     </div>
 
@@ -261,7 +310,7 @@
                                 </div>
                                 <div class="box-image-app">
                                     <a href="https://www.youtube.com/@vtv24">
-                                        <img src="https://uptop.com.vn/wp-content/uploads/2021/12/youtube-logo.png"
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWzzrxWAQNMl61R7WTsEGU8L36Nyfx67m2WQ&usqp=CAU"
                                              height="40px" width="40px">
                                     </a>
                                     <a href="https://www.facebook.com/kenhtuyendungdanang">

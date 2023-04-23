@@ -65,9 +65,11 @@ public class PostServlet extends HttpServlet {
                 }
                 break;
             case "update":
+                List<Category> categoryList1 = iCategoryService.findAll();
+                request.setAttribute("categoryList",categoryList1);
                 int idUpdate = Integer.parseInt(request.getParameter("id"));
                 Post post = iPostService.findById(idUpdate);
-                request.setAttribute("post", post);
+                request.setAttribute("postList", post);
                 request.getRequestDispatcher("/post/update.jsp").forward(request, response);
                 break;
             default:
