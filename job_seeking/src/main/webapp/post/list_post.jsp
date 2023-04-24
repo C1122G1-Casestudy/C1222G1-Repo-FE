@@ -27,38 +27,47 @@
         body {
             padding: 16px;
         }
+
         body button {
             border: none;
         }
+
         .homepage-title {
             color: #fff;
             font-size: 18px;
         }
+
         .group-action-header {
             display: flex;
             justify-content: space-between;
         }
+
         .form-search form {
             display: flex;
         }
+
         .form-search-box button {
             border-radius: 4px;
         }
+
         .box-search {
             width: 500px;
             margin-right: 16px;
         }
+
         .add-post-btn {
             height: 38px;
             border-radius: 4px;
             background-color: #28A745;
             border: none;
         }
+
         .add-post-btn img {
             width: 16px;
             height: 16px;
             margin-right: 8px;
         }
+
         .user-info-btn {
             border: none;
             background: none;
@@ -66,17 +75,69 @@
             height: 30px;
             margin-right: 16px;
         }
+
         .user-info-btn img {
             border-radius: 15px;
         }
+
+        .itemicon {
+            height: 64px;
+            width: 64px;
+        }
+
+        .img-responsive1 {
+            height: 24px;
+            width: 58px;
+            margin-right: 7px;
+        }
+
+
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #3e8e41;
+        }
+
+        .dropdown {
+            float: right;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            right: 0;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;}
 
     </style>
 </head>
 
 
-
-
-<body class="container-fluid">
+<body class="container-fluid ">
 <header class="sticky-top bg-success p-2 text-white">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid ">
@@ -97,106 +158,112 @@
 
                 </ul>
 
-                    <form method="post" action="/UsersServlet">
-                        <input type="hidden" name="email" value="${sessionScope.emailAccount1.email}">
-                        <%--        <input type="hidden" name="password" value="${sessionScope.passwordAccount.passWord}">--%>
-                        <button  type="submit" class="user-info-btn"><img src="https://www.shutterstock.com/image-vector/men-vector-icon-10-eps-260nw-1432335572.jpg" height="30px" width="30px" ></button>
-                    </form>
+                <form method="post" action="/UsersServlet">
+                    <input type="hidden" name="email" value="${sessionScope.emailAccount1.email}">
+                    <%--        <input type="hidden" name="password" value="${sessionScope.passwordAccount.passWord}">--%>
+                    <button type="submit" class="user-info-btn"><img
+                            src="https://www.shutterstock.com/image-vector/men-vector-icon-10-eps-260nw-1432335572.jpg"
+                            height="30px" width="30px"></button>
+                </form>
 
 
-                    <c:if test="${sessionScope.nameAccount != null}">
-                        <div class="nav-item mx-2">
-                            <a style=" text-align:center; color: black; text-decoration:none; position: absolute; right: 420px;top: 15px; font-weight: bolder; font-size:20px"
-                               href="#">${sessionScope.nameAccount.userName}</a>
-                        </div>
-                        <div class="nav-item mx-2">
-                            <button style="padding: 0px" class="btn btn-light" type="button"><a href="/user?action=logout" class="nav-link active login text-secondary text-nav " aria-current="page">
-                                <i style="position: absolute; right: 190px; width: 30px; padding-top: 5px; color: white"
-                                   class="ti-shift-right"></i>
-                                Logout</a></button>
-                        </div>
-                    </c:if>
-                    <c:if test="${sessionScope.nameAccount == null}">
-                        <div class="nav-item mx-2">
-                            <i class="ti-user"></i>
-                            <button style="padding: 0px" class="btn btn-light p-2 logout-btn" type="button"><a href="/user/login.jsp"
-                                                                                                class="nav-link active login text-secondary text-nav"
-                                                                                                aria-current="page">Đăng xuất</a>
-                            </button>
-                        </div>
-                    </c:if>
+                <c:if test="${sessionScope.nameAccount != null}">
+                    <div class="nav-item mx-2">
+                        <a style=" text-align:center; color: black; text-decoration:none; position: absolute; right: 420px;top: 15px; font-weight: bolder; font-size:20px"
+                           href="#">${sessionScope.nameAccount.userName}</a>
+                    </div>
+                    <div class="nav-item mx-2">
+                        <button style="padding: 0px" class="btn btn-light" type="button"><a href="/user?action=logout"
+                                                                                            class="nav-link active login text-secondary text-nav "
+                                                                                            aria-current="page">
+                            <i style="position: absolute; right: 190px; width: 30px; padding-top: 5px; color: white"
+                               class="ti-shift-right"></i>
+                            Logout</a></button>
+                    </div>
+                </c:if>
+                <c:if test="${sessionScope.nameAccount == null}">
+                    <div class="nav-item mx-2">
+                        <i class="ti-user"></i>
+                        <button style="padding: 0px" class="btn btn-light p-2 logout-btn" type="button"><a
+                                href="/user/login.jsp"
+                                class="nav-link active login text-secondary text-nav"
+                                aria-current="page">Đăng xuất</a>
+                        </button>
+                    </div>
+                </c:if>
 
-                    <c:if test="${sessionScope.emailAccount == 'admin@gmail.com'}">
-                        <div class="nav-item mx-2">
-                            <button style="margin-right: 20px; width: 50px" class="btn btn-danger"><a href="/user"
-                                                                                                      style="text-decoration: snow">User List</a>
-                            </button>
-                        </div>
-                    </c:if>
+                <c:if test="${sessionScope.emailAccount == 'admin@gmail.com'}">
+                    <div class="nav-item mx-2">
+                        <button style="margin-right: 20px; width: 50px" class="btn btn-danger"><a href="/user"
+                                                                                                  style="text-decoration: snow">User
+                            List</a>
+                        </button>
+                    </div>
+                </c:if>
 
 
             </div>
         </div>
     </nav>
 </header>
-
-<div class="row">
+<div class="row ">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12 ">
-                <h3>Tìm bài đăng</h3>
-                <div class="group-action-header">
-                    <div class="form-search">
-                        <form action="/post" class="form-search-box">
-                            <div class="box-search">
-                                <input type="hidden" name="action" value="search">
-                                <input type="text" placeholder="Tên công việc, bài đăng bạn muốn tìm ..."
-                                       class="form-control input-search ui-autocomplete-input border-hover" name="postTitle"
-                                       id="name">
-                            </div>
-                            <button type="submit" class="btn-success">Tìm kiếm</button>
-                        </form>
-                    </div>
-                    <button type="button" class="text-white bg-opacity-75 add-post-btn">
-                        <a class="text-white bg-opacity-75 text-decoration-none" href="/post?action=create"><img src="https://th.bing.com/th/id/R.24a48b9be3aa23cce4a453ea36b97bbc?rik=GVUm1rXB1NMSrA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_113133.png&ehk=CgO%2bAzFgIbzwbZyDOG6k4xCiN8yiaW0wlQ8XrjKiUB0%3d&risl=&pid=ImgRaw&r=0" height="40px" width="40px" alt="">Thêm mới bài viết</a>
-                    </button>
-                </div>
-
-            </div>
-        </div>
         <div class="row p-2 text-dark bg-opacity-10">
-            <h4>Các công ty tuyển dụng hàng đầu </h4>
-            <div class="row col-5">
+            <div class="col-md-7 col-sm-12">
+                <div class="col-sm-12 ">
+                    <h3>Tìm bài đăng</h3>
+                    <div class="group-action-header">
+                        <div class="form-search">
+                            <form action="/post" class="form-search-box">
+                                <div class="box-search">
+                                    <input type="hidden" name="action" value="search">
+                                    <input type="text" placeholder="Tên công việc, bài đăng bạn muốn tìm ..."
+                                           class="form-control input-search ui-autocomplete-input border-hover"
+                                           name="postTitle"
+                                           id="name">
+                                </div>
+                                <button type="submit" class="btn-success">Tìm kiếm</button>
+                            </form>
+                        </div>
+                        <button type="button" class="text-white bg-opacity-75 add-post-btn">
+                            <a class="text-white bg-opacity-75 text-decoration-none" href="/post?action=create"><img
+                                    src="https://th.bing.com/th/id/R.24a48b9be3aa23cce4a453ea36b97bbc?rik=GVUm1rXB1NMSrA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_113133.png&ehk=CgO%2bAzFgIbzwbZyDOG6k4xCiN8yiaW0wlQ8XrjKiUB0%3d&risl=&pid=ImgRaw&r=0"
+                                    height="40px" width="40px" alt="">Thêm mới bài viết</a>
+                        </button>
+                    </div>
 
-                <a href="https://onemount.com/" class="item">
+                </div>
+                <br>
+                <h4>Các công ty tuyển dụng hàng đầu </h4>
+                <a href="https://onemount.com/" class="itemicon">
                     <img src="https://www.topcv.vn/v4/image/welcome/companies/onemoutn.png"
-                         class="img-responsive">
+                         class="img-responsive1">
                 </a>
-                <a href="https://www.prudential.com.vn/vi/" class="item">
+                <a href="https://www.prudential.com.vn/vi/" class="itemicon">
                     <img src="https://www.topcv.vn/v4/image/welcome/companies/prudential.png"
-                         class="img-responsive">
+                         class="img-responsive1">
                 </a>
-                <a href="https://www.fpt-software.com/" class="item">
+                <a href="https://www.fpt-software.com/" class="itemicon">
                     <img src="https://www.topcv.vn/v4/image/welcome/companies/fpt.png"
-                         class="img-responsive">
+                         class="img-responsive1">
                 </a>
-                <a href="https://tuyendung.tiki.vn/" class="item">
+                <a href="https://tuyendung.tiki.vn/" class="itemicon">
                     <img src="https://www.topcv.vn/v4/image/welcome/companies/tiki.png"
-                         class="img-responsive">
+                         class="img-responsive1">
                 </a>
-                <a href="https://tuyendung.viettel.vn/" class="item">
+                <a href="https://tuyendung.viettel.vn/" class="itemicon">
                     <img src="https://www.topcv.vn/v4/image/welcome/companies/viettel.png"
-                         class="img-responsive">
+                         class="img-responsive1">
                 </a>
-                <a href="https://www.techcombankjobs.com/?locale=vi_VN" class="item">
+                <a href="https://www.techcombankjobs.com/?locale=vi_VN" class="itemicon">
                     <img src="https://www.topcv.vn/v4/image/welcome/companies/teachcombank.png"
-                         class="img-responsive">
+                         class="img-responsive1">
                 </a>
 
             </div>
-            <div class="col-7 box-search-job-image">
+            <div class="col-md-5 col-sm-12 box-search-job-image">
                 <img src="https://www.topcv.vn/v4/image/welcome/image_topcv_2.png?v=1.0.0"
-                     title="Nhân viên tuyển dụng " alt="Nhan vien tuyen dung " class="img-responsive">
+                     title="Nhân viên tuyển dụng " alt="Nhan vien tuyen dung " height="350px" width="440px">
             </div>
         </div>
     </div>
@@ -219,6 +286,35 @@
                                     height="30px" width="30px" alt=""></a>
                         </button>
 
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#/post?action=update&id=${post.getIdPost()}">Chỉnh sửa</a>
+                                <button type="button" class="" data-toggle="modal" data-target="#exampleModal${post.idPost}">Xóa</button>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </div>
+                        <script>
+                            /* When the user clicks on the button,
+                            toggle between hiding and showing the dropdown content */
+                            function myFunction() {
+                                document.getElementById("myDropdown").classList.toggle("show");
+                            }
+
+                            // Close the dropdown if the user clicks outside it
+                            window.onclick = function(event) {
+                                if (!event.target.matches('.dropbtn')) {
+                                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                                    var i;
+                                    for (i = 0; i < dropdowns.length; i++) {
+                                        var openDropdown = dropdowns[i];
+                                        if (openDropdown.classList.contains('show')) {
+                                            openDropdown.classList.remove('show');
+                                        }
+                                    }
+                                }
+                            }
+                        </script>
                     </td>
                 </h5>
                 <h6>Ngành: ${post.getPostCategory()}</h6>
@@ -261,7 +357,6 @@
     </div>
 
 </c:forEach>
-
 <footer class="bg-success p-2 text-dark bg-opacity-25">
     <div class="footer-main">
         <div class="container">

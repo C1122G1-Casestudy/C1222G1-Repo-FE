@@ -167,15 +167,16 @@
                         <h3 class="text-center" style="color: coral">${message}</h3>
                     </c:if>
                 </h3>
-                <form action="" method="post" class="display">
-                    Mã bài đăng : <input type="number" name="id" id="id" value="${postList.getIdPost()}">
-                    Tiêu đề : <input type="text" name="postTitle" id="postTitle" value="${postList.getPostTitle()}">
-                    Nội dung : <input type="te" name="describe" id="describe" value="${postList.getDescribe()}">
-                    Ngày đăng : <textarea rows="10" type="text" name="dateSubmitted" id="dateSubmitted"
-                                          value="${postList.getDateSubmitted()}"></textarea>
-                    Hình ảnh : <input type="text" name="img" id="img" value="${postList.getImg()}">
+                <form method="post" class="display" >
+                    Mã bài đăng : <input type="number" name="id"  value="${postUpdate.getIdPost()}">
+                    Tiêu đề : <input type="text" name="postTitle"  value="${postUpdate.getPostTitle()}">
+                    Nội dung : <textarea type="text" rows="10" name="describe"
+                                         value="${postUpdate.getDescribe()}"></textarea>
+                    Ngày đăng : <input type="date" name="begin"
+                                       placeholder="dd-mm-yyyy" name="dateSubmitted"
+                                       value="${postUpdate.getDateSubmitted()}">
+                    Hình ảnh : <input type="text" name="img"  value="${postUpdate.getImg()}">
                     Thể loại :
-                    <%--    <input type="number" name="idCategory" id="idCategory" value="${postList.getIdCategory()}">--%>
                     <select name="idCategory">
                         <c:forEach items="${categoryList}" var="category">
                             <option value="${category.idCategory}">
@@ -183,9 +184,8 @@
                             </option>
                         </c:forEach>
                     </select>
-                    </select>
-                    <%--    Tên người dùng : <input type="t" name="idCategory" id="idCategory" value="${post.getIdCategory()}">--%>
 
+                    <%--    Tên người dùng : <input type="t" name="idCategory" id="idCategory" value="${post.getIdCategory()}">--%>
 
                     <button type="submit" class="bg-success p-2 text-white">Cập Nhật</button>
                 </form>

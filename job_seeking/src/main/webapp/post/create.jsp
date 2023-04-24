@@ -187,7 +187,8 @@
                     <tr>
                         <td>Nhập ngày đăng:</td>
                         <td>
-                            <input type="text" id="dateSubmitted" name="dateSubmitted"/>
+                            <input type="date" name="begin"
+                                   placeholder="dd-mm-yyyy" id="dateSubmitted" name="dateSubmitted"/>
                         </td>
                     </tr>
                     <tr>
