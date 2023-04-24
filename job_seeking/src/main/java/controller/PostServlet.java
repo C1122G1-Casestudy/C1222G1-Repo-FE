@@ -60,6 +60,12 @@ public class PostServlet extends HttpServlet {
                 PostDTO postDTO = iPostService.findToUpdatePostByIdPostAndEmail(idUpdate,emailUpdate);
                 request.setAttribute("post", postDTO);
                 request.setAttribute("categoryList",iCategoryService.findAll());
+                List<Category> categoryList1 = iCategoryService.findAll();
+                request.setAttribute("categoryList",categoryList1);
+                int idUpdate = Integer.parseInt(request.getParameter("id"));
+                Post post = iPostService.findById(idUpdate);
+                request.setAttribute("postList", post);
+
                 request.getRequestDispatcher("/post/update.jsp").forward(request, response);
                 break;
             default:

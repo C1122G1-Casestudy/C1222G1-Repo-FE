@@ -15,8 +15,7 @@ values (1, 'IT'),
        (4, 'Protect'),
        (5, 'Manage');
 
-select *
-from category;
+select * from category;
 
 insert into post
 values (1, 'Tuyển nhân viên IT', 'Lương tháng nghìn đô', '2001/03/29', 'img-1', 1, 3),
@@ -198,7 +197,9 @@ alter table `use`
     add id_delete tinyint(1) default '0';
 
 alter table category
-    add is_delete tinyint(1) default '0';
+    add is_delete
+        tinyint(1) default '0';
+
 
 alter table post
     add id_delete_post tinyint(1) default '0';
@@ -211,3 +212,15 @@ alter table post
 #     where c.id_category = category_id;
 # END $$
 # DELIMITER ;
+
+# drop table post;
+# drop table category;
+
+
+# alter table `use` add id_delete tinyint (1) default '0';
+#
+alter table category
+    add is_delete tinyint(1) default '0';
+# insert into post(post_title, `describe`,date_submitted, img, id_category, id_use)values( 'nắng', 'mưa' ,'là', 'chuyện', 1, 2);
+
+
