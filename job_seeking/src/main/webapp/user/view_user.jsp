@@ -18,160 +18,109 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <style>
-        body{
-            font-family: Arial, Tahoma;
-            font-size: 12px;
-        }
 
-        #main{
-            width: 1000px;
-            padding: 0;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #head{
-            height: 100px;
-            background-color: #F5F5F5;
-            border: 1px solid #CDCDCD;
-            margin-bottom:5px;
-        }
-
-        #head-link{
-            height: 30px;
-            line-height: 30px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border: 1px solid #CDCDCD;
-            background-color: #F5F5F5;
-            margin-bottom:5px;
-            clear: both;
-        }
-
-        #left{
-            width: 150px;
-            min-height: 400px;
-            border: 1px solid #CDCDCD;
-            float:left;
-            background-color: #004C00;
-            margin-bottom: 5px;
-        }
-
-        #content{
-            width: 600px;
-            min-height: 400px;
-            border: 1px solid #CDCDCD;
-            float:left;
-            margin-left: 5px;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-
-        #right{
-            width: 234px;
-            min-height: 400px;
-            border: 1px solid #CDCDCD;
-            float:right;
-            margin-bottom: 5px;
-        }
-
-        #footer{
-            height: 50px;
-            clear: both;
-            border: 1px solid #CDCDCD;
-            background-color: #F8F8FF;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        p {
-            line-height: 1.5;
-            color: #666;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        .label {
-            display: inline-block;
-            width: 100px;
-            font-weight: bold;
-        }
-        .value {
-            display: inline-block;
-        }
-    </style>
 </head>
 <body>
-<%--<table class="table">--%>
-<%--    <thead>--%>
-<%--    <tr>--%>
-<%--        <li>Tên</li>--%>
-<%--        <li>Số điện thoại</li>--%>
-<%--        <li>Bài đăng</li>--%>
-<%--        <li>Mô tả</li>--%>
-<%--        <li>Ngày đăng</li>--%>
-<%--        <li>Hình ảnh</li>--%>
-<%--    </tr>--%>
-<%--    </thead>--%>
-<%--    <tbody>--%>
-<%--    <tr>--%>
-<%--        <td>${user.getUserName()}</td>--%>
-<%--        <td>${user.getPhoneNumber()}</td>--%>
-<%--        <td>${user.getPostTitle()}</td>--%>
-<%--        <td>${user.getDescribe()}</td>--%>
-<%--        <td>${user.getDateSubmitted()}</td>--%>
-<%--        <td><img src="${user.getImg()}"></td>--%>
-<%--    </tr>--%>
-
-<%--    </tbody>--%>
-<%--</table>--%>
-<div id="main">
-    <div id="head">
-    </div>
-    <div id="head-link">
-    </div>
-    <div id="left">
-    </div>
-    <div id="content">
-        <li>Tên: <p>${user.getUserName()}</p> </li>
-        <li>Số điện thoại: <p>${user.getPhoneNumber()}</p> </li>
-        <li>Bài đăng: <p>${user.getPostTitle()}</p></li>
-        <li>Mô tả: <p>${user.getDescribe()}</p></li>
-        <li>Ngày đăng: <p>${user.getDateSubmitted()}</p></li>
-        <li>Hình ảnh: <p><img src="${user.getImg()}"></p></li>
-    </div>
-    <div id="right">
-    </div>
-    <div id="footer">
-    </div>
-</div>
-<ul>
-    <li>Tên: <p>${user.getUserName()}</p> </li>
-    <li>Số điện thoại: <p>${user.getPhoneNumber()}</p> </li>
-    <li>Bài đăng: <p>${user.getPostTitle()}</p></li>
-    <li>Mô tả: <p>${user.getDescribe()}</p></li>
-    <li>Ngày đăng: <p>${user.getDateSubmitted()}</p></li>
-    <li>Hình ảnh: <p><img src="${user.getImg()}"></p></li>
-</ul>
+<a href="/post" class="nav__logo-link link-no-visited-state z-1 mr-auto babybear:z-0 babybear:mr-0 babybear:flex-1 hover:no-underline focus:no-underline active:no-underline" data-tracking-control-name="guest_homepage-jobseeker_nav-header-logo" data-tracking-will-navigate="">
+    <img style="width: 87px;height: 70px" src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg" alt="">
+</a>
+<c:choose>
+    <c:when test="${user.getEmail()==sessionScope.emailAccount1.email}">
+<a  class="btn btn-primary" href="/UsersServlet?action=updateInf&emailUpdateInf=${sessionScope.emailAccount1.email}" role="button">Chỉnh sửa thông tin trang cá nhân</a>
+    </c:when>
+    <c:otherwise>
+        <p>Bạn không có quyền</p>
+    </c:otherwise>
+</c:choose>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Tên</th>
+        <th>Số điện thoại</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>${user.getUserName()}</td>
+        <td>${user.getPhoneNumber()}</td>
+    </tr>
+    </tbody>
+</table>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Tên bài đăng</th>
+        <th>Mô tả </th>
+        <th>Ngày đăng</th>
+        <th>Hình ảnh</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="userDTOList" items="${userDTOList}">
+    <tr>
+        <td>${userDTOList.getPostTitle()}</td>
+        <td>${userDTOList.getDescribe()}</td>
+        <td>${userDTOList.getDateSubmitted()}</td>
+        <td><img src="${userDTOList.getImg()}" height="100px" width="100px"></td>
+        <c:choose>
+            <c:when test="${userDTOList.getEmail()==sessionScope.emailAccount1.email}">
+                <td><a class="btn btn-info"
+                       href="/UsersServlet?action=update&email=${sessionScope.emailAccount1.email}&idPost=${userDTOList.getIdPost()}"
+                       role="button">Update</a></td>
+            </c:when>
+            <c:otherwise>
+                <p></p>
+            </c:otherwise>
+        </c:choose>
+        <c:choose>
+            <c:when test="${userDTOList.getEmail()==sessionScope.emailAccount1.email}">
+                <td>
+                    <button onclick="deleteById(${userDTOList.getIdPost()},'${userDTOList.getEmail()}')" type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
+                        Xóa
+                    </button>
+                </td>
+            </c:when>
+            <c:otherwise>
+                <p></p>
+            </c:otherwise>
+        </c:choose>
+    </tr>
+    </c:forEach>
+    </tbody>
+</table>
+<script>
+    function deleteById(id,email) {
+        document.getElementById("idDelete").value = id;
+        document.getElementById("emailDelete").value = email;
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId"></h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa bài viết không?
+            </div>
+            <div class="modal-footer">
+                <form action="/UsersServlet">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="idPost" id="idDelete">
+                    <input type="hidden" name="email" id="emailDelete">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Xóa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -156,13 +156,13 @@ create table `use`(
 
 );
 
-insert into `use` (use_name, email, password, phone_number,id_delete)
-values ('Anh Đào', 'phantaanhdao@gmail.com', '12345678', '0931997293',0),
-       ('Hữu Huy', 'nguyenhuuhuy1998@gmail.com,', '12345678', '0931997293',0),
-       ('Hưng', 'ngotienhung2000@gmail.com', '12345678', '0931997293',0),
-       ('Danh', 'danhnguyen.15112003@gmail.com', '12345678', '0931997293',0),
-       ('HaiTT', 'haitan28102408@gmail.com', '12345678', '0931997293',0),
-       ('Admin', 'admin@gmail.com', '123123123', '0931997293',0);
+insert into `use` (use_name, email, password, phone_number)
+values ('Anh Đào', 'phantaanhdao@gmail.com', '12345678', '0931997293'),
+       ('Hữu Huy', 'nguyenhuuhuy1998@gmail.com,', '12345678', '0931997293'),
+       ('Hưng', 'ngotienhung2000@gmail.com', '12345678', '0931997293'),
+       ('Danh', 'danhnguyen.15112003@gmail.com', '12345678', '0931997293'),
+       ('HaiTT', 'haitan28102408@gmail.com', '12345678', '0931997293'),
+       ('Admin', 'admin@gmail.com', '123123123', '0931997293');
 
 insert into `use` (use_name, email, password, phone_number)
 values ('Nguyễn Văn A', 'van.a.nguyen@gmail.com', '12345678', '0987654321'),
@@ -188,16 +188,10 @@ values ('Anh Đào', 'phantaanhdao@gmail.com', '12345678', '0931997293'),
 
 select *
 from `use`;
-alter table category
-    add is_delete tinyint(1) default '0';
-update category
-set is_delete =1
-where id_category = 5;
+
 select *
 from category
 where is_delete = 0;
-delete
-from `use`;
 
 alter table `use`
     add id_delete tinyint(1) default '0';
@@ -205,6 +199,19 @@ alter table `use`
 alter table category
     add is_delete
         tinyint(1) default '0';
+
+
+alter table post
+    add id_delete_post tinyint(1) default '0';
+
+# DELIMITER $$
+# CREATE DEFINER=`root`@`localhost` PROCEDURE `get_category_by_id`(IN category_id INT)
+# BEGIN
+#     SELECT c.post_category
+#     FROM category c
+#     where c.id_category = category_id;
+# END $$
+# DELIMITER ;
 
 # drop table post;
 # drop table category;

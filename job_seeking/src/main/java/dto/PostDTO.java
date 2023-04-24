@@ -8,7 +8,21 @@ public class PostDTO {
     private String img;
     private String postCategory;
     private String userName;
+    private String emailUserName;
+    private int idCategory;
+
     public PostDTO() {
+    }
+
+    public PostDTO(int idPost, String postTitle, String describe, String dateSubmitted, String img, String postCategory, String userName, String emailUserName) {
+        this.idPost = idPost;
+        this.postTitle = postTitle;
+        this.describe = describe;
+        this.dateSubmitted = dateSubmitted;
+        this.img = img;
+        this.postCategory = postCategory;
+        this.userName = userName;
+        this.emailUserName = emailUserName;
     }
 
     public PostDTO(int idPost, String postTitle, String describe, String dateSubmitted, String img, String postCategory, String userName) {
@@ -75,5 +89,13 @@ public class PostDTO {
 
     public void setNameUser(String userName) {
         this.userName = userName;
+    }
+
+    public String getEmailUserName() {
+        return emailUserName;
+    }
+
+    public void setEmailUserName(String emailUserName) {
+        this.emailUserName = emailUserName;
     }
 }

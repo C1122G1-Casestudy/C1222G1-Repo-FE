@@ -280,7 +280,7 @@ public class AdminServlet extends HttpServlet {
                 cookie2.setMaxAge(3600);
                 response.addCookie(cookie2);
                 if (user.getEmail().equals("admin@gmail.com")) {
-                    response.sendRedirect("/user");
+                    response.sendRedirect("/post");
                 } else {
                     response.sendRedirect("/post");
                 }

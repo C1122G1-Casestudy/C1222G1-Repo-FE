@@ -11,11 +11,18 @@ public interface IPostRepository {
 
     void create(Post post);
 
-    void deletePost(int idPost);
 
-    Post findById(int idPost);
+
+   
 
     List<PostDTO> findByName(String post);
 
-    void update(int idPost, Post post);
+
+
+
+    PostDTO findToUpdatePostByIdPostAndEmail(int idUpdate, String emailUpdate);
+
+    void updatePostByIdAndEmail(Post postToUpdateO);
+
+    void detePostById(int idDelete);
 }

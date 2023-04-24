@@ -7,6 +7,23 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://static.licdn.com/aero-v1/sc/h/atbn2o0wa7dkf1r28i6huscbz">
+    <link id="ui-theme" rel="stylesheet" href="https://static.licdn.com/sc/h/af9xzjjxzpk0m42sc591uoxml">
+    <link rel="stylesheet" href="https://static.licdn.com/sc/h/c4mrgnc4fgaawh3bw0dqndvw4">
+    <link rel="stylesheet" href="https://static.licdn.com/sc/h/2ok04oilphgqewjusp7dgbu5u">
+    <link rel="stylesheet" href="https://static.licdn.com/sc/h/9s366symjgvf4wujijavj0vho">
+    <link rel="stylesheet" href="https://static.licdn.com/aero-v1/sc/h/atbn2o0wa7dkf1r28i6huscbz">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap520/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="datatables/css/dataTables.bootstrap5.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -71,10 +88,85 @@
         }
 
     </style>
+
 </head>
+<body>
+<div class="application-outlet">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <!--                    trong thẻ a khi họ click vào thì cho nó về trang post-->
+                <a class="navbar-brand" href="/post"><img style="width: 76px ; height: 60px"
+                                                          src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg"
+                                                          alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="d-flex" action="/post">
+                        <input type="hidden" name="action" value="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                               name="postTitle">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <!--                                cho hắn cái link trở về trang post-->
+                            <a class="nav-link active" aria-current="page" href="/post"
+                               style="font-size: x-large">Home</a>
+                        </li>
 
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <!--                                cho hắn cái link trở về trang post-->
 
+                            <c:choose>
+                                <c:when test="${sessionScope.emailAccount1.email != 'admin@gmail.com' }">
+                                    <form action="/UsersServlet">
+                                        <input type="hidden" name="email" value="${sessionScope.emailAccount1.email}">
+                                        <button type="submit"><img
+                                                src="https://www.shutterstock.com/image-vector/men-vector-icon-10-eps-260nw-1432335572.jpg"
+                                                height="50px"
+                                                width="50px"></button>
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    <p></p>
+                                </c:otherwise>
+                            </c:choose>
+                        </li>
+                        <ul>
 
+                        </ul>
+                        <li>
+                            <c:if test="${sessionScope.nameAccount != null}">
+                                <div class="nav-item mx-2">
+                                    <button style="padding: 0px" class="btn btn-light" type="button"><a
+                                            href="/user?action=logout"
+                                            class="nav-link active login text-secondary text-nav "
+                                            aria-current="page" style="font-size: large">
+                                        <i style="position: absolute; right: 190px; width: 30px; padding-top: 5px; color: white"
+                                           class="ti-shift-right"></i>
+                                        Logout</a></button>
+                                </div>
+                            </c:if>
+                            <c:if test="${sessionScope.nameAccount == null}">
+                                <div class="nav-item mx-2" style="font-size: x-large">
+                                    <i class="ti-user"></i>
+                                    <button style="padding: 0px" class="btn btn-light" type="button"><a
+                                            href="/user/login.jsp"
+                                            class="nav-link active login text-secondary text-nav"
+                                            aria-current="page" style="font-size: large">login</a>
+                                    </button>
+                                </div>
+                            </c:if>
+                        </li>
+                    </ul>
 
 <body class="container-fluid">
 <header class="sticky-top bg-success p-2 text-white">
@@ -160,47 +252,220 @@
                     <button type="button" class="text-white bg-opacity-75 add-post-btn">
                         <a class="text-white bg-opacity-75 text-decoration-none" href="/post?action=create"><img src="https://th.bing.com/th/id/R.24a48b9be3aa23cce4a453ea36b97bbc?rik=GVUm1rXB1NMSrA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_113133.png&ehk=CgO%2bAzFgIbzwbZyDOG6k4xCiN8yiaW0wlQ8XrjKiUB0%3d&risl=&pid=ImgRaw&r=0" height="40px" width="40px" alt="">Thêm mới bài viết</a>
                     </button>
+
                 </div>
 
             </div>
+
+        </nav>
+    </header>
+    <div class="row">
+        <div class="authentication-outlet">
+            <div id="voyager-feed" class="feed-container-theme feed-outlet">
+                <div id="ember20" class="self-focused ember-view">
+                    <div class="scaffold-layout__tracking-element"></div>
+                    <div class="scaffold-layout scaffold-layout--breakpoint-none scaffold-layout--sidebar-main-aside scaffold-layout--single-column scaffold-layout--reflow">
+                        <div class="scaffold-layout__inner scaffold-layout-container scaffold-layout-container--reflow ">
+                            <div class="scaffold-layout__row scaffold-layout__content scaffold-layout__content--sidebar-main-aside scaffold-layout__content--has-sidebar scaffold-layout__content--has-aside ">
+                                <img style="width: 100% ; height: 100%"
+                                     src="https://marketplace.canva.com/EAFOaklb8J0/1/0/1135w/canva-blue-illustrated-geometric-job-vacancy-announcement-jBE9IkQ0Ktw.jpg"
+                                     alt="">
+                                <div>
+                                    <img style="height: 100% ; width: 100%"
+                                         src="https://i.pinimg.com/736x/6a/73/0b/6a730b31b002c366b6fd8158cf798615.jpg"
+                                         alt="">
+                                </div>
+                                <main class="scaffold-layout__main" aria-label="Main Feed">
+                                    <div>
+                                        <div class="share-box-feed-entry__closed-share-box artdeco-card">
+                                            <!---->
+                                            <div class="media-modifiers-drag-and-drop__dropzone">
+                                                <li-icon aria-hidden="true" type="plus"
+                                                         class="media-modifiers-drag-and-drop__dropzone-icon"
+                                                         size="medium">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                         data-supported-dps="24x24" fill="currentColor"
+                                                         class="mercado-match" width="24" height="24" focusable="false">
+                                                        <path d="M21 13h-8v8h-2v-8H3v-2h8V3h2v8h8z"></path>
+                                                    </svg>
+                                                </li-icon>
+                                            </div>
+                                            <div class="share-box-feed-entry__top-bar">
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.emailAccount1.email != 'admin@gmail.com' }">
+                                                        <form action="/UsersServlet">
+                                                            <input type="hidden" name="email"
+                                                                   value="${sessionScope.emailAccount1.email}">
+                                                            <button type="submit">
+                                                                <div class="share-box-feed-entry__avatar">
+                                                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                                                         alt="Visit profile for Danh Nguyen"
+                                                                         id="ember41"
+                                                                         class="EntityPhoto-circle-3 ghost-person ember-view">
+                                                                </div>
+                                                            </button>
+                                                        </form>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p></p>
+                                                    </c:otherwise>
+                                                </c:choose>
+
         </div>
         <div class="row p-2 text-dark bg-opacity-10">
             <h4>Các công ty tuyển dụng hàng đầu </h4>
             <div class="row col-5">
 
-                <a href="https://onemount.com/" class="item">
-                    <img src="https://www.topcv.vn/v4/image/welcome/companies/onemoutn.png"
-                         class="img-responsive">
-                </a>
-                <a href="https://www.prudential.com.vn/vi/" class="item">
-                    <img src="https://www.topcv.vn/v4/image/welcome/companies/prudential.png"
-                         class="img-responsive">
-                </a>
-                <a href="https://www.fpt-software.com/" class="item">
-                    <img src="https://www.topcv.vn/v4/image/welcome/companies/fpt.png"
-                         class="img-responsive">
-                </a>
-                <a href="https://tuyendung.tiki.vn/" class="item">
-                    <img src="https://www.topcv.vn/v4/image/welcome/companies/tiki.png"
-                         class="img-responsive">
-                </a>
-                <a href="https://tuyendung.viettel.vn/" class="item">
-                    <img src="https://www.topcv.vn/v4/image/welcome/companies/viettel.png"
-                         class="img-responsive">
-                </a>
-                <a href="https://www.techcombankjobs.com/?locale=vi_VN" class="item">
-                    <img src="https://www.topcv.vn/v4/image/welcome/companies/teachcombank.png"
-                         class="img-responsive">
-                </a>
 
-            </div>
-            <div class="col-7 box-search-job-image">
-                <img src="https://www.topcv.vn/v4/image/welcome/image_topcv_2.png?v=1.0.0"
-                     title="Nhân viên tuyển dụng " alt="Nhan vien tuyen dung " class="img-responsive">
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.emailAccount1.email != 'admin@gmail.com' }">
+                                                        <%--                                                        <a class="btn btn-info" href="/post?action=create&emailUser=${sessionScope.emailAccount1.email}" role="button">Tạo--%>
+                                                        <%--                                                            mới</a>--%>
+                                                        <button id="ember42"
+                                                                class="artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger">
+                                                            <!---->
+                                                            <span class="artdeco-button__text"> <a
+                                                                    href="/post?action=create&emailUser=${sessionScope.emailAccount1.email}"
+                                                                    style="text-decoration: none">Start a post</a>
+                                                </span>
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p></p>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <!--                                            thằng button ni khi click vào thì dẫn cho hắn đến trang tạo bài đăng -->
+                                            </div>
+                                        </div>
+                                        <%--                                       <p>-------------------------------------------------------------</p>--%>
+
+                                        <%--                                        <p>------------------------------------------------------------------------</p>--%>
+                                    </div>
+
+                                </main>
+                                <div>
+                                    <img style="width: 100% ; height: 100%"
+                                         src="https://images.template.net/wp-content/uploads/2019/06/Job-Advertisement-Poster-Template.jpg"
+                                         alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<footer class="li-footer bg-transparent w-full ">
+    <ul class="li-footer__list flex flex-wrap flex-row items-start justify-start w-full h-auto min-h-[50px] my-[0px] mx-auto py-3 px-2 papabear:w-[1128px] papabear:p-0">
+
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+
+            <span class="sr-only">SearchJob</span>
+            <img style="width: 34px ; height: 19px"
+                 src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg" alt="">
+            <span class="li-footer__copy-text flex items-center">&copy; 2023</span>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-about" data-tracking-will-navigate>
+                About
+            </a>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-accessibility" data-tracking-will-navigate>
+                Accessibility
+            </a>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-user-agreement" data-tracking-will-navigate>
+                User Agreement
+            </a>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-privacy-policy" data-tracking-will-navigate>
+                Privacy Policy
+            </a>
+        </li>
+
+        <!---->
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-cookie-policy" data-tracking-will-navigate>
+                Cookie Policy
+            </a>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-copyright-policy" data-tracking-will-navigate>
+                Copyright Policy
+            </a>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-brand-policy" data-tracking-will-navigate>
+                Brand Policy
+            </a>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-guest-controls" data-tracking-will-navigate>
+                Guest Controls
+            </a>
+        </li>
+        <li class="li-footer__item font-sans text-xs text-color-text-low-emphasis flex flex-shrink-0 justify-start p-1 relative w-50% papabear:justify-center papabear:w-auto">
+            <a class="li-footer__item-link flex items-center font-sans text-xs font-bold text-color-text-low-emphasis hover:text-color-link-hover focus:text-color-link-focus"
+               data-tracking-control-name="homepage-jobseeker_footer-community-guide" data-tracking-will-navigate>
+                Community Guidelines
+            </a>
+        </li>
+    </ul>
+</footer>
+<p>
+    -------------------------------------------------------------------------------------------------------------------------</p>
+
+
+<%--<a name="" id="" class="btn btn-primary" href="/post" role="button">Trang chủ</a>--%>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <table id="tableStudent" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>Bài đăng</th>
+                    <th>Mô tả</th>
+                    <th>Ngày đăng</th>
+                    <th>Hình ảnh</th>
+                    <th>Thể loại</th>
+                    <th>Người đăng</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="post" items="${postList}" varStatus="no">
+                    <tr>
+                        <td scope="row">${no.count}</td>
+                        <td>${post.getPostTitle()}</td>
+                        <td>${post.getDescribe()}</td>
+                        <td>${post.getDateSubmitted()}</td>
+                        <td><img src="${post.getImg()}" width="100px" height="100px"></td>
+                        <td>${post.getPostCategory()}</td>
+                        <td>${post.getUserName()}</td>
+                        <c:choose>
+                            <c:when test="${post.getEmailUserName()==sessionScope.emailAccount1.email or sessionScope.emailAccount1.email== 'admin@gmail.com' }">
+                                <td>
+                               <a class="btn btn-info"
+                                       href="/post?action=update&email=${post.getEmailUserName()}&idPost=${post.getIdPost()}"
+                                       role="button">Update</a>
+                                </td>
+
 <c:forEach var="post" items="${postList}">
     <div class="container row">
         <div class="col-10 ">
@@ -224,31 +489,33 @@
                 <h6>Ngành: ${post.getPostCategory()}</h6>
                 <h6>Người đăng: ${post.getUserName()}</h6>
 
-                <!-- Modal -->
-                <form action="/post" method="get">
-                    <div class="modal fade" id="exampleModal${post.idPost}" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Xóa bài đăng</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+
+                            </c:when>
+                            <c:otherwise>
+                                <p></p>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+
+                            <c:when test="${post.getEmailUserName()==sessionScope.emailAccount1.email}">
+                                <td>
+                                    <button onclick="deleteById(${post.getIdPost()})" type="button"
+                                            class="btn btn-primary btn-lg"
+                                            data-bs-toggle="modal" data-bs-target="#modelId">
+                                        Xóa
                                     </button>
-                                </div>
-                                <input type="hidden" name="action" value="delete">
-                                <input type="hidden" name="id" value="${post.idPost}">
-                                <div class="modal-body">
-                                    Bạn có muốn xóa bài đăng ${post.getPostTitle()}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="submit" class="btn btn-primary">Xóa</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                                </td>
+                            </c:when>
+                            <c:otherwise>
+                                <p></p>
+                            </c:otherwise>
+
+
+                        </c:choose>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
 
             </tr>
             <tr>
@@ -257,28 +524,37 @@
         </div>
         <div class="col-2 ">
             <td><img src="${post.getImg()}" width="280px" height="360px" alt="unavailable"></td>
+
         </div>
     </div>
-
-</c:forEach>
-
-<footer class="bg-success p-2 text-dark bg-opacity-25">
-    <div class="footer-main">
-        <div class="container">
-            <div class="box-main">
-                <div class="column">
-                    <a href="/post">
-                        <img src="https://e7.pngegg.com/pngimages/1000/101/png-clipart-job-hunting-intern-employment-website-cover-letter-job-search-text-logo.png"
-                             height="75px" width="75px"
-                             class="img-logo-footer img-responsive">
-                    </a>
-                    <div class="box-contact">
-                        <p class="title">Liên hệ</p>
-                        <span>Hotline:</span><a href="tel:0835443443">0835 443 443</a><br>
-                        <span>Email:</span><a href="mailto:tuyendung@jobsearch.vn">tuyendung@jobsearch.vn</a>
-                    </div>
-                </div>
+</div>
+<script>
+    function deleteById(id) {
+        document.getElementById("idDelete").value = id;
+    }
+</script>
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitleId"></h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+
+            <div class="modal-body">
+                Bạn có muốn xóa bài viết không?
+            </div>
+            <div class="modal-footer">
+                <form action="/post">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="idPost" id="idDelete">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Xóa</button>
+                </form>
+
         </div>
         <div class="footer-info">
             <div class="container">
@@ -325,9 +601,32 @@
                             © 2023 JobSearch JSC. Design by group2/C1222G1.
                         </p></div>
                 </div>
+
             </div>
         </div>
     </div>
-</footer>
+</div>
+<p>
+    ---------------------------------------------------------------------------------------------------------------------</p>
+<li>
+    <c:if test="${sessionScope.emailAccount == 'admin@gmail.com'}">
+        <a name="" id="" class="btn btn-primary" href="/user"
+           role="button">Danh sách người dùng</a>
+        <a name="" id="" class="btn btn-primary" href="/categoryServlet"
+           role="button">Thể loại</a>
+    </c:if>
+</li>
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script src="datatables/js/jquery.dataTables.min.js"></script>
+<script src="datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableStudent').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 2
+        });
+    });
+</script>
 </body>
 </html>
