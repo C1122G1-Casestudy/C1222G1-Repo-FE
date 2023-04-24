@@ -10,7 +10,6 @@
 <html>
 <head>
     <title>Title</title>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -26,58 +25,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="../../css/bootstrap.css">
-
     <style>
         .display {
             display: flex;
             flex-direction: column;
         }
-
-        body {
-            background-image: url('https://static.storyweaver.org.in/illustrations/58816/large/3.jpg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: 100% 100%;
-        }
-    </style>
-</head>
-<body>
-<a href="/post" class="nav__logo-link link-no-visited-state z-1 mr-auto babybear:z-0 babybear:mr-0 babybear:flex-1 hover:no-underline focus:no-underline active:no-underline" data-tracking-control-name="guest_homepage-jobseeker_nav-header-logo" data-tracking-will-navigate="">
-    <img style="width: 87px;height: 70px" src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg" alt="">
-</a>
-<c:choose>
-    <c:when test="${sessionScope.emailAccount1.email==post.getEmailUserName() or sessionScope.emailAccount1.email == 'admin@gmail.com' }">
-        <h1 style="text-align: center">Chỉnh sửa bài đăng</h1>
-        <form method="post" class="display input-group">
-            <input type="hidden" name="idPost" value="${post.getIdPost()}" id="idPost">
-           <p> <label for="postTitle" ><strong>Tiêu đề: </strong></label>
-               <input type="text" name="postTitle" value="${post.getPostTitle()}" id="postTitle" style="border: none"> </p>
-           <label ><strong>Nội dung</strong></label>
-<%--            <input type="text" name="describe" value="${post.getDescribe()}" id="describe">--%>
-            <textarea name="describe" rows="10" style="border: none">${post.getDescribe()}</textarea>
-           <p> <label for="dateSubmitted"><strong>Ngày đăng</strong></label>
-            <input type="text" name="dateSubmitted" value="${post.getDateSubmitted()}" id="dateSubmitted" style="border: none"> </p>
-            <label for="img"><strong>Hình ảnh</strong></label>
-            <input type="text" name="img" value="${post.getImg()}" id="img">
-           <p> <label><strong>Thể loại</strong></label>
-            <select name="idCategory" >
-                <c:forEach items="${categoryList}" var="category">
-                    <option value="${category.idCategory}">
-                            ${category.postCategory}
-                    </option>
-                </c:forEach>
-            </select> </p>
-           <p> <label style="border: none"><strong>Người đăng bài</strong></label>
-            <input disabled value="${post.getUserName()}" style="border: none"> </p>
-            <button type="submit" style="color: #4d5154"><strong style="font-size: 20px">Cập Nhật</strong></button>
-        </form>
-    </c:when>
-    <c:otherwise>
-        <p>Bạn không được phép sửa đổi thông tin</p>
-        <a href="/post">Trang chủ</a>
-    </c:otherwise>
-</c:choose>
-
 
         body {
             padding: 16px;
@@ -215,15 +167,16 @@
                         <h3 class="text-center" style="color: coral">${message}</h3>
                     </c:if>
                 </h3>
-                <form action="" method="post" class="display">
-                    Mã bài đăng : <input type="number" name="id" id="id" value="${postList.getIdPost()}">
-                    Tiêu đề : <input type="text" name="postTitle" id="postTitle" value="${postList.getPostTitle()}">
-                    Nội dung : <input type="te" name="describe" id="describe" value="${postList.getDescribe()}">
-                    Ngày đăng : <textarea rows="10" type="text" name="dateSubmitted" id="dateSubmitted"
-                                          value="${postList.getDateSubmitted()}"></textarea>
-                    Hình ảnh : <input type="text" name="img" id="img" value="${postList.getImg()}">
+                <form method="post" class="display" >
+                    Mã bài đăng : <input type="number" name="id"  value="${postUpdate.getIdPost()}">
+                    Tiêu đề : <input type="text" name="postTitle"  value="${postUpdate.getPostTitle()}">
+                    Nội dung : <textarea type="text" rows="10" name="describe"
+                                         value="${postUpdate.getDescribe()}"></textarea>
+                    Ngày đăng : <input type="date" name="begin"
+                                       placeholder="dd-mm-yyyy" name="dateSubmitted"
+                                       value="${postUpdate.getDateSubmitted()}">
+                    Hình ảnh : <input type="text" name="img"  value="${postUpdate.getImg()}">
                     Thể loại :
-                    <%--    <input type="number" name="idCategory" id="idCategory" value="${postList.getIdCategory()}">--%>
                     <select name="idCategory">
                         <c:forEach items="${categoryList}" var="category">
                             <option value="${category.idCategory}">
@@ -231,9 +184,8 @@
                             </option>
                         </c:forEach>
                     </select>
-                    </select>
-                    <%--    Tên người dùng : <input type="t" name="idCategory" id="idCategory" value="${post.getIdCategory()}">--%>
 
+                    <%--    Tên người dùng : <input type="t" name="idCategory" id="idCategory" value="${post.getIdCategory()}">--%>
 
                     <button type="submit" class="bg-success p-2 text-white">Cập Nhật</button>
                 </form>
@@ -241,7 +193,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

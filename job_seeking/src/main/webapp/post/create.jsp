@@ -85,75 +85,6 @@
     </style>
 
 </head>
-
-<body>
-<h1 class="text-center">Create new post</h1>
-<h4 class="text-center"><a href="/post">Back</a></h4>
-<h3 class="text-center">
-    <c:if test="${message != null}">
-        <h3 class="text-center" style="color: coral">${message}</h3>
-    </c:if>
-</h3>
-<form method="post">
-<%--    <tr>--%>
-<%--        <td>Nhập mã bài đăng:</td>--%>
-<%--        <td>--%>
-<%--            <input type="number" name="idPost" value="action"/>--%>
-<%--        </td>--%>
-<%--    </tr>--%>
-    <tr>
-        <td>Nhập tên tiêu đề:</td>
-        <td>
-            <input type="text" name="postTitle" />
-        </td>
-    </tr>
-    <tr>
-        <td>Nhập nội dung:</td>
-        <td>
-            <textarea type="text" name="describe" ></textarea>
-        </td>
-    </tr>
-    <tr>
-        <td>Nhập ngày đăng:</td>
-        <td>
-            <input type="text" id="dateSubmitted" name="dateSubmitted" />
-        </td>
-    </tr>
-    <tr>
-        <td>Hình ảnh:</td>
-        <td>
-            <%--            <lable for="file-upload">Chọn tệp:</lable>--%>
-            <input type="text" id="img" name="img">
-        </td>
-    </tr>
-    <tr>
-        <td>Chọn thể loại:</td>
-        <select name="idCategory">
-            <c:forEach items="${categoryList}" var="category">
-                <option value="${category.idCategory}">
-                        ${category.postCategory}
-                </option>
-            </c:forEach>
-        </select>
-    </tr>
-<%--    <label>Id người dùng</label>--%>
-    <tr>
-    <c:forEach var="user" items="${userList}">
-        <c:choose>
-            <c:when test="${user.getEmail()==nameUser}">
-                <input type="hidden" name="idUser" value="${user.getId()}">
-<%--                <input type="text" name="idUser" value="${user.getUserName()}">--%>
-            </c:when>
-        </c:choose>
-    </c:forEach>
-    </tr>
-    <tr>
-        <td>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </td>
-    </tr>
-</form>
-
 <body class="container">
 <header class="sticky-top bg-success p-2 text-white">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -256,7 +187,8 @@
                     <tr>
                         <td>Nhập ngày đăng:</td>
                         <td>
-                            <input type="text" id="dateSubmitted" name="dateSubmitted"/>
+                            <input type="date" name="begin"
+                                   placeholder="dd-mm-yyyy" id="dateSubmitted" name="dateSubmitted"/>
                         </td>
                     </tr>
                     <tr>
@@ -286,6 +218,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
