@@ -21,7 +21,9 @@
 
 </head>
 <body>
-<a href="/post">Trang chủ</a>
+<a href="/post" class="nav__logo-link link-no-visited-state z-1 mr-auto babybear:z-0 babybear:mr-0 babybear:flex-1 hover:no-underline focus:no-underline active:no-underline" data-tracking-control-name="guest_homepage-jobseeker_nav-header-logo" data-tracking-will-navigate="">
+    <img style="width: 87px;height: 70px" src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg" alt="">
+</a>
 <c:choose>
     <c:when test="${user.getEmail()==sessionScope.emailAccount1.email}">
 <a  class="btn btn-primary" href="/UsersServlet?action=updateInf&emailUpdateInf=${sessionScope.emailAccount1.email}" role="button">Chỉnh sửa thông tin trang cá nhân</a>

@@ -22,14 +22,14 @@
 
     <style>
         body {
-            background-image: url('https://treobangron.com.vn/wp-content/uploads/2022/09/background-phong-lam-viec-16.jpg');
+            background-image: url('https://media.istockphoto.com/id/1212342896/vector/abstract-hexagon-wallpaper-white-background-3d-vector-illustration.jpg?s=612x612&w=0&k=20&c=ynRzXUZ4_Ga3Y7joKBABdXUQI4xBvrdHJnYueJWEiw8=');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 100% 100%;
         }
 
         .bgr {
-            background-color: rgba(299, 199, 202, 20%);
+            background-color: white;
         }
     </style>
 
@@ -39,7 +39,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <form action="/user?action=register" class="col-md-6 bgr p-3 my-3" method="post">
-                <h1 class="text-center text-uppercase h3 py-3">SIGN UP</h1>
+                <h1 class="text-center text-uppercase h3 py-3">SIGN UP <img src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg" width="150" height="100"></h1>
                 <div class="form-group my-2">
                     <label for="fullname">Full Name</label>
                     <input type="text" class="form-control" name="name" id="fullname" autocomplete="off" minlength="3"

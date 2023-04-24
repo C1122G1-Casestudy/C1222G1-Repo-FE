@@ -50,7 +50,7 @@
     <a href="#"
        class="nav__logo-link link-no-visited-state z-1 mr-auto babybear:z-0 babybear:mr-0 babybear:flex-1 hover:no-underline focus:no-underline active:no-underline"
        data-tracking-control-name="guest_homepage-jobseeker_nav-header-logo" data-tracking-will-navigate>
-        <img style="width: 77px;height: 60px"
+        <img style="width: 100px;height: 100px"
              src="https://www.shutterstock.com/image-vector/job-searching-icon-260nw-1224749530.jpg" alt="">
     </a>
 
